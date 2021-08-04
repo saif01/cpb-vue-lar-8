@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('app');
+// });
+
+
+
+Route::get('/', 'App\Http\Controllers\FrontEnd\IndexController@index');
+Route::get('{slug}', 'App\Http\Controllers\FrontEnd\IndexController@index');
