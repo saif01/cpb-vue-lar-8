@@ -28,7 +28,7 @@
                                     About Us
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="http://cpb-8/about/history">Our History</a>
+                                    <router-link to="about_history" class="dropdown-item">Our History</router-link>
 
                                     <router-link to="about_vision" class="dropdown-item" >Our Vision</router-link>
                                     <router-link to="about_mission" class="dropdown-item" >Our Mission</router-link>

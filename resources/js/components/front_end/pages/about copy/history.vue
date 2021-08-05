@@ -6,12 +6,12 @@
                 <div class="container">
 
                     <div class="d-flex justify-content-between align-items-center">
-                        <h2>All Our Headquarter</h2>
+                        <h2>All Our Histories</h2>
                         <ol>
                             <li>
                                 <router-link to="/">Home</router-link>
                             </li>
-                            <li>About / Our Headquarter</li>
+                            <li>About / Our History</li>
                         </ol>
                     </div>
 
@@ -25,21 +25,17 @@
                     <li v-for="(item, index) in allData" :key="index">
                         <div data-aos="fade-up" :class="setDirection(index)">
                             <div class="flag-wrapper">
-                                <span class="flag">{{ item.country }}</span>
+                                <span class="flag">{{ item.date }}</span>
                             </div>
                             <div class="desc">
 
-                             
-                                    <p class="mb-0" v-if="item.company">{{ item.company }}</p>
-                                    <p class="mb-0" v-if="item.phone"> <a :href="'tel:'+item.phone">Phone:
-                                            {{ item.phone }}</a></p>
-                                    <p class="mb-0" v-if="item.email"> <a :href="'mailto:'+item.email">Email:
-                                            {{ item.email }}</a></p>
-                                    <p class="mb-0" v-if="item.website"><a :href="item.website" target="_blank">Website
-                                            Link</a></p>
-                                    <p class="mb-0" v-if="item.address">{{ item.address }}</p>
-                               
-                               
+                                <img :src="'images/history/small/'+item.image" class="rounded" alt="Image"
+                                    style="max-height: 50px;">
+                                <hr>
+
+                                <b>{{ item.title }}</b>
+                                <hr>
+                                <div v-html="item.details"></div>
                             </div>
                         </div>
                     </li>
@@ -66,7 +62,7 @@
         methods: {
 
             getDirectData() {
-                axios.get('/api/headquaters').then(res => {
+                axios.get('/api/history').then(res => {
                     //console.log(res.data)
                     if (res.status == 200) {
                         this.allData = res.data
@@ -382,7 +378,7 @@
 
     }
 
-     @media screen and ( max-width: 660px) {
+    @media screen and ( max-width: 660px) {
 
         .direction-l .desc,
         .direction-r .desc {

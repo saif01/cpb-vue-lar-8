@@ -26,6 +26,7 @@
         <main-app></main-app>
     </div>
 
+
     <script src="{{ asset('js/app.js') }}"></script> 
     <script src="{{ asset('all-assets/front-end/vendor/aos/aos.js') }}"></script>
 
@@ -36,6 +37,10 @@
             easing: 'ease-in-sine',
             once: true
         });
+
+        {{-- window.document.title = response.data.title
+
+        console.log('title: '+ response.data.title) --}}
     </script>
        
     </body>

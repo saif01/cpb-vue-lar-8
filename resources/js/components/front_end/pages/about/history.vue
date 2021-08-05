@@ -6,12 +6,12 @@
                 <div class="container">
 
                     <div class="d-flex justify-content-between align-items-center">
-                        <h2>All Headquarters</h2>
+                        <h2>All Histories</h2>
                         <ol>
                             <li>
                                 <router-link to="/">Home</router-link>
                             </li>
-                            <li>About / Headquarters</li>
+                            <li>About / Histories</li>
                         </ol>
                     </div>
 
@@ -30,32 +30,23 @@
 
                                 <div data-aos="fade-up" class="timeline" v-for="(item, index) in allData" :key="index">
                                     <a href="#" class="timeline-content">
-                                        <span class="timeline-year"></span>
+                                        <span class="timeline-year">{{ item.year }}</span>
                                         <div class="timeline-icon">
-                                            <i class="fa fa-globe"></i>
+                                            <!-- <i class="fa fa-globe"></i> -->
+                                             <img :src="'images/history/small/'+item.image" class="rounded" alt="Image"
+                                    style="max-height: 50px;">
                                         </div>
-                                        <h3 class="title">{{ item.country }}</h3>
-                                        <div class="description">
-
-                                            <ul>
-                                                <li>{{ item.company }}</li>
-                                                <li v-if="item.phone"> <a :href="'tel:'+item.phone">Phone:
-                                                        {{ item.phone }}</a></li>
-                                                <li v-if="item.email"> <a :href="'mailto:'+item.email">Email:
-                                                        {{ item.email }}</a></li>
-                                                <li v-if="item.website"><a :href="item.website" target="_blank">Website
-                                                        Link</a></li>
-                                                <li v-if="item.address">{{ item.address }}</li>
-                                            </ul>
-
-                                        </div>
-
+                                        <h3 class="title">{{ item.title }}</h3>
+                                      
+                                        <div class="description" v-html="item.details"></div>
+                                    
                                     </a>
                                 </div>
 
                             </div>
                         </div>
                     </div>
+
 
                 </div>
             </div>
@@ -68,7 +59,7 @@
 
 <script>
     export default {
-
+        name:'Histories',
         data() {
             return {
                 allData: {},
@@ -78,7 +69,7 @@
         methods: {
 
             getDirectData() {
-                axios.get('/api/headquaters').then(res => {
+                axios.get('/api/history').then(res => {
                     //console.log(res.data)
                     if (res.status == 200) {
                         this.allData = res.data
@@ -296,6 +287,11 @@
         .main-timeline .title {
             font-size: 18px;
         }
+    }
+
+
+    .main-timeline .timeline-icon{
+        font-size: inherit !important;
     }
 
 </style>

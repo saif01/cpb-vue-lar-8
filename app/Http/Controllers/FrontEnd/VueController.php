@@ -150,8 +150,15 @@ class VueController extends Controller
     // headquaters
     public function headquaters(){ 
         $data =  AboutHeadquarter::where('status', '1')->orderBy('id', 'asc')->get();      
-         return response()->json($data, 200);
-     }
+        return response()->json($data, 200);
+    }
+
+
+    //history
+    public function history(){ 
+        $data =  AboutHistory::where('status', '1')->orderBy('id', 'asc')->get();      
+        return response()->json($data, 200);
+    }
 
 
 

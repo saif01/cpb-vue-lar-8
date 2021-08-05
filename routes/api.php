@@ -36,6 +36,7 @@ Route::namespace('App\Http\Controllers\FrontEnd')->group( function(){
     Route::get('/vision', 'VueController@vision');
     Route::get('/mission', 'VueController@mission');
     Route::get('/headquaters', 'VueController@headquaters');
+    Route::get('/history', 'VueController@history');
 
 
 
