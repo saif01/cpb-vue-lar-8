@@ -1,81 +1,69 @@
 <template>
     <div>
-    <main id="main">
+        <main id="main">
 
-        <section class="breadcrumbs">
-            <div class="container">
+            <section class="breadcrumbs">
+                <div class="container">
 
-                <div class="d-flex justify-content-between align-items-center">
-                    <h2>All Headquarters</h2>
-                    <ol>
-                       <li>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h2>All Headquarters</h2>
+                        <ol>
+                            <li>
                                 <router-link to="/">Home</router-link>
                             </li>
-                        <li>About / Headquarters</li>
-                    </ol>
+                            <li>About / Headquarters</li>
+                        </ol>
+                    </div>
+
                 </div>
-
-            </div>
-        </section>
+            </section>
 
 
 
 
-        <div class="container">
-            <div class="timeline">
+            <div class="container">
+                <div class="timeline">
 
-                 <div class="row">
-        <div class="col-md-12">
-            <div class="main-timeline">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="main-timeline">
 
-                <div data-aos="fade-up" class="timeline" v-for="(item, index) in allData" :key="index">
+                                <div data-aos="fade-up" class="timeline" v-for="(item, index) in allData" :key="index">
                                     <a href="#" class="timeline-content">
-                                        <span class="timeline-year">2020</span>
+                                        <span class="timeline-year"></span>
                                         <div class="timeline-icon">
                                             <i class="fa fa-globe"></i>
                                         </div>
                                         <h3 class="title">{{ item.country }}</h3>
-                                         <div class="description">
-                                            <li>{{ item.company }}</li> 
-                                            <a v-if="item.phone" :href="'tel:'+item.phone">Phone: {{ item.phone }}</a><br>
-                                            <a v-if="item.email" :href="'mailto:'+item.email">Email: {{ item.email }}</a><br>
-                                            <a v-if="item.website" :href="item.website" target="_blank">Website Link</a><br>
-                                            <span v-if="item.address">{{ item.address }}</span> <br>
+                                        <div class="description">
+
+                                            <ul>
+                                                <li>{{ item.company }}</li>
+                                                <li v-if="item.phone"> <a :href="'tel:'+item.phone">Phone:
+                                                        {{ item.phone }}</a></li>
+                                                <li v-if="item.email"> <a :href="'mailto:'+item.email">Email:
+                                                        {{ item.email }}</a></li>
+                                                <li v-if="item.website"><a :href="item.website" target="_blank">Website
+                                                        Link</a></li>
+                                                <li v-if="item.address">{{ item.address }}</li>
+                                            </ul>
+
                                         </div>
-                                       
+
                                     </a>
                                 </div>
-              
-            </div>
-        </div>
-    </div>
 
-               
-                <div v-for="(item, index) in allData" :key="index" class="row no-gutters justify-content-end justify-content-md-around align-items-start  timeline-nodes">
-                    <div class="col-10 col-md-5 order-3 order-md-1 timeline-content" >
-                        <h3 class="text-light" style="background:red">{{ item.country }}</h3>
-                        <p v-if="item.company" >{{ item.company }}<br>
-                        <a v-if="item.phone" :href="'tel:'+item.phone">Phone: {{ item.phone }}</a><br>
-                        <a v-if="item.email" :href="'mailto:'+item.email">Email: {{ item.email }}</a><br>
-                        <a v-if="item.website" :href="item.website" target="_blank">Website Link</a><br>
-                        <span v-if="item.address">{{ item.address }}</span> <br>
-                        </p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-2 col-sm-1 px-md-3 order-2 timeline-image text-md-center">
-                        <img :src="'all-assets/front-end/img/logo/cpb.png'" alt="CPB" class="img-fluid">
-                    </div>
-                    <div class="col-10 col-md-5 order-1 order-md-3 py-3 timeline-date">
 
-                    </div>
                 </div>
-
             </div>
-        </div>
 
 
 
-    </main><!-- End #main -->
-</div>
+        </main><!-- End #main -->
+    </div>
 </template>
 
 <script>
