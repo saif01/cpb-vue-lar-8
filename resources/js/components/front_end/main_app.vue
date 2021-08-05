@@ -37,7 +37,7 @@
                                     <router-link to="about_president_message" class="dropdown-item" >President
                                         Message</router-link>
 
-                                    <a class="dropdown-item" href="http://cpb-8/about/headquarters">Headquarters</a>
+                                    <router-link to="about_headquarter" class="dropdown-item" >Headquarters</router-link>
                                 </div>
                             </li>
 

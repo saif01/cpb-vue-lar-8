@@ -16,6 +16,7 @@ import about_chairman_message from '../components/front_end/pages/about/chairman
 import about_president_message from '../components/front_end/pages/about/president-message.vue';
 import about_vision from '../components/front_end/pages/about/vision.vue';
 import about_mission from '../components/front_end/pages/about/mission.vue';
+import about_headquarter from '../components/front_end/pages/about/headquarter.vue';
 
  
 const routes = new VueRouter({
@@ -68,6 +69,11 @@ const routes = new VueRouter({
             path: '/about_mission',
             component: about_mission,
             name: 'about_mission'
+        },
+        {
+            path: '/about_headquarter',
+            component: about_headquarter,
+            name: 'about_headquarter'
         },
 
 

@@ -26,84 +26,42 @@
                         <h2>Mission</h2>
                         <p>C.P.Bangladesh Co. Ltd. Mission</p>
                     </div>
-
                     
-                    <!-- <carousel  v-for="(item, index) in allData" :key="index">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="main-timeline">
 
-                        <p>{{ item.details }}</p> 
-                           
-                    </carousel> -->
-                    <!-- <carousel :items="3" :loop="true">
+                                <div data-aos="fade-up" class="timeline" v-for="(item, index) in allData" :key="index">
+                                    <a href="#" class="timeline-content">
+                                        <span class="timeline-year"></span>
+                                        <div class="timeline-icon">
+                                            <i class="fas fa-clipboard-list"></i>
+                                        </div>
+                                        <h3 class="title pt-2">{{ item.details }}</h3>
 
-                        <img src="https://placeimg.com/200/200/any?1">
+                                    </a>
+                                </div>
 
-                        <img src="https://placeimg.com/200/200/any?2">
-
-                        <img src="https://placeimg.com/200/200/any?3">
-
-                        <img src="https://placeimg.com/200/200/any?4">
-
-                    </carousel> -->
-
-
-                    <carousel-3d>
-                        <slide v-for="(item, i) in slides" :key="i" :index="i">
-
-                            <!-- {{ item.details }} -->
-                            <img :src="'https://placeimg.com/200/200/any?'+i">
-
-                        </slide>
-                    </carousel-3d>
-
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </section>
 
 
-          
-
-       
-
         </main><!-- End #main -->
-        
- <!-- <carousel-3d>
-         <slide v-for="(slide, i) in slides" :index="i" :key="i">
-            <template slot-scope="{ index, isCurrent, leftIndex, rightIndex }">
-                <img :data-index="index" :class="{ current: isCurrent, onLeft: (leftIndex >= 0), onRight: (rightIndex >= 0) }" :src="slide.src">
-            </template>
-        </slide>
-</carousel-3d> -->
-
-             
 
     </div>
 </template>
 
 
 <script>
-
-  import carousel from 'vue-owl-carousel'
-
-  import { Carousel3d, Slide } from 'vue-carousel-3d';
-
-
-
     export default {
-        
-        components: {
-            carousel,
-            
-            Carousel3d,
-            Slide,
-
-            // 'carousel-3d': window['carousel-3d'].Carousel3d,
-            // 'slide': window['carousel-3d'].Slide
-        },
 
         data() {
             return {
-                allData: '',
-                slides: 7,
+                allData: {},
             }
         },
 
@@ -111,35 +69,29 @@
 
             getDirectData() {
                 axios.get('/api/mission').then(res => {
-                   // console.log(res.data)
+                    //console.log(res.data)
                     if (res.status == 200) {
                         this.allData = res.data
                     } else {
                         console.log(res.data)
                     }
 
+                    // console.log(this.allData.length)
+
                 })
             },
-            
 
-         
+
+
 
         },
 
 
-        mounted() { 
+        mounted() {
             this.$Progress.start();
             this.getDirectData();
             console.log('Mission Component');
             this.$Progress.finish();
-
-            // Testimonials carousel (uses the Owl Carousel library)
-            // $(".testimonials-carousel").owlCarousel({
-            //     autoplay: true,
-            //     dots: true,
-            //     loop: true,
-            //     items: 1
-            // });
         },
 
 
@@ -150,88 +102,191 @@
 
 
 <style scoped>
-
-    svg { transition: color .5s ease; }
-
-    .card {
-        border: none;
-        display: inline-block;
-        width: 45%;
-        padding: 4rem 1rem 7rem 1rem;
-        background-color: teal;
+    .main-timeline {
+        font-family: 'Roboto', sans-serif;
         position: relative;
     }
 
-    .card:after {
-        content: "";
+    .main-timeline:after {
+        content: '';
         display: block;
-        width: 0px;
-        height: 0px;
-        background-color: skyblue;
-        top: 0px;
-        right: 0px;
-        border-bottom: 20px solid #006767;
-        border-left: 20px solid #006767;
-        border-right: 20px solid white;
-        border-top: 20px solid white;
-        position: absolute;
-        filter: drop-shadow(-5px 5px 3px rgba(0, 0, 0, 0.5));
+        clear: both;
     }
 
-    .card:before {
-        content: "";
+    .main-timeline .timeline {
+        width: 60%;
+        padding: 0 30px 0 0;
+        margin: 20px 0;
+        float: left;
+    }
+
+    .main-timeline .timeline-content {
+        background-color: #536E79;
+        min-height: 133px;
+        padding: 30px 95px 30px 130px;
         display: block;
-        width: 0px;
-        height: 0px;
-        border-top: 40px solid #006767;
-        border-right: 40px solid #006767;
-        border-left: 40px solid white;
-        border-bottom: 40px solid white;
-        bottom: 0px;
-        left: 0px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .main-timeline .timeline-content:hover {
+        text-decoration: none;
+    }
+
+    .main-timeline .timeline-content:before {
+        content: '';
+        background: #fff;
+        border-radius: 100px 20px 20px 100px;
         position: absolute;
-        filter: drop-shadow(7px -7px 5px rgba(0, 0, 0, 0.5));
-        margin-right: 10%;
+        left: 70px;
+        top: 10px;
+        bottom: 10px;
+        right: -30px;
+        z-index: -1;
     }
 
-    .card:nth-of-type(1) {
-        margin-right: 9%;
+    .main-timeline .timeline-year {
+        color: #fff;
+        font-size: 45px;
+        font-weight: 600;
+        line-height: 45px;
+        transform: translateY(-50%) rotate(-90deg);
+        position: absolute;
+        left: -15px;
+        top: 50%;
     }
 
-
-    blockquote {
-        padding: 20px 60px;
-        background: #eee;
+    .main-timeline .timeline-icon {
+        color: #fff;
+        background-color: #536E79;
+        font-size: 60px;
+        text-align: center;
+        line-height: 100px;
+        width: 100px;
+        height: 100px;
         border-radius: 10px;
-        font-family: arial;
-        line-height: 1.625;
-        position: relative;
-    }
-
-    blockquote span {
-        position: relative;
-        display: inline-block;
-    }
-
-    blockquote span:before {
-        content: "“";
-        font-size: 72px;
-        color: #79b83a;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+        transform: translateY(-50%);
         position: absolute;
-        left: -40px;
-        top: 40px;
-        line-height: 0;
+        right: -20px;
+        top: 50%;
     }
 
-    blockquote span:after {
-        content: "”";
-        font-size: 72px;
-        color: #79b83a;
-        position: absolute;
-        right: -40px;
-        bottom: -10px;
-        line-height: 0;
+    .main-timeline .title {
+        color: #536E79;
+        font-size: 22px;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin: 0 0 7px 0;
+    }
+
+    .main-timeline .description {
+        color: #817f7f;
+        font-size: 15px;
+        margin: 0;
+    }
+
+    .main-timeline .timeline:nth-child(even) {
+        padding: 0 0 0 30px;
+        float: right;
+    }
+
+    .main-timeline .timeline:nth-child(even) .timeline-content {
+        padding: 30px 130px 30px 95px;
+    }
+
+    .main-timeline .timeline:nth-child(even) .timeline-content:before {
+        border-radius: 20px 100px 100px 20px;
+        left: -30px;
+        right: 70px;
+    }
+
+    .main-timeline .timeline:nth-child(even) .timeline-year {
+        right: -15px;
+        left: auto;
+    }
+
+    .main-timeline .timeline:nth-child(even) .timeline-icon {
+        right: auto;
+        left: -20px;
+    }
+
+    .main-timeline .timeline:nth-child(4n+2) .timeline-content,
+    .main-timeline .timeline:nth-child(4n+2) .timeline-icon {
+        background-color: #00B8D4;
+    }
+
+    .main-timeline .timeline:nth-child(4n+2) .title {
+        color: #00B8D4;
+    }
+
+    .main-timeline .timeline:nth-child(4n+3) .timeline-content,
+    .main-timeline .timeline:nth-child(4n+3) .timeline-icon {
+        background-color: #FEA726;
+    }
+
+    .main-timeline .timeline:nth-child(4n+3) .title {
+        color: #FEA726;
+    }
+
+    .main-timeline .timeline:nth-child(4n+4) .timeline-content,
+    .main-timeline .timeline:nth-child(4n+4) .timeline-icon {
+        background-color: #01BFA5;
+    }
+
+    .main-timeline .timeline:nth-child(4n+4) .title {
+        color: #01BFA5;
+    }
+
+    @media screen and (max-width:767px) {
+
+        .main-timeline .timeline,
+        .main-timeline .timeline:nth-child(even) {
+            text-align: center;
+            width: 100%;
+            padding: 0 0 30px 0;
+            margin: 0 0 30px;
+        }
+
+        .main-timeline .timeline-content,
+        .main-timeline .timeline:nth-child(even) .timeline-content {
+            padding: 80px 25px;
+        }
+
+        .main-timeline .timeline-content:before,
+        .main-timeline .timeline:nth-child(even) .timeline-content:before {
+            border-radius: 50px 50px 20px 20px;
+            bottom: -30px;
+            top: 65px;
+            left: 10px;
+            right: 10px;
+        }
+
+        .main-timeline .timeline-year,
+        .main-timeline .timeline:nth-child(even) .timeline-year {
+            transform: translateX(-50%) translateY(0);
+            top: 10px;
+            left: 50%;
+        }
+
+        .main-timeline .timeline-icon,
+        .main-timeline .timeline:nth-child(even) .timeline-icon {
+            font-size: 50px;
+            line-height: 85px;
+            width: 85px;
+            height: 85px;
+            transform: translateX(-50%);
+            top: auto;
+            bottom: -20px;
+            right: auto;
+            left: 50%;
+        }
+    }
+
+    @media screen and (max-width:576px) {
+        .main-timeline .title {
+            font-size: 18px;
+        }
     }
 
 </style>
- 

@@ -16,6 +16,8 @@ use App\Models\Admin\About\AboutChairmanMessage;
 use App\Models\Admin\About\AboutPresidentMessage;
 use App\Models\Admin\About\AboutVision;
 use App\Models\Admin\About\AboutMission;
+use App\Models\Admin\About\AboutHeadquarter;
+use App\Models\Admin\About\AboutHistory;
 
 use DB;
 
@@ -141,9 +143,16 @@ class VueController extends Controller
 
     // mission
     public function mission(){ 
-        $data = AboutMission::where('status', '1')->orderBy('id', 'desc')->get();          
+       $data =  AboutMission::where('status', '1')->orderBy('id', 'desc')->select('details')->get();      
         return response()->json($data, 200);
     }
+
+    // headquaters
+    public function headquaters(){ 
+        $data =  AboutHeadquarter::where('status', '1')->orderBy('id', 'desc')->get();      
+         return response()->json($data, 200);
+     }
+
 
 
 
