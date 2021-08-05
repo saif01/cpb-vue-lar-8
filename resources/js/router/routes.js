@@ -121,6 +121,7 @@ const routes = new VueRouter({
 
 });
 
+
 // Run brfore every route request
 routes.beforeEach((to, from, next) => {
     //console.log(to, to.meta.title);
