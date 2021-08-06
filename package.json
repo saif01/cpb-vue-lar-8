@@ -30,9 +30,7 @@
         "laravel-vue-pagination": "^2.3.1",
         "vform": "^2.1.1",
         "vue-backtotop": "^1.6.1",
-        "vue-carousel-3d": "^1.0.1",
         "vue-cool-lightbox": "^2.7.0",
-        "vue-owl-carousel": "^2.0.3",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.5.2",
         "vue-sweetalert2": "^5.0.2"

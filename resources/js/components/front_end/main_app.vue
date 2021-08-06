@@ -58,13 +58,9 @@
                                 <router-link to="/contact" class="nav-link">Contact Us</router-link>
                             </li>
 
-
-
                         </ul>
                     </div>
                 </nav>
-
-
 
             </div>
         </header>
