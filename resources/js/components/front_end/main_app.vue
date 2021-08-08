@@ -54,9 +54,24 @@
                             </li>
 
 
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Business
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    
+                                    <router-link v-for="(item, index) in allData" :key="index"  :to="{ path: 'business_index', query: { id: item.id, data:item } }" class="dropdown-item" >{{ item.name }}</router-link>
+                                   
+                                </div>
+                            </li>
+
+
                             <li class="nav-item">
                                 <router-link to="/contact" class="nav-link">Contact Us</router-link>
                             </li>
+
+
 
                         </ul>
                     </div>
@@ -94,11 +109,25 @@
     export default {
         data() {
             return {
-
+                allData: {},
             }
         },
 
         methods: {
+
+             getDirectData() {
+                axios.get('/api/business').then(res => {
+                    //console.log(res.data)
+                    if (res.status == 200) {
+                        this.allData = res.data
+                    } else {
+                        console.log(res.data)
+                    }
+                    // console.log(this.allData.length)
+                })
+            },
+
+
 
         },
 
@@ -116,6 +145,11 @@
 
         created() {
             this.$Progress.start();
+            this.getDirectData();
+
+            // Data update in store
+            //this.$store.commit('businessData', this.allData)
+
             console.log('Home Component');
             this.$Progress.finish();
         },

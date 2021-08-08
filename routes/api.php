@@ -21,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::namespace('App\Http\Controllers\FrontEnd')->group( function(){
 
     Route::get('/footer', 'VueController@footer');
+    Route::get('/business', 'VueController@business');
+    Route::get('/business_by_id/{id}', 'VueController@businessById');
+
 
     Route::get('/contact', 'VueController@contact');
     Route::post('/contact_msg', 'VueController@contactMsg');
@@ -37,6 +40,8 @@ Route::namespace('App\Http\Controllers\FrontEnd')->group( function(){
     Route::get('/mission', 'VueController@mission');
     Route::get('/headquaters', 'VueController@headquaters');
     Route::get('/history', 'VueController@history');
+
+    
 
 
 

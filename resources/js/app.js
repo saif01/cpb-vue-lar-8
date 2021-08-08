@@ -1,8 +1,11 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
-
 import Vue from 'vue'
+
+// Vuex File
+import store from './vuex/store';
+
 
 // Router
 import routes from './router/routes';
@@ -63,4 +66,5 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 const app = new Vue({
   el: '#app',
   router: routes,
+  store
 });

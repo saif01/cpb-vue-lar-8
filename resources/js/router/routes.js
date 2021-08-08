@@ -18,6 +18,7 @@ import about_vision from '../components/front_end/pages/about/vision.vue';
 import about_mission from '../components/front_end/pages/about/mission.vue';
 import about_headquarter from '../components/front_end/pages/about/headquarter.vue';
 import about_history from '../components/front_end/pages/about/history.vue';
+import business_index from '../components/front_end/pages/business/index.vue';
 
  
 const routes = new VueRouter({
@@ -113,6 +114,15 @@ const routes = new VueRouter({
             name: 'about_history',
             meta:{
                 title: 'Histories'
+            }
+        },
+        {
+            path: '/business_index',
+            component: business_index,
+            name: 'business_index',
+            props: true,
+            meta:{
+                title: 'Business Index'
             }
         },
 

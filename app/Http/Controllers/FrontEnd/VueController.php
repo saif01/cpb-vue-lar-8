@@ -19,6 +19,8 @@ use App\Models\Admin\About\AboutMission;
 use App\Models\Admin\About\AboutHeadquarter;
 use App\Models\Admin\About\AboutHistory;
 
+use App\Models\Admin\Business\BusinessAll;
+
 use DB;
 
 class VueController extends Controller
@@ -28,11 +30,23 @@ class VueController extends Controller
 
     //footer
     public function footer(){
-
         $data = ContactInfo::where('status', '1')->orderBy('id')->first();
-
         return response()->json($data, 200);
     }
+
+    // business
+    public function business(){
+        $data = BusinessAll::where('status', '1')->orderBy('name')->get();
+        return response()->json($data, 200);
+    }
+
+    // businessById
+    public function businessById($id){
+
+        $data = BusinessAll::where('status', '1')->where('id', $id)->first();
+        return response()->json($data, 200);
+    }
+
 
 
     //contact
