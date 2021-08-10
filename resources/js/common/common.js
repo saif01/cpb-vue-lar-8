@@ -21,19 +21,16 @@ export default {
         dataShowFrom: '',
         dataShowTo: '',
 
+        imageMaxSize: '2111775',
+        fileMaxSize: '5111775',
+
 
 
       }
     },
 
     methods: {
-      // onSlideStart(slide) {
-      //   this.sliding = true
-      // },
-      // onSlideEnd(slide) {
-      //   this.sliding = false
-      // },
-
+    
       handleResize() {
             this.window.width = window.innerWidth;
             this.window.height = window.innerHeight;
@@ -61,6 +58,39 @@ export default {
                 });
         },
 
+
+        // Upload Image
+        upload_image(e) {
+            let file = e.target.files[0];
+            let reader = new FileReader();
+
+            if (file['size'] < this.imageMaxSize) {
+                reader.onloadend = (file) => {
+                    //console.log('RESULT', reader.result)
+                    this.form.image = reader.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                alert('File size can not be bigger than 2 MB')
+            }
+        },
+
+
+        // File Upload
+        onFileChange(e){
+            let file = e.target.files[0];
+
+            if(file['size'] < this.fileMaxSize) {
+                this.form.document = file;
+            }else{
+                 alert('File size can not be bigger than 5 MB')
+            }
+            //console.log(file)
+            //console.log(this.form.document)
+        },
+
+
+
        
         
         async callApi(method, url, dataObj) {
@@ -78,6 +108,8 @@ export default {
             }
 
         }
+
+        // End Methods
     },
 
     watch: {

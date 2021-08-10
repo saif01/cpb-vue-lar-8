@@ -20,6 +20,9 @@ import about_headquarter from '../components/front_end/pages/about/headquarter.v
 import about_history from '../components/front_end/pages/about/history.vue';
 import business_index from '../components/front_end/pages/business/index.vue';
 
+// Circulars
+import circular_index from '../components/front_end/circular/index.vue';
+
  
 const routes = new VueRouter({
     mode: 'history',
@@ -125,6 +128,21 @@ const routes = new VueRouter({
                 title: 'Business Index'
             }
         },
+
+
+
+
+        {
+            path: '/circular_index',
+            component: circular_index,
+            name: 'circular_index',
+            props: true,
+            meta:{
+                title: 'Circular Index'
+            }
+        },
+
+
 
 
     ]

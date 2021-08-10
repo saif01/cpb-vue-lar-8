@@ -20,8 +20,15 @@ use App\Models\Admin\About\AboutHeadquarter;
 use App\Models\Admin\About\AboutHistory;
 
 use App\Models\Admin\Business\BusinessAll;
+use App\Models\Admin\Recruit\RecuitCircular;
+use App\Models\Admin\Recruit\RecuitCvSend;
+use App\Models\Admin\Recruit\RecruitApply;
+
 
 use DB;
+use Image;
+use File;
+use Illuminate\Support\Str;
 
 class VueController extends Controller
 {
@@ -172,6 +179,59 @@ class VueController extends Controller
     public function history(){ 
         $data =  AboutHistory::where('status', '1')->orderBy('id', 'asc')->get();      
         return response()->json($data, 200);
+    }
+
+
+    //circular
+    public function circular(){ 
+        $data =  RecuitCircular::where('status', '1')->orderBy('id', 'asc')->get();      
+        return response()->json($data, 200);
+    }
+
+
+    //circular_msg
+    public function circular_msg(Request $request){ 
+
+        $this->validate($request,[
+            'subject'   => 'nullable|string|max:100',
+            'message'   => 'nullable|string|max:10000',
+            'document'  => 'required',
+        ]);
+
+      
+
+        $data = new RecuitCvSend();
+
+
+        $document = $request->file('document');
+
+        // Direct any file store
+        if ($document) {
+            $document_name      = Str::random(5);
+            $ext                = strtolower($document->getClientOriginalExtension());
+            $document_full_name = $document_name . '.' . $ext;
+            $upload_path        = 'images/recruit/';
+            $document_url       = $upload_path . $document_full_name;
+            $successImg         = $document->move($upload_path, $document_full_name);
+
+            $data->document     = $document_full_name;
+        }
+
+        
+
+
+        $data->subject  = $request->subject;
+        $data->message  = $request->message;
+        $success        = $data->save();
+
+        if($success){
+            return response()->json(['msg'=>'CV Send successfully', 'icon'=>'success'], 200);
+        }else{
+            return response()->json([
+               'msg' => 'Data not save in DB !!'
+           ], 422);
+        }
+       
     }
 
 

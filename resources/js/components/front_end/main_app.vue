@@ -71,6 +71,10 @@
                                 <router-link to="/contact" class="nav-link">Contact Us</router-link>
                             </li>
 
+                            <li class="nav-item">
+                                <router-link to="/circular_index" class="nav-link">Circulars</router-link>
+                            </li>
+
 
 
                         </ul>
