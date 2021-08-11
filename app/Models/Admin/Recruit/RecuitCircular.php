@@ -18,6 +18,16 @@ class RecuitCircular extends Model
     }
 
 
+    // Add Column Append
+    public $appends = [
+        'moddate'
+    ];
+
+    public function getModdateAttribute(){
+        return date( "F jS, Y", strtotime($this->attributes['deadline']) );
+    }
+
+
     //For Dynamic Search 
     public function scopeSearch($query, $val='')
     {

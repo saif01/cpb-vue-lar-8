@@ -22,6 +22,7 @@ import business_index from '../components/front_end/pages/business/index.vue';
 
 // Circulars
 import circular_index from '../components/front_end/circular/index.vue';
+import circular_login from '../components/front_end/circular/login.vue';
 
  
 const routes = new VueRouter({
@@ -139,6 +140,16 @@ const routes = new VueRouter({
             props: true,
             meta:{
                 title: 'Circular Index'
+            }
+        },
+
+        {
+            path: '/circular_login',
+            component: circular_login,
+            name: 'circular_login',
+            props: true,
+            meta:{
+                title: 'Circular Login'
             }
         },
 

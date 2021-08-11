@@ -80,6 +80,8 @@
     export default {
 
         //props: ['data'],
+        
+        name:'Business',
 
         data() {
             return {

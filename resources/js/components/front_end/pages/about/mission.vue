@@ -59,6 +59,8 @@
 <script>
     export default {
 
+        name:'Mission',
+
         data() {
             return {
                 allData: {},

@@ -59,7 +59,9 @@
 
 <script>
     export default {
+
         name:'Histories',
+        
         data() {
             return {
                 allData: {},

@@ -83,6 +83,8 @@
 <script>
     export default {
 
+        name:'Press',
+
         data() {
             return {
                 // Loading Animation

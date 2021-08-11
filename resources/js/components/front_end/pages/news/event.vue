@@ -86,6 +86,8 @@
 <script>
     export default {
 
+        name:'Event',
+
         data() {
             return {
                 // Loading Animation

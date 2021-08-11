@@ -84,6 +84,9 @@
     import mapview from './common/map.vue';
 
     export default {
+
+        name:'Home',
+        
         data(){
             return {
               

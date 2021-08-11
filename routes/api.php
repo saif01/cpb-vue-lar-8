@@ -44,6 +44,9 @@ Route::namespace('App\Http\Controllers\FrontEnd')->group( function(){
     // Circular
     Route::get('/circular', 'VueController@circular');
     Route::post('/circular_msg', 'VueController@circular_msg');
+    Route::post('/circular_login', 'VueController@circular_login');
+    
+    Route::post('/circular_logout', 'VueController@circular_logout');
 
     
 

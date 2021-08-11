@@ -75,6 +75,8 @@
     import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
 
     export default {
+        
+        name:'Gallery',
 
         data() {
             return {

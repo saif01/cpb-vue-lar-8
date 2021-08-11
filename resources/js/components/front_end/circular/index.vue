@@ -39,7 +39,7 @@
                                                     aria-expanded="true" :aria-controls="'collapseOne_'+index">
                                                     <b>{{ index+1 }} : </b> {{ item.jobTitle }} <span
                                                         class="small float-right font-italic text-danger">Deadline :
-                                                        {{ item.deadline }}</span>
+                                                        {{ item.moddate }}</span>
                                                 </button>
                                             </h2>
                                         </div>
@@ -140,7 +140,8 @@
 
                             </div>
 
-        
+                           User: {{ user }}
+                           Auth: {{ auth }}
 
                     </div>
 
@@ -156,9 +157,11 @@
 
 <script>
     import From from 'vform';
+    // in full builds helpers are exposed as Vuex.mapState
+    import { mapGetters } from 'vuex'
   
     export default {
-
+        name:'Circular',
         data() {
             return {
 
@@ -180,7 +183,7 @@
 
                     if (res.status == 200) {
                         this.allData = res.data
-                        // console.log(this.allData)
+                         console.log(this.allData)
                     } else {
                         console.log(res.data)
                     }
@@ -189,8 +192,6 @@
             },
 
             
-
-        
             // Send CV 
             async sendMsg() {
                 console.log('Form submited');
@@ -226,6 +227,20 @@
             this.$Progress.finish();
 
         },
+
+        mounted (){
+            // console.log('auth Data : ', this.user, this.user.name)
+        },
+
+
+        computed : {
+            // map this.count to store.state.count
+            ...mapGetters({
+                'auth' : 'getUserAuth',
+                'user' : 'getUser'
+            })
+        },
+
 
       
 

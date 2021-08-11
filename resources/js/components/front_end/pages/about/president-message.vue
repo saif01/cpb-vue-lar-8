@@ -73,6 +73,8 @@
 <script>
     export default {
 
+        name:'President Message',
+
         data() {
             return {
                 allData: '',

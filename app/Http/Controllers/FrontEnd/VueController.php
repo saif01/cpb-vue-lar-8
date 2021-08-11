@@ -25,9 +25,15 @@ use App\Models\Admin\Recruit\RecuitCvSend;
 use App\Models\Admin\Recruit\RecruitApply;
 
 
+use Auth;
+use App\Models\User;
+use App\Models\Admin\Recruit\RecuitUser;
+
+
 use DB;
 use Image;
 use File;
+use Session;
 use Illuminate\Support\Str;
 
 class VueController extends Controller
@@ -204,7 +210,6 @@ class VueController extends Controller
 
 
         $document = $request->file('document');
-
         // Direct any file store
         if ($document) {
             $document_name      = Str::random(5);
@@ -218,8 +223,6 @@ class VueController extends Controller
         }
 
         
-
-
         $data->subject  = $request->subject;
         $data->message  = $request->message;
         $success        = $data->save();
@@ -233,6 +236,52 @@ class VueController extends Controller
         }
        
     }
+
+
+    // circular_login
+    public function circular_login(Request $request){
+
+        $this->validate($request,[
+            'email'     => 'required|max:100',
+            'password'  => 'required|max:64'
+        ]);
+
+      
+
+        $email = $request->email;
+        $pass = $request->password;
+
+        $data = User::where('email', $email )
+                    ->orWhere('contact', $email)
+                    ->where('password', $pass)
+                    ->first();
+
+        //dd($data, $email, $pass);
+
+        if($data){
+
+            Auth::login($data);
+
+            return response()->json($data, 200);
+
+        }else{
+
+            return response()->json(['msg'=>'You have entered invalid credentials', 'icon'=>'error'], 203);
+
+        }
+
+
+
+    }
+
+
+    // circular_logout
+    public function circular_logout(){
+        Session::flush();
+        Auth::logout();
+        return response()->json(['msg'=>'Logout successfully', 'icon'=>'success'], 200);
+    }
+
 
 
 

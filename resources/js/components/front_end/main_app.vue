@@ -68,12 +68,34 @@
 
 
                             <li class="nav-item">
-                                <router-link to="/contact" class="nav-link">Contact Us</router-link>
+                                <router-link to="contact" class="nav-link">Contact Us</router-link>
                             </li>
 
                             <li class="nav-item">
-                                <router-link to="/circular_index" class="nav-link">Circulars</router-link>
+                                <router-link to="circular_index" class="nav-link">Circulars</router-link>
                             </li>
+
+                            <li v-if="!auth" class="nav-item">
+                                <router-link to="circular_login" class="nav-link">Login</router-link>
+                            </li>
+
+                            <li v-if="auth" class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img :src="'images/admin/small/' + user.image" height="30"
+                                            class="rounded-circle" alt="Profile-Image">
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="">Applied</a>
+                                    <a class="dropdown-item" href="#"  @click="logout" >Logout</a>
+                                </div>
+                            </li>
+
+                            <!-- <li class="nav-item">
+                                <button @click="logout"  class="nav-link">Logout</button>
+                            </li> -->
+
+
 
 
 
@@ -109,8 +131,10 @@
 <script>
     import FrontEndFooter from './pages/common/footer.vue';
 
+    import { mapGetters } from 'vuex'
 
     export default {
+
         data() {
             return {
                 allData: {},
@@ -125,11 +149,34 @@
                     if (res.status == 200) {
                         this.allData = res.data
                     } else {
-                        console.log(res.data)
+                       // console.log(res.data)
                     }
                     // console.log(this.allData.length)
                 })
             },
+
+
+            // Logout
+            logout(){
+                // Logout store 
+                this.$store.dispatch('userLogout');
+            },
+
+
+            // Localstorage data update at store
+            setAuthInStore(){
+
+                if( localStorage.getItem('auth_user') ){
+                    // Data update in store
+                    this.$store.commit( 'setAuth', localStorage.getItem('auth_user') );
+                }
+
+                if( localStorage.getItem('user_data') ){
+                    // Data update in store
+                    this.$store.commit( 'setUser', JSON.parse( localStorage.getItem('user_data')) );
+                }
+
+            }
 
 
 
@@ -138,6 +185,7 @@
 
         mounted() {
 
+          // console.log('auth Data : ', this.user, this.user.name)
 
         },
 
@@ -151,11 +199,21 @@
             this.$Progress.start();
             this.getDirectData();
 
-            // Data update in store
-            //this.$store.commit('businessData', this.allData)
+            // Localstorage data update at store
+            this.setAuthInStore();
 
             console.log('Home Component');
             this.$Progress.finish();
+        },
+
+
+
+        computed : {
+            // map this.count to store.state.count
+            ...mapGetters({
+                'auth' : 'getUserAuth',
+                'user' : 'getUser'
+            })
         },
 
 

@@ -57,6 +57,8 @@
 <script>
     export default {
 
+        name:'Headquarter',
+
         data() {
             return {
                 allData: {},
