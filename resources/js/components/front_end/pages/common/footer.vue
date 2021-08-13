@@ -21,9 +21,9 @@
                         <div class="col-lg-4 col-md-6 footer-contact">
                             <h4>Contact Us</h4>
                             <p>
-                                {{ allData.address }} <br><br>
-                                <strong>Phone:</strong> <a :href="'tel:'+allData.phone">{{ allData.phone }}</a> <br>
-                                <strong>Email:</strong> <a :href="'mailto:'+allData.email">{{ allData.email }}</a>
+                                {{ footer.address }} <br><br>
+                                <strong>Phone:</strong> <a :href="'tel:'+footer.phone">{{ footer.phone }}</a> <br>
+                                <strong>Email:</strong> <a :href="'mailto:'+footer.email">{{ footer.email }}</a>
                                 <br>
                             </p>
 
@@ -66,6 +66,7 @@
             </div>
         </footer>
 
+
         <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
     </div>
 </template>
@@ -73,7 +74,9 @@
 
 <script>
 
-    export default {
+    import { mapGetters } from 'vuex'
+
+    export default { 
         
         name:'Footer',
 
@@ -89,13 +92,29 @@
         
         },
 
-        async created() {
-            const res = await this.callApi('get', '/api/footer')
-            if( res.status == 200 ){
-                this.allData = res.data
-            }else{
-                console.log(res)
-            }
+        // mounted(){
+        //     console.log('footer: ', this.footer)
+        // },
+
+        // async created() {
+        //     const res = await this.callApi('get', '/api/footer')
+        //     if( res.status == 200 ){
+        //         this.allData = res.data
+        //     }else{
+        //         console.log(res)
+        //     }
+        // },
+
+        created() {
+            this.$store.dispatch('footerData');
+        },
+
+         computed : {
+            // map this.count to store.state.count
+            ...mapGetters({
+                'footer' : 'getFooterData',
+              
+            })
         },
 
 

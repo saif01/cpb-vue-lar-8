@@ -61,7 +61,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     
-                                    <router-link v-for="(item, index) in allData" :key="index"  :to="{ path: 'business_index', query: { id: item.id, data:item } }" class="dropdown-item" >{{ item.name }}</router-link>
+                                    <router-link v-for="(item, index) in business" :key="index"  :to="{ path: 'business_index', query: { id: item.id, data:item } }" class="dropdown-item" >{{ item.name }}</router-link>
                                    
                                 </div>
                             </li>
@@ -144,15 +144,15 @@
         methods: {
 
              getDirectData() {
-                axios.get('/api/business').then(res => {
-                    //console.log(res.data)
-                    if (res.status == 200) {
-                        this.allData = res.data
-                    } else {
-                       // console.log(res.data)
-                    }
-                    // console.log(this.allData.length)
-                })
+                // axios.get('/api/business').then(res => {
+                //     //console.log(res.data)
+                //     if (res.status == 200) {
+                //         this.allData = res.data
+                //     } else {
+                //        // console.log(res.data)
+                //     }
+                //     // console.log(this.allData.length)
+                // })
             },
 
 
@@ -166,14 +166,44 @@
             // Localstorage data update at store
             setAuthInStore(){
 
-                if( localStorage.getItem('auth_user') ){
+                let auth_user = this.getLocalStorage('auth_user');
+                let auth_token = this.getLocalStorage('auth_token');
+                let user_data = this.getLocalStorage('user_data');
+
+                if( auth_user ){
                     // Data update in store
-                    this.$store.commit( 'setAuth', localStorage.getItem('auth_user') );
+                    this.$store.commit( 'setAuth', auth_user );
                 }
 
-                if( localStorage.getItem('user_data') ){
+                if( auth_token ){
                     // Data update in store
-                    this.$store.commit( 'setUser', JSON.parse( localStorage.getItem('user_data')) );
+                    this.$store.commit( 'setAuthToken', auth_token );
+                }
+
+                if( user_data ){
+                    // Data update in store
+                    this.$store.commit( 'setUser', JSON.parse(user_data) );
+                }
+
+            },
+
+            // Get Localstorage Data
+            getLocalStorage(localkey, localStrogeExpHour = 1){
+
+                // Check Localstorage time limit
+                let hours = localStrogeExpHour;
+                let etl = localStorage.getItem('etl');
+                if ( etl && (new Date().getTime() - etl > hours * 60 * 60 * 1000) ) {
+                    // Clear all localstorage
+                    localStorage.clear();
+                }
+
+                // Get Localstorage data
+                let localStorageData = localStorage.getItem(localkey);
+                if( localStorageData ){
+                   return localStorageData;
+                }else{
+                    return null;
                 }
 
             }
@@ -185,7 +215,7 @@
 
         mounted() {
 
-          // console.log('auth Data : ', this.user, this.user.name)
+           console.log('token : ', this.token, 'auth : ', this.auth, this.user,  );
 
         },
 
@@ -197,7 +227,8 @@
 
         created() {
             this.$Progress.start();
-            this.getDirectData();
+            //this.getDirectData();
+            this.$store.dispatch('businessData')
 
             // Localstorage data update at store
             this.setAuthInStore();
@@ -211,8 +242,11 @@
         computed : {
             // map this.count to store.state.count
             ...mapGetters({
-                'auth' : 'getUserAuth',
-                'user' : 'getUser'
+                'token'     : 'getAuthToken',
+                'auth'      : 'getUserAuth',
+                'user'      : 'getUser',
+                'business'  : 'getBusinessData'
+                
             })
         },
 

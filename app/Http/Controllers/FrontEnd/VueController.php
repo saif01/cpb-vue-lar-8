@@ -190,8 +190,60 @@ class VueController extends Controller
 
     //circular
     public function circular(){ 
-        $data =  RecuitCircular::where('status', '1')->orderBy('id', 'asc')->get();      
+
+        $now = date('Y-m-d');
+        $data= RecuitCircular::with('userApply')
+            ->where('status', '1')
+            //->where('publishDate', '<=', $now)
+            //->where('deadline', '>=', $now)
+            ->orderBy('publishDate')
+            ->get();
+
+
+        // $data =  RecuitCircular::where('status', '1')->orderBy('id', 'asc')->get();      
         return response()->json($data, 200);
+    }
+
+
+    //circular_apply
+    public function circular_apply($id){
+
+        // dd(Auth::user());
+        // exit();
+
+        if( Auth::check() ){
+
+            if( Auth::user()->is_admin != 1 ){
+
+                // dd($circuralId);
+
+                $data = new RecruitApply();
+
+                $data->user_id              = Auth::user()->id;
+                $data->recuit_circular_id   = $id;
+                $success                    = $data->save();
+
+                
+                if($success){
+                    return response()->json(['msg'=>'Apply Successfully &#128512', 'icon'=>'success'], 200);
+                }else{
+                    return response()->json([
+                       'msg' => 'Data not save in DB !!'
+                   ], 422);
+                }
+
+
+            }else{
+                //Tostar alert
+                return response()->json(['msg'=>'Please Login as User', 'icon'=>'error'], 200);
+            }
+            
+        }else{
+            
+            return response()->json(['msg'=>'Please Login for Apply', 'icon'=>'error'], 200);
+        }
+
+
     }
 
 
@@ -262,7 +314,9 @@ class VueController extends Controller
 
             Auth::login($data);
 
-            return response()->json($data, 200);
+            $authData = Auth::user();
+
+            return response()->json($authData, 200);
 
         }else{
 

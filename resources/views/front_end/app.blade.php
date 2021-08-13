@@ -16,7 +16,6 @@
         {{-- <link href="{{ asset('css/style.css') }}" rel="stylesheet"> --}}
     </head>
     <body>
-
     <div id="app" class="h-100">
         <main-app></main-app>
     </div>

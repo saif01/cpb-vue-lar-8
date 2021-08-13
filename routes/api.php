@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::namespace('App\Http\Controllers\FrontEnd')->group( function(){
 
+    //Route::get('/footer', 'VueController@footer')->middleware('auth:sanctum');
     Route::get('/footer', 'VueController@footer');
     Route::get('/business', 'VueController@business');
     Route::get('/business_by_id/{id}', 'VueController@businessById');
@@ -44,9 +45,13 @@ Route::namespace('App\Http\Controllers\FrontEnd')->group( function(){
     // Circular
     Route::get('/circular', 'VueController@circular');
     Route::post('/circular_msg', 'VueController@circular_msg');
-    Route::post('/circular_login', 'VueController@circular_login');
-    
+
+    // Route::post('/circular_login', 'VueController@circular_login');
     Route::post('/circular_logout', 'VueController@circular_logout');
+
+    Route::get('/circular_apply/{id}', 'VueController@circular_apply');
+
+    Route::post('/login', 'AuthApiController@login');
 
     
 

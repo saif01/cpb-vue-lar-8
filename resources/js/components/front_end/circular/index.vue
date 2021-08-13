@@ -68,9 +68,19 @@
                                                 &nbsp;&nbsp;&nbsp;<span v-html="item.salary"></span><br><br>
 
                                                 
-                                                <button class="btn btn-success">Applied</button>
+                                                <button v-if="checkApplied(item)" class="btn btn-success">Applied</button>
                                                
-                                                <button class="btn btn-primary">Apply</button>
+                                                <button v-else @click="jobApply(item.id)" class="btn btn-primary">Apply</button>
+
+                                                 <!-- @if(Auth::user() && $item->userApply)
+                                                @if($item->userApply->recuit_circular_id == $item->id &&
+                                                $item->userApply->user_id == Auth::user()->id)
+                                                <button class="btn btn-success">Applied</button>
+                                                @endif
+                                                @else
+                                                <button wire:click="apply({{ $item->id }})" 
+                                                    class="btn btn-primary">Apply</button>
+                                                @endif -->
                                                
 
                                             </div>
@@ -189,6 +199,38 @@
                     }
 
                 })
+            },
+
+            // Check Applied or not
+            checkApplied(item){
+
+                if(item.userApply){
+                    if(item.userApply.recuit_circular_id == item.id && item.userApply.user_id == this.user.id){
+                        return true;
+                    }
+                }
+
+                return false;
+            },
+
+            // Apply
+            // jobApply(id){
+
+            //     axios.get('/api/circular_apply/'+ id).then(res => {
+
+            //     }).catch( )
+
+            // },
+
+            async jobApply(id) {
+                try {
+                    const response = await axios.get('/api/circular_apply/'+ id);
+
+                    console.log(response);
+                    
+                } catch (error) {
+                    console.error(error);
+                }
             },
 
             

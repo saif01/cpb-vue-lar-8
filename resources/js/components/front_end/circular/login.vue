@@ -103,12 +103,23 @@
 
         methods: {
 
+
+            // Set localstorage
+            setLocalStorage(localkey, localData){
+                // Current Storage Time 
+                localStorage.setItem('etl', new Date().getTime());
+                // Store data In local
+                localStorage.setItem(localkey, localData);
+            },
+
+
+
             // login 
             async login() {
                 console.log('Form submited');
                 this.$Progress.start()
                 // request send and get response
-                const response = await this.form.post('/api/circular_login');
+                const response = await this.form.post('/api/login');
                 // Input field make empty
                 this.form.reset();
                 this.form.errors.clear();
@@ -117,15 +128,17 @@
 
                 if (response.status == 200) {
 
-                   // console.log(response.data)
+                    console.log(response.data.auth_token, response.data.result)
 
-                 
-                    // Store data In local
-                    localStorage.setItem('user_data', JSON.stringify(response.data) );
-                    localStorage.setItem('auth_user', true);
+                   
+                    // Set Localstorage data
+                    this.setLocalStorage( 'auth_user', true );
+                    this.setLocalStorage( 'auth_token', response.data.auth_token );
+                    this.setLocalStorage( 'user_data', JSON.stringify(response.data.result) );
                          
                     // store Update     
-                    this.$store.commit('setUser',  response.data);
+                    this.$store.commit('setUser',  response.data.result);
+                    this.$store.commit('setAuthToken',  response.data.auth_token);
                     this.$store.commit('setAuth',  true);
 
                     // console.log(  this.$store.state.user  )
@@ -169,6 +182,8 @@
             this.$Progress.start();
             //this.getDirectData();
             console.log('Circular Login Component');
+
+            console.log( 'Time : ' + new Date().getTime() );
 
             this.$Progress.finish();
 
