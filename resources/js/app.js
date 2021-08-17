@@ -53,6 +53,16 @@ window.Toast = Toast;
 
 
 
+// Store method call
+// if(store.getters.getAuthToken){
+//   console.log('This is app js', store.getters.getAuthToken)
+
+//   store.dispatch('authUserData')
+
+// }
+
+
+
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
@@ -61,6 +71,9 @@ Vue.component('main-app', require('./components/front_end/main_app.vue').default
 
 // pagination
 Vue.component('pagination', require('laravel-vue-pagination'));
+
+
+
    
 
 const app = new Vue({

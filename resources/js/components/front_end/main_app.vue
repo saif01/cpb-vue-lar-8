@@ -75,19 +75,19 @@
                                 <router-link to="circular_index" class="nav-link">Circulars</router-link>
                             </li>
 
-                            <li v-if="!auth" class="nav-item">
+                            <li v-if="!user" class="nav-item">
                                 <router-link to="circular_login" class="nav-link">Login</router-link>
                             </li>
 
-                            <li v-if="auth" class="nav-item dropdown">
+                            <li v-if="user" class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img :src="'images/admin/small/' + user.image" height="30"
                                             class="rounded-circle" alt="Profile-Image">
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="">Applied</a>
-                                    <a class="dropdown-item" href="#"  @click="logout" >Logout</a>
+                                    <router-link to="circular_applied" class="dropdown-item" >Applied</router-link>
+                                    <router-link to="circular_logout" class="dropdown-item" >Logout</router-link>
                                 </div>
                             </li>
 
@@ -143,70 +143,46 @@
 
         methods: {
 
-             getDirectData() {
-                // axios.get('/api/business').then(res => {
-                //     //console.log(res.data)
-                //     if (res.status == 200) {
-                //         this.allData = res.data
-                //     } else {
-                //        // console.log(res.data)
-                //     }
-                //     // console.log(this.allData.length)
-                // })
+             getUserData() {
+                axios.get('/api/athenticated').then(res => {
+                    console.log(res.data)
+                  
+                    // console.log(this.allData.length)
+                })
             },
 
 
-            // Logout
-            logout(){
-                // Logout store 
-                this.$store.dispatch('userLogout');
-            },
+            // // Localstorage data update at store
+            // setAuthInStore(){
+            //     let auth_token = this.getLocalStorage('auth_token');
+            //     if( auth_token ){
+            //         // Data update in store
+            //         this.$store.commit( 'setAuthToken', auth_token );
+            //     }
 
+            
+            // },
 
-            // Localstorage data update at store
-            setAuthInStore(){
+            // // Get Localstorage Data
+            // getLocalStorage(localkey, localStrogeExpHour = 1){
 
-                let auth_user = this.getLocalStorage('auth_user');
-                let auth_token = this.getLocalStorage('auth_token');
-                let user_data = this.getLocalStorage('user_data');
+            //     // Check Localstorage time limit
+            //     let hours = localStrogeExpHour;
+            //     let etl = localStorage.getItem('etl');
+            //     if ( etl && (new Date().getTime() - etl > hours * 60 * 60 * 1000) ) {
+            //         // Clear all localstorage
+            //         localStorage.clear();
+            //     }
 
-                if( auth_user ){
-                    // Data update in store
-                    this.$store.commit( 'setAuth', auth_user );
-                }
+            //     // Get Localstorage data
+            //     let localStorageData = localStorage.getItem(localkey);
+            //     if( localStorageData ){
+            //        return localStorageData;
+            //     }else{
+            //         return null;
+            //     }
 
-                if( auth_token ){
-                    // Data update in store
-                    this.$store.commit( 'setAuthToken', auth_token );
-                }
-
-                if( user_data ){
-                    // Data update in store
-                    this.$store.commit( 'setUser', JSON.parse(user_data) );
-                }
-
-            },
-
-            // Get Localstorage Data
-            getLocalStorage(localkey, localStrogeExpHour = 1){
-
-                // Check Localstorage time limit
-                let hours = localStrogeExpHour;
-                let etl = localStorage.getItem('etl');
-                if ( etl && (new Date().getTime() - etl > hours * 60 * 60 * 1000) ) {
-                    // Clear all localstorage
-                    localStorage.clear();
-                }
-
-                // Get Localstorage data
-                let localStorageData = localStorage.getItem(localkey);
-                if( localStorageData ){
-                   return localStorageData;
-                }else{
-                    return null;
-                }
-
-            }
+            // }
 
 
 
@@ -215,7 +191,9 @@
 
         mounted() {
 
-           console.log('token : ', this.token, 'auth : ', this.auth, this.user,  );
+            console.log('main_app token : ', this.token,  this.user,  );
+
+            // window.axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
 
         },
 
@@ -230,8 +208,16 @@
             //this.getDirectData();
             this.$store.dispatch('businessData')
 
+            
+            if(this.token){
+                // Authenticated user data
+                console.log('main_app created')
+                this.$store.dispatch('authUserData')
+            }
+           
+
             // Localstorage data update at store
-            this.setAuthInStore();
+            // this.setAuthInStore();
 
             console.log('Home Component');
             this.$Progress.finish();
@@ -242,9 +228,8 @@
         computed : {
             // map this.count to store.state.count
             ...mapGetters({
-                'token'     : 'getAuthToken',
-                'auth'      : 'getUserAuth',
-                'user'      : 'getUser',
+                //'token'     : 'getAuthToken',
+                // 'user'      : 'getUser',
                 'business'  : 'getBusinessData'
                 
             })

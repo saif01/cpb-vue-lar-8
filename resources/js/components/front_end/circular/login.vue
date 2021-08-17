@@ -60,7 +60,13 @@
                                                Login </button>
                                         </div>
 
+                                        <div class="row mt-4 justify-content-center">
+                                            <router-link to="circular_register" class="btn btn-info btn-sm text-white" >Do you want to register ?</router-link>
+                                        </div>
+
                                     </div>
+
+                                    
                                 </form>
 
                         </div>
@@ -132,14 +138,14 @@
 
                    
                     // Set Localstorage data
-                    this.setLocalStorage( 'auth_user', true );
+                    //this.setLocalStorage( 'auth_user', true );
                     this.setLocalStorage( 'auth_token', response.data.auth_token );
-                    this.setLocalStorage( 'user_data', JSON.stringify(response.data.result) );
+                    //this.setLocalStorage( 'user_data', JSON.stringify(response.data.result) );
                          
                     // store Update     
                     this.$store.commit('setUser',  response.data.result);
                     this.$store.commit('setAuthToken',  response.data.auth_token);
-                    this.$store.commit('setAuth',  true);
+                    //this.$store.commit('setAuth',  true);
 
                     // console.log(  this.$store.state.user  )
                     // console.log( JSON.parse( this.$store.state.user ) )
@@ -172,19 +178,14 @@
 
         created() {
 
-            if(this.auth){
+            if(this.token){
                 // Auth true redirect to dashboard
                 this.$router.push('circular_index')
             }
 
-            console.log('auth : '+ this.auth)
-
             this.$Progress.start();
             //this.getDirectData();
             console.log('Circular Login Component');
-
-            console.log( 'Time : ' + new Date().getTime() );
-
             this.$Progress.finish();
 
         },
@@ -193,7 +194,7 @@
         computed : {
             // map this.count to store.state.count
             ...mapGetters({
-                'auth' : 'getUserAuth',
+               // 'token'     : 'getAuthToken',
             })
         },
 

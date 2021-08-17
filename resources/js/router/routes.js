@@ -1,7 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-
 Vue.use(VueRouter);
+
+// Vuex File
+import store from '../vuex/store';
+
 
 import index from '../components/front_end/pages/index.vue'
 import contact from '../components/front_end/pages/contact.vue'
@@ -23,6 +26,9 @@ import business_index from '../components/front_end/pages/business/index.vue';
 // Circulars
 import circular_index from '../components/front_end/circular/index.vue';
 import circular_login from '../components/front_end/circular/login.vue';
+import circular_logout from '../components/front_end/circular/logout.vue';
+import circular_applied from '../components/front_end/circular/applied.vue';
+import circular_register from '../components/front_end/circular/register.vue';
 
  
 const routes = new VueRouter({
@@ -153,6 +159,37 @@ const routes = new VueRouter({
             }
         },
 
+        {
+            path: '/circular_logout',
+            component: circular_logout,
+            name: 'circular_logout',
+            props: true,
+            meta:{
+                title: 'Circular Logout'
+            }
+        },
+        {
+            path: '/circular_register',
+            component: circular_register,
+            name: 'circular_register',
+            props: true,
+            meta:{
+                title: 'Circular Register'
+            }
+        },
+
+
+        {
+            path: '/circular_applied',
+            component: circular_applied,
+            name: 'circular_applied',
+            props: true,
+            meta:{
+                title: 'Circular Applied',
+                auth: true
+            }
+        },
+
 
 
 
@@ -162,8 +199,32 @@ const routes = new VueRouter({
 
 
 // Run brfore every route request
-routes.beforeEach((to, from, next) => {
-    //console.log(to, to.meta.title);
+routes.beforeEach( (to, from, next) => {
+    //console.log(to, to.meta.auth);
+
+    // Check Authentication
+    if(to.meta.auth){
+        if(store.getters.getAuthToken){
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + store.getters.getAuthToken;
+            axios.get('api/athenticated').then((response) => {
+                console.log(' auth route : ', store.getters.getAuthToken, response.data);
+
+                //store.dispatch('authUserData')
+
+                if(! response.data){
+                   // Redirect to dashboard
+                    return next('circular_login');
+                }
+                
+            }).catch((errors) => {
+                console.log(errors);
+            })
+        }else{
+            // Redirect to dashboard
+            return next('circular_login');
+        }
+    }
+
     
     let appName = 'C.P.Bangladesh';
     let title = to.meta && to.meta.title ? to.meta.title : '';

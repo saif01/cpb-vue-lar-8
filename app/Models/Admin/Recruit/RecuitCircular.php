@@ -13,7 +13,7 @@ class RecuitCircular extends Model
     protected $guarded = [];
 
 
-    public function userApply(){
+    public function user_apply(){
         return $this->belongsTo('App\Models\Admin\Recruit\RecruitApply', 'id', 'recuit_circular_id');
     }
 

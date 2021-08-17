@@ -1,4 +1,6 @@
 import axios from "axios";
+import { mapGetters } from 'vuex'
+
 
 export default {
     data() {
@@ -75,6 +77,17 @@ export default {
             }
         },
 
+        //For getting Instant Uploaded Photo
+        get_image() {
+
+            if (this.form.image) {
+                let photo = (this.form.image.length > 100) ? this.form.image : this.imagePathSm + this.form.image;
+                return photo;
+            }
+
+            return null;
+        },
+
 
         // File Upload
         onFileChange(e){
@@ -133,12 +146,53 @@ export default {
     created() {
         // window.addEventListener('resize', this.handleResize);
         // this.handleResize();
+
+      
+
+       
+    },
+
+
+     mounted() {
+
+        // try {
+        //     axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.token
+        //     const response =  await axios.get('api/user')
+
+        //     console.log('common user run:', response.data);
+        //     //context.commit('setUser', response.data)
+
+        //     this.$store.commit('setUser',  response.data);
+
+
+        // }catch(error){
+        //     console.log(error)
+        // }
+
+        
+        // if(this.token){
+        //     // Authenticated user data
+        //     console.log('common created token: '+ this.token)
+        //     //this.$store.dispatch('authUserData')
+        // }
+      
     },
 
 
     destroyed() {
         // window.removeEventListener('resize', this.handleResize);
     },
+
+
+    computed : {
+        // map this.count to store.state.count getLoading
+        ...mapGetters({
+            'token'     : 'getAuthToken',
+            'user'      : 'getUser',
+            'loading'   : 'getLoading',
+        })
+    },
+
 
 
   }

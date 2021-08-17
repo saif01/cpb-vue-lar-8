@@ -28,10 +28,20 @@
                             <div class="col-8 mb-4">
 
                                 <p class="text-center h4"><b>All Vacancies</b></p>
-                              
+
+                                <div v-if="loading" class="row justify-content-center">
+                                    <div class="fa-4x text-success mt-3">
+                                        <i class="fas fa-spinner fa-pulse"></i>
+                                    </div>
+                                </div>
+                                <div v-if="!Object.keys(store_data).length && !loading" class="row justify-content-center">
+                                    <h3 class="text-danger">No Data Available</h3>
+                                </div>
+
                                 <div class="accordion" id="circularPost" data-aos="fade-left">
+                                <!-- <div class="accordion" id="circularPost" data-aos="fade-left"> -->
                                    
-                                    <div class="card" v-for="(item, index) in allData" :key="index" >
+                                    <div class="card" v-for="(item, index) in store_data" :key="index" >
                                         <div class="card-header" :id="'heading_'+index">
                                             <h2 class="mb-0">
                                                 <button class="btn btn-link btn-block text-left" type="button"
@@ -70,28 +80,16 @@
                                                 
                                                 <button v-if="checkApplied(item)" class="btn btn-success">Applied</button>
                                                
-                                                <button v-else @click="jobApply(item.id)" class="btn btn-primary">Apply</button>
+                                                <button v-else @click="applyForJob(item.id)" class="btn btn-primary">Apply</button>
 
-                                                 <!-- @if(Auth::user() && $item->userApply)
-                                                @if($item->userApply->recuit_circular_id == $item->id &&
-                                                $item->userApply->user_id == Auth::user()->id)
-                                                <button class="btn btn-success">Applied</button>
-                                                @endif
-                                                @else
-                                                <button wire:click="apply({{ $item->id }})" 
-                                                    class="btn btn-primary">Apply</button>
-                                                @endif -->
                                                
-
                                             </div>
                                         </div>
                                     </div>
 
-
-                                   
-
-
                                 </div>
+
+                                
 
                             </div>
 
@@ -150,8 +148,6 @@
 
                             </div>
 
-                           User: {{ user }}
-                           Auth: {{ auth }}
 
                     </div>
 
@@ -174,8 +170,6 @@
         name:'Circular',
         data() {
             return {
-
-                allData: '',
                 
                 form: new From({
                     subject: '',
@@ -188,49 +182,80 @@
 
         methods: {
 
-            getDirectData() {
-                axios.get('/api/circular').then(res => {
+            // getDirectData() {
+            //     this.loading = true;
+            //     axios.get('/api/circular').then(res => {
 
-                    if (res.status == 200) {
-                        this.allData = res.data
-                         console.log(this.allData)
-                    } else {
-                        console.log(res.data)
-                    }
+            //         if (res.status == 200) {
+            //             this.allData = res.data
+            //             this.loading = false
+            //             console.log(this.allData)
+            //         } else {
+            //             console.log(res.data)
+            //         }
 
-                })
-            },
+            //     })
+            // },
 
             // Check Applied or not
             checkApplied(item){
-
-                if(item.userApply){
-                    if(item.userApply.recuit_circular_id == item.id && item.userApply.user_id == this.user.id){
+                //console.log(item.user_apply)
+                if(this.user &&  item.user_apply){
+                    if(item.user_apply.recuit_circular_id == item.id && item.user_apply.user_id == this.user.id){
                         return true;
                     }
                 }
-
                 return false;
             },
 
-            // Apply
-            // jobApply(id){
+         
 
-            //     axios.get('/api/circular_apply/'+ id).then(res => {
+            async applyForJob(id) {
 
-            //     }).catch( )
-
-            // },
-
-            async jobApply(id) {
-                try {
-                    const response = await axios.get('/api/circular_apply/'+ id);
-
-                    console.log(response);
+                if(! this.token){
+                    Swal.fire("Failed!", "Please Login to apply", "warning");
+                    // Auth redirect to login
+                    this.$router.push('circular_login')
                     
-                } catch (error) {
-                    console.error(error);
+                }else{
+                    // After Login 
+                    try {
+                        const response = await axios.post('/api/circular_job_apply', {
+                            circularId: id
+                        });
+                        console.log(response);
+
+                        if (response.status == 200) {
+
+                            this.getDirectData();
+
+                            Toast.fire({
+                                icon: response.data.icon,
+                                title: response.data.msg
+                            });
+                        } else if(response.status == 203){
+
+                        
+                            // Redirect to dashboard
+                            this.$router.push('circular_login');
+
+                            Toast.fire({
+                                icon: response.data.icon,
+                                title: response.data.msg
+                            });
+                            
+
+                        }else {
+                            Swal.fire("Failed!", data.message, "warning");
+                            console.log(response);
+                        }
+                        
+                    } catch (error) {
+                        console.error(error);
+                    }
+
                 }
+                
             },
 
             
@@ -263,8 +288,12 @@
         created() {
             this.$Progress.start();
 
-            this.getDirectData();
+            //this.getDirectData();
             console.log('Circular Component');
+
+            if(!this.store_data.length){
+                this.$store.dispatch('recruitData')
+            }
 
             this.$Progress.finish();
 
@@ -278,8 +307,7 @@
         computed : {
             // map this.count to store.state.count
             ...mapGetters({
-                'auth' : 'getUserAuth',
-                'user' : 'getUser'
+                'store_data' : 'getRecruitData',
             })
         },
 

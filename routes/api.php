@@ -18,7 +18,18 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::middleware('auth:sanctum')->get('/athenticated', function () {
+    return true;
+});
+
 Route::namespace('App\Http\Controllers\FrontEnd')->group( function(){
+
+    Route::get('/auth_test', 'AuthApiController@auth_test');
 
     //Route::get('/footer', 'VueController@footer')->middleware('auth:sanctum');
     Route::get('/footer', 'VueController@footer');
@@ -48,10 +59,13 @@ Route::namespace('App\Http\Controllers\FrontEnd')->group( function(){
 
     // Route::post('/circular_login', 'VueController@circular_login');
     Route::post('/circular_logout', 'VueController@circular_logout');
-
-    Route::get('/circular_apply/{id}', 'VueController@circular_apply');
-
     Route::post('/login', 'AuthApiController@login');
+    Route::post('/logout', 'AuthApiController@logout')->middleware('auth:sanctum');
+
+    Route::post('/circular_job_apply', 'VueController@circular_job_apply');
+    Route::post('/circular_register', 'VueController@circular_register');
+    Route::post('/circular_job_applied', 'VueController@circular_job_applied')->middleware('auth:sanctum');
+
 
     
 

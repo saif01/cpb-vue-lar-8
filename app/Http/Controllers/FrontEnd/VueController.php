@@ -192,57 +192,62 @@ class VueController extends Controller
     public function circular(){ 
 
         $now = date('Y-m-d');
-        $data= RecuitCircular::with('userApply')
+        $data= RecuitCircular::with('user_apply')
             ->where('status', '1')
             //->where('publishDate', '<=', $now)
             //->where('deadline', '>=', $now)
             ->orderBy('publishDate')
             ->get();
 
-
+        //dd($data);
         // $data =  RecuitCircular::where('status', '1')->orderBy('id', 'asc')->get();      
         return response()->json($data, 200);
     }
 
 
     //circular_apply
-    public function circular_apply($id){
+    public function circular_job_apply(Request $request){
 
-        // dd(Auth::user());
-        // exit();
-
-        if( Auth::check() ){
-
-            if( Auth::user()->is_admin != 1 ){
-
-                // dd($circuralId);
-
-                $data = new RecruitApply();
-
-                $data->user_id              = Auth::user()->id;
-                $data->recuit_circular_id   = $id;
-                $success                    = $data->save();
-
-                
-                if($success){
-                    return response()->json(['msg'=>'Apply Successfully &#128512', 'icon'=>'success'], 200);
-                }else{
-                    return response()->json([
-                       'msg' => 'Data not save in DB !!'
-                   ], 422);
-                }
+        //dd( $request->circularId, $request->user);
 
 
-            }else{
-                //Tostar alert
+        $circularId = $request->circularId;
+        //$user       = (object) $request->user;
+
+        // Current User
+        $user =  $request->user();
+
+       
+        //dd($user->is_admin);
+
+        // Check login or not
+        
+
+        if($user){
+
+            // Check admin or user
+            if($user->is_admin == 1){
                 return response()->json(['msg'=>'Please Login as User', 'icon'=>'error'], 200);
             }
-            
-        }else{
-            
-            return response()->json(['msg'=>'Please Login for Apply', 'icon'=>'error'], 200);
-        }
 
+            $data = new RecruitApply();
+
+            $data->user_id              = $user->id;
+            $data->recuit_circular_id   = $circularId;
+            $success                    = $data->save();
+
+            
+            if($success){
+                return response()->json(['msg'=>'Apply Successfully &#128512', 'icon'=>'success'], 200);
+            }else{
+                return response()->json(['msg' => 'Data not save in DB !!'], 422);
+            }
+
+        }else{
+            //Tostar alert
+            return response()->json(['msg'=>'Sonthing going wrong', 'icon'=>'error'], 200);
+        }
+ 
 
     }
 
@@ -335,6 +340,91 @@ class VueController extends Controller
         Auth::logout();
         return response()->json(['msg'=>'Logout successfully', 'icon'=>'success'], 200);
     }
+
+
+    // circular_job_applied
+    public function circular_job_applied(Request $request){ 
+
+       
+        // Current User
+        $user_data =  $request->user();
+
+        $user_id = $user_data->id;
+
+        $data =  RecruitApply::with('circular', 'user')
+                    ->where('user_id', $user_id)
+                    ->orderBy('created_at')
+                    ->get();
+
+        return response()->json($data, 200);
+    }
+
+
+
+    // circular_register
+    public function circular_register(Request $request){
+
+          //Validate
+          $this->validate($request,[
+            'name'     => 'required|string|max:100',
+            'email'    => 'nullable|string|max:100',
+            'contact'  => 'required|string|max:1000',
+            'password' => 'required|string|same:conformPassword',
+            'image'    => 'nullable',
+            'document' => 'nullable',
+        ]);
+
+        $data = new User();
+
+
+        if($request->image){
+
+            $imagePath = 'images/admin/';
+
+            $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+            // Original Image Save
+            \Image::make($request->image)
+            ->save(public_path($imagePath).$name);
+            // Resized image save
+            \Image::make($request->image)
+            ->resize(300, 200)
+            ->save(public_path($imagePath.'small/').$name);
+
+            $data->image     = $name;
+           
+        }
+
+
+        $document = $request->file('document');
+        // Direct any file store
+        if ($document) {
+            $document_name      = Str::random(5);
+            $ext                = strtolower($document->getClientOriginalExtension());
+            $document_full_name = $document_name . '.' . $ext;
+            $upload_path        = 'images/recruit/';
+            $document_url       = $upload_path . $document_full_name;
+            $successImg         = $document->move($upload_path, $document_full_name);
+
+            $data->document     = $document_full_name;
+        }
+
+
+        $data->name      = $request->name;
+        $data->email     = $request->email;
+        $data->contact   = $request->contact;
+        $data->password  = $request->password;
+        $success         = $data->save();
+
+        if($success){
+            return response()->json(['msg'=>'Register successfully', 'icon'=>'success'], 200);
+        }else{
+            return response()->json([
+               'msg' => 'Data not save in DB !!'
+           ], 422);
+        }
+
+    }
+
 
 
 
