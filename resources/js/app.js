@@ -69,6 +69,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Front-end 
 Vue.component('main-app', require('./components/front_end/main_app.vue').default);
 
+// Admin 
+Vue.component('admin-app', require('./components/admin/admin_app.vue').default);
+
 // pagination
 Vue.component('pagination', require('laravel-vue-pagination'));
 

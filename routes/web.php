@@ -19,5 +19,12 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', 'App\Http\Controllers\FrontEnd\IndexController@index');
-Route::get('{slug}', 'App\Http\Controllers\FrontEnd\IndexController@index');
+// Route::get('/', 'App\Http\Controllers\FrontEnd\IndexController@index');
+// Route::get('{slug}', 'App\Http\Controllers\FrontEnd\IndexController@index');
+
+Route::get('/admin/{any?}', 'App\Http\Controllers\Admin\AdminController@index')->where('any', '.*')->name('admin');
+
+Route::get('{any}', 'App\Http\Controllers\FrontEnd\IndexController@index')->where('any', '.*');
+
+
+
