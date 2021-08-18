@@ -28,23 +28,23 @@
                             <b-carousel id="carousel-no-animation" style="text-shadow: 0px 0px 2px #000" no-animation
                                 controls indicators img-width="1110" img-height="480">
                                 <b-carousel-slide v-if="allData.image"
-                                    :img-src="'images/business/1110-450/'+allData.image" class="img-fluid"
+                                    :img-src="'images/business/'+allData.image" class="img-fluid"
                                     alt="CPB-Business">
                                 </b-carousel-slide>
                                 <b-carousel-slide v-if="allData.image2"
-                                    :img-src="'images/business/1110-450/'+allData.image2" class="img-fluid"
+                                    :img-src="'images/business/'+allData.image2" class="img-fluid"
                                     alt="CPB-Business">
                                 </b-carousel-slide>
                                 <b-carousel-slide v-if="allData.image3"
-                                    :img-src="'images/business/1110-450/'+allData.image3" class="img-fluid"
+                                    :img-src="'images/business/'+allData.image3" class="img-fluid"
                                     alt="CPB-Business">
                                 </b-carousel-slide>
                                 <b-carousel-slide v-if="allData.image4"
-                                    :img-src="'images/business/1110-450/'+allData.image4" class="img-fluid"
+                                    :img-src="'images/business/'+allData.image4" class="img-fluid"
                                     alt="CPB-Business">
                                 </b-carousel-slide>
                                 <b-carousel-slide v-if="allData.image5"
-                                    :img-src="'images/business/1110-450/'+allData.image5" class="img-fluid"
+                                    :img-src="'images/business/'+allData.image5" class="img-fluid"
                                     alt="CPB-Business">
                                 </b-carousel-slide>
                             </b-carousel>
