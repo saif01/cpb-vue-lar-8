@@ -19,18 +19,7 @@ export default {
             // Check Authentication
             axios.post('/api/admin_logout', {id: adminUserId}).then((response) => {
                
-                //this.clearSessionStorage('admin_auth_token');
-              
-                // // Store update
-                // this.$store.commit('setAdminAuthToken', null)
-                // // store update
-                // this.$store.commit('setAdminUser', null)
-
-
-                // // Redirect to dashboard
-                // this.$router.push({name: 'admin_login'})
-
-                console.log('Logout Request ')
+                console.log('Admin Logout Request')
                 
             }).catch((errors) => {
                 console.log(errors);

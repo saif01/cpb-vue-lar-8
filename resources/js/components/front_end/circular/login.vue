@@ -125,7 +125,7 @@
                 console.log('Form submited');
                 this.$Progress.start()
                 // request send and get response
-                const response = await this.form.post('/api/login');
+                const response = await this.form.post('/api/circular_login');
                 // Input field make empty
                 this.form.reset();
                 this.form.errors.clear();

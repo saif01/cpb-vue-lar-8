@@ -71,7 +71,7 @@
 
 
                         <li class="nav-item">
-                            <router-link to="admin/logout" class="nav-link">
+                            <router-link :to="{name:'admin_logout'}" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>Logout</p>
                             </router-link>

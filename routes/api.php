@@ -58,9 +58,9 @@ Route::namespace('App\Http\Controllers\FrontEnd')->group( function(){
     Route::post('/circular_msg', 'VueController@circular_msg');
 
     // Route::post('/circular_login', 'VueController@circular_login');
-    Route::post('/circular_logout', 'VueController@circular_logout');
-    Route::post('/login', 'AuthApiController@login');
-    Route::post('/logout', 'AuthApiController@logout')->middleware('auth:sanctum');
+    //Route::post('/circular_logout', 'VueController@circular_logout');
+    Route::post('/circular_login', 'AuthApiController@login');
+    Route::post('/circular_logout', 'AuthApiController@logout');
 
     Route::post('/circular_job_apply', 'VueController@circular_job_apply');
     Route::post('/circular_register', 'VueController@circular_register');

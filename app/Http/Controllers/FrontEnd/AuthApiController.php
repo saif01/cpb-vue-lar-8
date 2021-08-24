@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Auth\AuthApiToken;
 use Illuminate\Support\Facades\Auth;
 
+use DB;
+
 class AuthApiController extends Controller
 {
     //
@@ -36,15 +38,18 @@ class AuthApiController extends Controller
 
         if($data){
 
-            Auth::login($data);
+            if($data->is_admin == 1){
+                return response()->json(['msg'=>'You have no user access', 'icon'=>'error'], 203);
+            }
 
-            $userDetails = Auth::user();
+            // Auth::login($data);
+            //$userDetails = Auth::user();
 
             // Sanctum Token Generate
             $tokenResponse   = $data->createToken('frontend_user')->plainTextToken;
             $arrToken   = explode("|",$tokenResponse);
             $saved_token = $arrToken[1];
-           
+        
             //Save token data in another DB
             // $tokenData = new AuthApiToken();
             // $tokenData->token_id    = $arrToken[0];
@@ -53,12 +58,9 @@ class AuthApiController extends Controller
             // $tokenData->saved_token = $saved_token;
             //$success                = $tokenData->save();
 
+            return response()->json([ 'result'=> $data, 'auth_token'=>$saved_token ], 200);
 
-
-            
-
-            return response()->json([ 'result'=> $userDetails, 'auth_token'=>$saved_token ], 200);
-
+           
         }else{
 
             return response()->json(['msg'=>'You have entered invalid credentials', 'icon'=>'error'], 203);
@@ -73,16 +75,22 @@ class AuthApiController extends Controller
     //logout
     public function logout(Request $request){
 
-        $success = $request->user()->currentAccessToken()->delete();
+        $tokenable_id = $request->id;
+
+        // Token Was delete From DB
+        $success = DB::table('personal_access_tokens')
+            ->where('tokenable_id', $tokenable_id)
+            ->orderBy('id', 'desc')
+            ->take(1)
+            ->delete();
 
         if($success){
-            return response()->json(['msg'=>'Logout successfully', 'icon'=>'success'], 200);
+            return response()->json(['msg'=>'Apply Successfully &#128512', 'icon'=>'success'], 200);
         }else{
-            return response()->json([
-               'msg' => 'Somyhing going wrong !!'
-           ], 422);
+            return response()->json(['msg' => 'Data not save in DB !!'], 422);
         }
 
+       
     } 
 
     

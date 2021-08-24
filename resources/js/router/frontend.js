@@ -52,7 +52,7 @@ export default [
     {
         path: '/news_press',
         component: news_press,
-        name: 'Press',
+        name: 'news_press',
         meta:{
             title: 'Presses'
         }

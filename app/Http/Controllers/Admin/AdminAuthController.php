@@ -36,28 +36,24 @@ class AdminAuthController extends Controller
 
         if($data){
 
-            Auth::login($data);
-
-            $userDetails = Auth::user();
+            // Auth::login($data);
+            // $userDetails = Auth::user();
 
             // Sanctum Token Generate
             $tokenResponse   = $data->createToken('admin_user')->plainTextToken;
             $arrToken   = explode("|",$tokenResponse);
             $saved_token = $arrToken[1];
            
-            //Save token data in another DB
+            // Save token data in another DB
             // $tokenData = new AuthApiToken();
             // $tokenData->token_id    = $arrToken[0];
             // $tokenData->user_id     = $data->id;
             // $tokenData->raw_token   = $tokenResponse;
             // $tokenData->saved_token = $saved_token;
-            //$success                = $tokenData->save();
+            // $success                = $tokenData->save();
 
 
-
-            
-
-            return response()->json([ 'result'=> $userDetails, 'auth_token'=>$saved_token ], 200);
+            return response()->json([ 'result'=> $data, 'auth_token'=>$saved_token ], 200);
 
         }else{
 
