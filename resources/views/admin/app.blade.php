@@ -13,13 +13,9 @@
       
     </head>
     <body>
-    <h1>Admin Dashboard</h1>
     <div id="app" class="h-100">
         <admin-app></admin-app>
     </div>
-
-
-
 
     <script src="{{ asset('js/app.js') }}"></script> 
   

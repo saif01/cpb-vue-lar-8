@@ -5,7 +5,7 @@
         <header id="header" class="fixed-top">
             <div class="container">
 
-                <nav class="navbar navbar-expand-lg p-0 navbar-dark">
+                <nav class="navbar navbar-expand-lg p-0 navbar-dark bg-transparent">
 
                     <router-link to="/" class="navbar-brand"><img :src="'all-assets/front-end/img/logo/cpb.png'"
                             alt="CPB" width="40" height="40">

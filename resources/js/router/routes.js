@@ -5,6 +5,8 @@ Vue.use(VueRouter);
 // Vuex File
 import store from '../vuex/store';
 
+import common from '../common/common';
+
 
 
 import frontend_routes from './frontend';
@@ -28,9 +30,9 @@ const routes = new VueRouter({
 
 // Run brfore every route request
 routes.beforeEach( (to, from, next) => {
-    //console.log(to, to.meta.auth);
+   // console.log(to, to.meta);
 
-    // Check Authentication
+    // Check front end Authentication
     if(to.meta.auth){
         if(store.getters.getAuthToken){
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + store.getters.getAuthToken;
@@ -50,6 +52,32 @@ routes.beforeEach( (to, from, next) => {
         }else{
             // Redirect to dashboard
             return next('circular_login');
+        }
+    }
+
+    // Check Admin Authentication
+    if(to.meta.adminAuth){
+        //console.log('admin auth', to.meta.adminAuth, store.getters.getAdminAuthToken )
+        let adminAuthToken = store.getters.getAdminAuthToken
+        if( adminAuthToken ){
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + adminAuthToken;
+            // Check Authentication
+            axios.get('api/athenticated').then((response) => {
+                //console.log('Admin auth route : ', store.getters.getAdminAuthToken)
+
+                if(! response.data ){
+                    // Clear all Localstorage data
+                    return next({name: 'admin_logout'})
+                }
+                
+            }).catch((errors) => {
+                // Redirect to logout
+                next({name: 'admin_logout'});
+                console.log(errors);
+            })
+        }else{
+            // Redirect to dashboard
+            return next({name: 'admin_logout'});
         }
     }
 

@@ -67,8 +67,20 @@ Route::namespace('App\Http\Controllers\FrontEnd')->group( function(){
     Route::post('/circular_job_applied', 'VueController@circular_job_applied')->middleware('auth:sanctum');
 
 
-    
+});
 
+
+Route::namespace('App\Http\Controllers\Admin')->group( function(){
+
+    Route::post('/admin_login', 'AdminAuthController@login');
+    Route::post('/admin_logout', 'AdminAuthController@logout');
+
+    Route::namespace('News')->prefix('admin/news')->group( function(){
+
+        Route::get('/index', 'EventController@index');
+        Route::get('/store', 'EventController@store');
+
+    });
 
 
 });

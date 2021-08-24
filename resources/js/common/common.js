@@ -22,6 +22,7 @@ export default {
         totalValue: '',
         dataShowFrom: '',
         dataShowTo: '',
+        editmode: false,
 
         imageMaxSize: '2111775',
         fileMaxSize: '5111775',
@@ -40,7 +41,7 @@ export default {
 
         // Get table data
         getResults(page = 1) {
-            axios.get('api/'+this.currentUrl+'?page=' + page +
+            axios.get(this.currentUrl+'?page=' + page +
                     '&paginate=' + this.paginate +
                     '&search=' + this.search +
                     '&sort_direction=' + this.sort_direction +
@@ -102,6 +103,161 @@ export default {
             //console.log(this.form.document)
         },
 
+
+        /*
+        Start
+
+        Authentication data save methods
+        Like Localstrorage 
+        Like SessionStorage
+
+        */
+
+
+        // // Get Localstorage Data
+        getLocalStorage(localkey, localStrogeExpHour = 1){
+
+            // Check Localstorage time limit
+            let hours = localStrogeExpHour;
+            let etl = localStorage.getItem('etl');
+            if ( etl && (new Date().getTime() - etl > hours * 60 * 60 * 1000) ) {
+                // Clear all localstorage
+                localStorage.clear();
+            }
+
+            // Get Localstorage data
+            let localStorageData = localStorage.getItem(localkey);
+
+            if( localStorageData ){
+
+                if (typeof localStorageData === 'string' || typeof localStorageData === 'boolean'){
+                    console.log('str data get');
+                    return localStorageData;
+                }
+                else{
+                    console.log('obj data get');
+                    return JSON.parse(localStorageData)
+                }
+
+            }else{
+                return null;
+            }
+
+        },
+
+        // Set localstorage
+        setLocalStorage(localkey, localData){
+
+            // Current Storage Time 
+            localStorage.setItem('etl', new Date().getTime());
+
+            if (typeof localData === 'string' || typeof localData === 'boolean'){
+                console.log('i am string or bol : ', localData)
+                // Store data In local
+                localStorage.setItem(localkey, localData);
+            }
+            else{
+                // Obj in local storage
+                console.log('i am others : ', localData)
+                // Store data In local
+                localStorage.setItem(localkey, JSON.stringify(localData));
+            }
+
+           
+        },
+
+
+        // Clear All Local Storage
+        clearLocalStorage(key = null){
+            if(key){
+                localStorage.removeItem(key);
+            }else{
+                localStorage.clear();
+            }
+            
+        },
+
+        // Session Value set
+        setSessionStorage(localkey, localData){
+
+            if (typeof localData === 'string' || typeof localData === 'boolean'){
+                console.log('i am string or bol : ', localData)
+                // Store data In local
+                sessionStorage.setItem(localkey, localData);
+            }
+            else{
+                // Obj in local storage
+                console.log('i am others : ', localData)
+                // Store data In local
+                sessionStorage.setItem(localkey, JSON.stringify(localData));
+            }
+   
+        },
+
+        // Session Value get
+        getSessionStorage(localkey){
+
+            // Get SessionStorage data
+            let sessionStorageData = sessionStorage.getItem(localkey);
+
+            if( sessionStorageData ){
+
+                if (typeof sessionStorageData === 'string' || typeof sessionStorageData === 'boolean'){
+                    console.log('str data get');
+                    return sessionStorageData;
+                }
+                else{
+                    console.log('obj data get');
+                    return JSON.parse(sessionStorageData)
+                }
+
+            }else{
+                return null;
+            }
+        },
+
+        // Clear All Session Storage
+        clearSessionStorage(key = null){
+            if(key){
+                sessionStorage.removeItem(key);
+            }else{
+                sessionStorage.clear();
+            }
+            
+        },
+
+
+
+        /*
+        Authentication data save methods
+        Like Localstrorage 
+        Like SessionStorage
+
+        End
+        */
+       
+
+
+        // Add model show
+        newModal() {
+            this.editmode = false;
+            this.form.reset();
+            $('#addNew').modal('show');
+        },
+
+        // Edit Model show
+        editModal(singleData) {
+            this.editmode = true;
+            this.form.reset();
+            $('#addNew').modal('show');
+            this.form.fill(singleData);
+        },
+
+
+
+        testMethod(){
+            return ' Come form common';
+        },
 
 
        
@@ -185,10 +341,12 @@ export default {
 
 
     computed : {
-        // map this.count to store.state.count getLoading
+        // map this.count to store.state.count getLoading 
         ...mapGetters({
             'token'     : 'getAuthToken',
+            'adminToken': 'getAdminAuthToken',
             'user'      : 'getUser',
+            'adminUser' : 'getAdminUser',
             'loading'   : 'getLoading',
         })
     },
