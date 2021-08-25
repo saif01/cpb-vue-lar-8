@@ -80,9 +80,7 @@
 
         data() {
             return {
-                // Loading Animation
-                dataLoading: true,
-
+                
                 // DataTbl Common Featurs 
                 paginate: 12,
 

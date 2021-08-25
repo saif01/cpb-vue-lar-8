@@ -58,7 +58,7 @@
                                 <li class="nav-item">
                                     <router-link :to="{name:'admin_event'}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Simple Tables</p>
+                                        <p>Event</p>
                                     </router-link>
                                 </li>
                                
