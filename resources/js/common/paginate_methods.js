@@ -3,7 +3,7 @@ export default {
    // Get table data
    getResults(page = 1) {
         this.dataLoading = true;
-        axios.get(this.currentUrl+'?page=' + page +
+        axios.get(this.currentUrl+'/index?page=' + page +
                 '&paginate=' + this.paginate +
                 '&search=' + this.search +
                 '&sort_direction=' + this.sort_direction +
@@ -23,6 +23,7 @@ export default {
             });
     },
 
+  
     // DataTable Shorting by field name
     change_sort(field) {
         this.$Progress.start();

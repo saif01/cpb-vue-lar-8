@@ -12,7 +12,7 @@ try {
 
     
     require('bootstrap');
-    require('admin-lte');
+    // require('admin-lte');
     require('bootstrap-vue');
     
 } catch (e) {}

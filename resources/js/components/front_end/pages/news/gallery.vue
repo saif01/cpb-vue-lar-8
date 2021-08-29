@@ -95,7 +95,7 @@
 
             // Get table data
             getGalleryData(page = 1) {
-                axios.get('api/gallery?page=' + page +
+                axios.get('/api/news/gallery/index?page=' + page +
                         '&paginate=' + this.paginate +
                         '&search=' + this.search +
                         '&sort_direction=' + this.sort_direction +

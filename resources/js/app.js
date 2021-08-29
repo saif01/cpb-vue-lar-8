@@ -62,6 +62,24 @@ window.Toast = Toast;
 // }
 
 
+// vue-bootstrap-sidebar 
+// import BootstrapSidebar from 'vue-bootstrap-sidebar'
+// Vue.use(BootstrapSidebar)
+
+// import { library } from '@fortawesome/fontawesome-svg-core'
+// import { faUserSecret, faHome, faTint, faUsers,  faSignOutAlt,
+//          faPhone, faChild } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+// library.add(faUserSecret)
+// library.add(faHome)
+// library.add(faTint)
+// library.add(faUsers)
+// library.add(faPhone)
+// library.add(faChild)
+// library.add(faSignOutAlt)
+// Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
@@ -82,5 +100,6 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 const app = new Vue({
   el: '#app',
   router: routes,
-  store
+  store,
+ 
 });

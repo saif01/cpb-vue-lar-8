@@ -2,7 +2,8 @@ import axios from "axios";
 import { mapGetters } from 'vuex'
 import paginateMethods from './paginate_methods'
 import authenticationMethods from './authentiaction_methods'
-import imageMethods from './iamge_methods'
+import imageMethods from './image_methods'
+import createUpdate from './crud'
 
 
 export default {
@@ -26,6 +27,7 @@ export default {
         dataShowFrom: '',
         dataShowTo: '',
         editmode: false,
+        dataModelTitle: 'Store Data',
         // Loading Animation
         dataLoading: false,
 
@@ -48,6 +50,9 @@ export default {
         // Image Upload Methods
         ...imageMethods,
 
+        // create Update Methods
+        ...createUpdate,
+
 
     
         handleResize() {
@@ -55,7 +60,7 @@ export default {
             this.window.height = window.innerHeight;
         },
 
-
+       
         // Add model show
         newModal() {
             this.editmode = false;

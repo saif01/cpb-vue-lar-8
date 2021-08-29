@@ -90,10 +90,10 @@
 
         data() {
             return {
-                // Loading Animation
+                // Loading Animation 
                 dataLoading: true,
-                currentUrl: 'event',
-
+                currentUrl: '/api/news/event',
+                
             }
         },
 

@@ -89,7 +89,7 @@
             return {
                 // Loading Animation
                 dataLoading: true,
-                currentUrl: 'press',
+                currentUrl: '/api/news/press',
 
             }
         },

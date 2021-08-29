@@ -41,9 +41,12 @@ Route::namespace('App\Http\Controllers\FrontEnd')->group( function(){
     Route::post('/contact_msg', 'VueController@contactMsg');
 
     // News
-    Route::get('/gallery', 'VueController@gallery');
-    Route::get('/press', 'VueController@press');
-    Route::get('/event', 'VueController@event');
+    Route::prefix('news')->group(function(){
+        Route::get('/gallery/index', 'VueController@gallery');
+        Route::get('/press/index', 'VueController@press');
+        Route::get('/event/index', 'VueController@event')->name('user.event');
+    });
+   
 
     // About
     Route::get('/chairman_message', 'VueController@chairman_message');
@@ -72,15 +75,38 @@ Route::namespace('App\Http\Controllers\FrontEnd')->group( function(){
 
 Route::namespace('App\Http\Controllers\Admin')->group( function(){
 
-    Route::post('/admin_login', 'AdminAuthController@login');
+    Route::post('/admin_login', 'AdminAuthController@login')->name('login');
     Route::post('/admin_logout', 'AdminAuthController@logout');
 
-    Route::namespace('News')->prefix('admin/news')->group( function(){
+    Route::middleware('auth:sanctum')->namespace('News')->group( function(){
 
-        Route::get('/index', 'EventController@index');
-        Route::get('/store', 'EventController@store');
+        Route::prefix('admin/event')->group( function(){
+            Route::get('/index', 'EventController@index');
+            Route::post('/store', 'EventController@store');
+            Route::put('/update/{id}', 'EventController@update');
+            Route::delete('/destroy/{id}', 'EventController@destroy');
+        });
+    
+        Route::prefix('admin/press')->group( function(){
+            Route::get('/index', 'PressController@index');
+            Route::post('/store', 'PressController@store');
+            Route::put('/update/{id}', 'PressController@update');
+            Route::delete('/destroy/{id}', 'PressController@destroy');
+        });
+
+        Route::prefix('admin/gallery')->group( function(){
+            Route::get('/index', 'GalleryController@index');
+            Route::get('/all', 'GalleryController@all');
+            Route::post('/store', 'GalleryController@store');
+            Route::delete('/destroy/{id}', 'GalleryController@destroy');
+
+            Route::post('/bulk_store', 'GalleryController@bulk_store');
+            Route::delete('/bulk_delete', 'GalleryController@bulk_delete');
+        });
 
     });
+
+   
 
 
 });

@@ -6,6 +6,8 @@ import admin_blank from '../components/admin/pages/blank.vue';
 
 //News
 import admin_event from '../components/admin/pages/news/event.vue';
+import admin_press from '../components/admin/pages/news/press.vue';
+import admin_gallery from '../components/admin/pages/news/gallery.vue';
 
 export default [
     {
@@ -51,5 +53,24 @@ export default [
             adminAuth: true,
         },   
     },
+    {
+        path: '/admin/press',
+        component: admin_press,
+        name: 'admin_press',
+        meta:{
+            title: 'Admin News Press',
+            adminAuth: true,
+        },   
+    },
+    {
+        path: '/admin/gallery',
+        component: admin_gallery,
+        name: 'admin_gallery',
+        meta:{
+            title: 'Admin News Gallery',
+            adminAuth: true,
+        },   
+    },
+    
 
 ]
