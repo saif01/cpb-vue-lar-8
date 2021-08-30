@@ -141,7 +141,7 @@ class GalleryController extends Controller
         $data = new NewsGallery();
         $data->image      = $imageName;
         $data->status     = 1;
-        // $data->created_by = Auth::user()->id;
+        $data->created_by = request()->user()->id ?? null;
         $data->save();
          
     	return response()->json(['success'=>'You have successfully upload file.']);
@@ -178,8 +178,8 @@ class GalleryController extends Controller
     }
 
 
-     // bulk_delete
-     public function bulk_delete(Request $request){
+    // bulk_delete
+    public function bulk_delete(Request $request){
         //dd($this->selected);
 
         $selected = $request->selected;

@@ -16,9 +16,27 @@
 
                     <li class="nav-item">
                         <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
-                            data-target="#collapseSubItems2" aria-controls="collapseSubItems2" aria-expanded="false"><i
-                                class="far fa-newspaper"></i> News</a>
+                            data-target="#collapseSubItems2" aria-controls="collapseSubItems2" aria-expanded="false"><i class="fas fa-users-cog"></i> User Management</a>
                         <ul class="nav-second-level collapse" id="collapseSubItems2" data-parent="#navAccordion">
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_user' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> User</span>
+                                </router-link>
+                            </li>
+                             <li class="nav-item">
+                                <router-link :to="{ name:'admin_role' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Role</span>
+                                </router-link>
+                            </li>
+                           
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
+                            data-target="#collapseSubItems3" aria-controls="collapseSubItems3" aria-expanded="false"><i
+                                class="far fa-newspaper"></i> News</a>
+                        <ul class="nav-second-level collapse" id="collapseSubItems3" data-parent="#navAccordion">
                             <li class="nav-item">
                                 <router-link :to="{ name:'admin_event' }" class="nav-link">
                                     <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Event</span>

@@ -78,31 +78,57 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
     Route::post('/admin_login', 'AdminAuthController@login')->name('login');
     Route::post('/admin_logout', 'AdminAuthController@logout');
 
-    Route::middleware('auth:sanctum')->namespace('News')->group( function(){
+    Route::middleware('auth:sanctum')->group( function(){
 
-        Route::prefix('admin/event')->group( function(){
-            Route::get('/index', 'EventController@index');
-            Route::post('/store', 'EventController@store');
-            Route::put('/update/{id}', 'EventController@update');
-            Route::delete('/destroy/{id}', 'EventController@destroy');
+        // News Section
+        Route::namespace('User')->group( function(){ 
+
+            Route::prefix('admin/user')->group( function(){
+                Route::get('/index', 'UserController@index');
+                Route::post('/store', 'UserController@store');
+                Route::put('/update/{id}', 'UserController@update');
+                Route::delete('/destroy/{id}', 'UserController@destroy');
+            });
+
+            Route::prefix('admin/role')->group( function(){
+                Route::get('/index', 'RoleController@index');
+                Route::post('/store', 'RoleController@store');
+                Route::put('/update/{id}', 'RoleController@update');
+                Route::delete('/destroy/{id}', 'RoleController@destroy');
+            });
+
         });
+
+        // News Section
+        Route::namespace('News')->group( function(){ 
+
+            Route::prefix('admin/event')->group( function(){
+                Route::get('/index', 'EventController@index');
+                Route::post('/store', 'EventController@store');
+                Route::put('/update/{id}', 'EventController@update');
+                Route::delete('/destroy/{id}', 'EventController@destroy');
+            });
+        
+            Route::prefix('admin/press')->group( function(){
+                Route::get('/index', 'PressController@index');
+                Route::post('/store', 'PressController@store');
+                Route::put('/update/{id}', 'PressController@update');
+                Route::delete('/destroy/{id}', 'PressController@destroy');
+            });
     
-        Route::prefix('admin/press')->group( function(){
-            Route::get('/index', 'PressController@index');
-            Route::post('/store', 'PressController@store');
-            Route::put('/update/{id}', 'PressController@update');
-            Route::delete('/destroy/{id}', 'PressController@destroy');
+            Route::prefix('admin/gallery')->group( function(){
+                Route::get('/index', 'GalleryController@index');
+                Route::get('/all', 'GalleryController@all');
+                Route::post('/store', 'GalleryController@store');
+                Route::delete('/destroy/{id}', 'GalleryController@destroy');
+    
+                Route::post('/bulk_store', 'GalleryController@bulk_store');
+                Route::delete('/bulk_delete', 'GalleryController@bulk_delete');
+            });
+
         });
 
-        Route::prefix('admin/gallery')->group( function(){
-            Route::get('/index', 'GalleryController@index');
-            Route::get('/all', 'GalleryController@all');
-            Route::post('/store', 'GalleryController@store');
-            Route::delete('/destroy/{id}', 'GalleryController@destroy');
-
-            Route::post('/bulk_store', 'GalleryController@bulk_store');
-            Route::delete('/bulk_delete', 'GalleryController@bulk_delete');
-        });
+       
 
     });
 

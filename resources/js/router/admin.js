@@ -4,7 +4,12 @@ import admin_logout from '../components/admin/pages/auth/logout.vue';
 import admin_404 from '../components/admin/pages/404.vue';
 import admin_blank from '../components/admin/pages/blank.vue';
 
-//News
+// User
+import admin_user from '../components/admin/pages/user/all.vue';
+import admin_role from '../components/admin/pages/user/role.vue';
+
+
+// News
 import admin_event from '../components/admin/pages/news/event.vue';
 import admin_press from '../components/admin/pages/news/press.vue';
 import admin_gallery from '../components/admin/pages/news/gallery.vue';
@@ -44,6 +49,33 @@ export default [
             adminAuth: true,
         },   
     },
+
+    // User Section
+    {
+        path: '/admin/user',
+        component: admin_user,
+        name: 'admin_user',
+        meta:{
+            title: 'Admin User',
+            adminAuth: true,
+        },   
+    },
+    {
+        path: '/admin/role',
+        component: admin_role,
+        name: 'admin_role',
+        meta:{
+            title: 'Admin Role',
+            adminAuth: true,
+        },   
+    },
+
+
+
+
+
+
+    // News Section
     {
         path: '/admin/event',
         component: admin_event,
