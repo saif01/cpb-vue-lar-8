@@ -21,12 +21,47 @@ class UserController extends Controller
         $sort_field     = Request('sort_field', 'id');
 
         $allData = User::orderBy($sort_field, $sort_direction)
+                ->with('roles')
                 ->where('is_admin', 1)
                 ->search( trim(preg_replace('/\s+/' ,' ', $search)) )
                 ->paginate($paginate);
 
         return response()->json($allData, 200);
 
+    }
+
+    // roles
+    public function roles(){
+        $allData = Role::orderBy('name')->get();
+        return response()->json($allData, 200);
+    }
+
+
+    // roles_update
+    public function roles_update(Request $request ){
+
+        $id = $request->currentRoleId;
+
+        if($id){
+            $user = User::find($id);
+            //Update Role in Roles table
+            $success = $user->roles()->sync($request->roles);
+
+            if($success){
+                return response()->json(['msg'=>'Stored Successfully &#128513;', 'icon'=>'success'], 200);
+            }else{
+                return response()->json([
+                    'msg' => 'Data not save in DB !!'
+                ], 422);
+            }
+
+        }else{
+            return response()->json([
+                'msg' => 'User id not found!!'
+            ], 422);
+        }
+
+        
     }
 
 
@@ -37,11 +72,11 @@ class UserController extends Controller
 
         //Validate
         $this->validate($request,[
-            'title'     => 'required|string|max:1000|unique:news_events',
-            'date'      => 'required|string|max:1000',
-            'details'   => 'required|string|max:40000',
-            // 'image'     => 'nullable|max:1024', // 1MB Max
-            // 'document'  => 'nullable|max:5000', // 1MB Max
+            'login'     => 'required|string|max:100|unique:users',
+            'name'      => 'required|string|max:100',
+            'email'     => 'nullable|string|email|max:255',
+            'password'  => 'required|string|same:conformPassword',
+            'image'     => 'required',
         ]);
 
         $data = new User();
@@ -49,7 +84,7 @@ class UserController extends Controller
       
         if($request->image){
 
-            $imagePath = 'images/event/';
+            $imagePath = 'images/admin/';
 
             $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
             // Original Image Save
@@ -65,27 +100,15 @@ class UserController extends Controller
         }
 
 
-       $document = $request->file('document');
-       // Direct any file store
-        if ($document) {
-            $document_name      = Str::random(5);
-            $ext                = strtolower($document->getClientOriginalExtension());
-            $document_full_name = $document_name . '.' . $ext;
-            $upload_path        = 'images/event/';
-            $document_url       = $upload_path . $document_full_name;
-            $successImg         = $document->move($upload_path, $document_full_name);
-
-            $data->document     = $document_full_name;
-        }
-
-
-        $data->title      = $request->title;
-        $data->date       = $request->date;
-        $data->details    = $request->details;
-        $success          = $data->save();
+        $data->login    = $request->login;
+        $data->name     = $request->name;
+        $data->email    = $request->email;
+        $data->is_admin = 1;
+        $data->password = $request->password;
+        $success        = $data->save();
 
         if($success){
-            return response()->json(['msg'=>'Data Stored Successfully', 'icon'=>'success'], 200);
+            return response()->json(['msg'=>'Stored Successfully &#128513;', 'icon'=>'success'], 200);
         }else{
             return response()->json([
                 'msg' => 'Data not save in DB !!'
@@ -100,11 +123,11 @@ class UserController extends Controller
 
         //Validate
         $this->validate($request,[
-            'title'     => 'required|string|max:1000|unique:news_events,title,'.$id,
-            'date'      => 'required|string|max:1000',
-            'details'   => 'required|string|max:40000',
-            // 'image'     => 'nullable|max:1024', // 1MB Max
-            // 'document'  => 'nullable|max:5000', // 1MB Max
+            'login'     => 'required|string|max:100|unique:users,login,'.$id,
+            'name'      => 'required|string|max:100',
+            'email'     => 'nullable|string|email|max:255',
+            'password'  => 'nullable|string|same:conformPassword',
+            'image'     => 'nullable',
         ]);
 
         $data = User::find($id);
@@ -112,7 +135,7 @@ class UserController extends Controller
       
         if( $request->image != $data->image ){
 
-            $imagePath = 'images/event/';
+            $imagePath = 'images/admin/';
 
             // Delete Image
             $imgDB = $data->image;
@@ -142,27 +165,17 @@ class UserController extends Controller
         }
 
 
-       $document = $request->file('document');
-       // Direct any file store
-        if ($document) {
-            $document_name      = Str::random(5);
-            $ext                = strtolower($document->getClientOriginalExtension());
-            $document_full_name = $document_name . '.' . $ext;
-            $upload_path        = 'images/event/';
-            $document_url       = $upload_path . $document_full_name;
-            $successImg         = $document->move($upload_path, $document_full_name);
-
-            $data->document     = $document_full_name;
+        $data->login    = $request->login;
+        $data->name     = $request->name;
+        $data->email    = $request->email;
+        $data->is_admin = 1;
+        if($request->password){
+            $data->password = $request->password;
         }
-
-
-        $data->title      = $request->title;
-        $data->date       = $request->date;
-        $data->details    = $request->details;
-        $success          = $data->save();
+        $success        = $data->save();
 
         if($success){
-            return response()->json(['msg'=>'Data Updated Successfully', 'icon'=>'success'], 200);
+            return response()->json(['msg'=>'Updated Successfully &#128515;', 'icon'=>'success'], 200);
         }else{
             return response()->json([
                 'msg' => 'Data not save in DB !!'
@@ -177,7 +190,7 @@ class UserController extends Controller
         $data       =  User::find($id);
 
         if($data->image){
-            $imagePath = 'images/event/';
+            $imagePath = 'images/admin/';
 
             // Delete Image
             $imgDB = $data->image;

@@ -88,6 +88,10 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
                 Route::post('/store', 'UserController@store');
                 Route::put('/update/{id}', 'UserController@update');
                 Route::delete('/destroy/{id}', 'UserController@destroy');
+
+                Route::get('/roles', 'UserController@roles');
+                Route::post('/roles_update', 'UserController@roles_update');
+
             });
 
             Route::prefix('admin/role')->group( function(){

@@ -84,7 +84,7 @@ class EventController extends Controller
         $success          = $data->save();
 
         if($success){
-            return response()->json(['msg'=>'Data Stored Successfully', 'icon'=>'success'], 200);
+            return response()->json(['msg'=>'Stored Successfully &#128513;', 'icon'=>'success'], 200);
         }else{
             return response()->json([
                 'msg' => 'Data not save in DB !!'
@@ -161,7 +161,7 @@ class EventController extends Controller
         $success          = $data->save();
 
         if($success){
-            return response()->json(['msg'=>'Data Updated Successfully', 'icon'=>'success'], 200);
+            return response()->json(['msg'=>'Updated Successfully &#128515;', 'icon'=>'success'], 200);
         }else{
             return response()->json([
                 'msg' => 'Data not save in DB !!'
