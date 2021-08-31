@@ -4,6 +4,7 @@ import paginateMethods from './paginate_methods'
 import authenticationMethods from './authentiaction_methods'
 import imageMethods from './image_methods'
 import createUpdate from './crud'
+import roleCheck from './roles_check'
 
 
 export default {
@@ -44,6 +45,9 @@ export default {
         // Authentication data save methods
         ...authenticationMethods,
 
+        // Permission Role check
+        ...roleCheck,
+
         // Paginate Methods
         ...paginateMethods,
 
@@ -52,6 +56,8 @@ export default {
 
         // create Update Methods
         ...createUpdate,
+
+
 
 
     
@@ -144,6 +150,7 @@ export default {
         ...mapGetters({
             'token'     : 'getAuthToken',
             'adminToken': 'getAdminAuthToken',
+            'adminRoles': 'getAdminRoles',
             'user'      : 'getUser',
             'adminUser' : 'getAdminUser',
             'loading'   : 'getLoading',

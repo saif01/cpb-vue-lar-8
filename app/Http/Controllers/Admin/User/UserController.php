@@ -30,40 +30,6 @@ class UserController extends Controller
 
     }
 
-    // roles
-    public function roles(){
-        $allData = Role::orderBy('name')->get();
-        return response()->json($allData, 200);
-    }
-
-
-    // roles_update
-    public function roles_update(Request $request ){
-
-        $id = $request->currentRoleId;
-
-        if($id){
-            $user = User::find($id);
-            //Update Role in Roles table
-            $success = $user->roles()->sync($request->roles);
-
-            if($success){
-                return response()->json(['msg'=>'Stored Successfully &#128513;', 'icon'=>'success'], 200);
-            }else{
-                return response()->json([
-                    'msg' => 'Data not save in DB !!'
-                ], 422);
-            }
-
-        }else{
-            return response()->json([
-                'msg' => 'User id not found!!'
-            ], 422);
-        }
-
-        
-    }
-
 
     // store
     public function store(Request $request){
@@ -210,6 +176,54 @@ class UserController extends Controller
 
         return response()->json('success', 200);
       
+    }
+
+
+     // roles
+     public function roles(){
+        $allData = Role::orderBy('name')->get();
+        return response()->json($allData, 200);
+    }
+
+
+    // roles_update
+    public function roles_update(Request $request ){
+
+        $id = $request->currentRoleId;
+
+        if($id){
+            $user = User::find($id);
+            //Update Role in Roles table
+            $success = $user->roles()->sync($request->roles);
+
+            if($success){
+                return response()->json(['msg'=>'Stored Successfully &#128513;', 'icon'=>'success'], 200);
+            }else{
+                return response()->json([
+                    'msg' => 'Data not save in DB !!'
+                ], 422);
+            }
+
+        }else{
+            return response()->json([
+                'msg' => 'User id not found!!'
+            ], 422);
+        }
+
+        
+    }
+
+
+    // roles_check
+    public function roles_check(Request $request){
+
+        $roleData = $request->role;
+
+       $data =  $request->user()->hasRole($roleData);
+
+       return response()->json($data, 200);
+
+       
     }
 
 

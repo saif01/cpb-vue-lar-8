@@ -51,12 +51,35 @@
             onSidebarChanged() {},
 
             getUserData() {
-                axios.get('/api/athenticated').then(res => {
-                    console.log(res.data)
-
+                axios.get('/api/user').then(res => {
+                    //console.log('from request', res.data)
+                   
                     // console.log(this.allData.length)
                 })
             },
+
+
+
+            checkR(role){
+
+                let result = false;
+
+                this.adminRoles.filter(function (element) {
+                
+                    //console.log('roleCheck filter', element.name)
+                    if(element.name == role){
+                        //console.log('Found')
+                        result= true ;
+                    }
+
+                })
+
+                return result;
+
+            }
+
+
+             
 
 
 
@@ -66,10 +89,12 @@
         mounted() {
 
 
+            let res = this.checkRole('Administrator');
 
-            //console.log('main_app token : ', this.adminToken);
-
-
+            let resarr = this.checkAnyRole(['Administrator2', 'Add', 'dddd',])
+            
+            
+            console.log('Role mounted :', res, resarr)
 
             // window.axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
 
@@ -83,13 +108,14 @@
         created() {
             this.$Progress.start();
 
-            if (this.adminToken) {
-                // Authenticated user data
-                console.log('main_app created')
-                this.$store.dispatch('authAdminUserData')
-            }
+            // if (this.adminToken) {
+            //     // Authenticated user data
+            //     console.log('main_app created')
+            //     this.$store.dispatch('authAdminUserData')
+            // }
 
-            console.log('main_app created', this.adminToken, this.adminUser)
+            console.log('main_app created', this.adminUser, this.adminRoles)
+            
 
             //console.log('main_app Session', this.getSessionStorage('admin_auth_token') )
             //console.log('main_app Session', this.getSessionStorage('admin_user') )

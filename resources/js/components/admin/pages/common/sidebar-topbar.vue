@@ -67,7 +67,7 @@
 
                 </ul>
                 <div class="ml-auto mt-2 mt-md-0 text-light">
-                    <span v-if="adminUser">Name: {{ adminUser.name }}</span>
+                    <span v-if="adminUser">Name: {{ adminUser.name }} {{ checkRole('Administrator') }}</span>
                 </div>
                
             </div>

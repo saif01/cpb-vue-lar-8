@@ -106,12 +106,17 @@
                     if (response.status == 200) {
 
                         let userData = response.data.result
+                        let userRoleData = response.data.result.roles
                         let token = response.data.auth_token
+
+                        console.log('login', userData, userRoleData)
 
                         // Store update
                         this.$store.commit('setAdminAuthToken', token)
                         // store update
                         this.$store.commit('setAdminUser', userData)
+                        // Set Admin role permission
+                        this.$store.commit('setAdminRoles', userRoleData)
 
                         //   // Localstorage Update
                         //   this.setLocalStorage('admin_auth_token', token)
@@ -122,6 +127,8 @@
                         this.setSessionStorage('admin_auth_token', token)
                         // SessionStorage Update
                         this.setSessionStorage('admin_user', userData)
+                        // SessionStorage Update
+                        this.setSessionStorage('admin_roles', userRoleData)
 
 
                         // Redirect with reload

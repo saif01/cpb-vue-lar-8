@@ -84,21 +84,22 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
         Route::namespace('User')->group( function(){ 
 
             Route::prefix('admin/user')->group( function(){
-                Route::get('/index', 'UserController@index');
-                Route::post('/store', 'UserController@store');
-                Route::put('/update/{id}', 'UserController@update');
-                Route::delete('/destroy/{id}', 'UserController@destroy');
+                Route::get('/index', 'UserController@index')->middleware('role:Administrator,View');
+                Route::post('/store', 'UserController@store')->middleware('role:Administrator,Add');
+                Route::put('/update/{id}', 'UserController@update')->middleware('role:Administrator,Edit');
+                Route::delete('/destroy/{id}', 'UserController@destroy')->middleware('role:Administrator,Delete');
 
                 Route::get('/roles', 'UserController@roles');
                 Route::post('/roles_update', 'UserController@roles_update');
+                Route::post('/roles_check', 'UserController@roles_check');
 
             });
 
             Route::prefix('admin/role')->group( function(){
-                Route::get('/index', 'RoleController@index');
-                Route::post('/store', 'RoleController@store');
-                Route::put('/update/{id}', 'RoleController@update');
-                Route::delete('/destroy/{id}', 'RoleController@destroy');
+                Route::get('/index', 'RoleController@index')->middleware('role:Administrator,View');
+                Route::post('/store', 'RoleController@store')->middleware('role:Administrator,Add');
+                Route::put('/update/{id}', 'RoleController@update')->middleware('role:Administrator,Edit');
+                Route::delete('/destroy/{id}', 'RoleController@destroy')->middleware('role:Administrator,Delete');
             });
 
         });

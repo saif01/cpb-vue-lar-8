@@ -26,7 +26,8 @@ class AdminAuthController extends Controller
         $email = $request->email;
         $pass  = $request->password;
 
-        $data = User::where('login', $email )
+        $data = User::with('roles')
+                    ->where('login', $email )
                     //->orWhere('contact', $email)
                     ->where('password', $pass)
                     ->where('is_admin', 1)

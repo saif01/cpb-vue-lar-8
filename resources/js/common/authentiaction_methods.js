@@ -88,7 +88,8 @@ export default{
 
         if( sessionStorageData ){
 
-            if (typeof sessionStorageData === 'string' || typeof sessionStorageData === 'boolean'){
+       
+            if (! this.IsJsonString(sessionStorageData) ){
                 console.log('str data get');
                 return sessionStorageData;
             }
@@ -111,5 +112,15 @@ export default{
         }
         
     },
+
+    // Check string or json stringify
+    IsJsonString(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
     
 }

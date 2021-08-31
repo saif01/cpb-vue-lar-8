@@ -22,11 +22,10 @@ export default new Vuex.Store({
         recruitData     : {},
         recruitAppliedData : {},
 
-        // adminAuthToken : localStorage.getItem('admin_auth_token') || null, 
-        // adminAuthToken  : common.methods.getLocalStorage('admin_auth_token') || null,
-        // adminUser       : common.methods.getLocalStorage('admin_user') || null,
         adminAuthToken  : common.methods.getSessionStorage('admin_auth_token') || null,
-        adminUser       : null,
+        adminUser       : common.methods.getSessionStorage('admin_user') || null,
+        adminRoles      : common.methods.getSessionStorage('admin_roles') || null,
+
 
 
     },

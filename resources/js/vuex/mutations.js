@@ -51,6 +51,9 @@ export default {
     setAdminUser(state, data){
         state.adminUser = data;
     },
+    setAdminRoles(state, data){
+        state.adminRoles = data;
+    },
 
 
 }

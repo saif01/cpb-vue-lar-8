@@ -38,6 +38,11 @@ export default {
     // Admin User
     getAdminUser(state){
         return state.adminUser;
+    },
+
+    // Admin Roles
+    getAdminRoles(state){
+        return state.adminRoles;
     }
 
 
