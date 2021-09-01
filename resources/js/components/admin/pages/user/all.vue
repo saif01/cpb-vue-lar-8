@@ -5,11 +5,11 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-6">
-                        <h3 class="card-title">Events Table</h3>
+                        <h3 class="card-title">Admin Table</h3>
                     </div>
                     <div class="col-6">
-                        <b-button variant="outline-primary" size="sm" pill class="float-right" @click="addDataModel"><i
-                                class="far fa-plus-square"></i>
+                        <b-button v-if="isAddPermitted" variant="outline-primary" size="sm" pill class="float-right"
+                            @click="addDataModel"><i class="far fa-plus-square"></i>
                             Add</b-button>
                     </div>
 
@@ -69,34 +69,35 @@
                                 <td>{{ singleData.id }}</td>
                                 <td class="text-center">
                                     <span v-if="singleData.image">
-                                        <img :src="imagePathSm + singleData.image" alt="Image" height="100"
-                                            width="100">
+                                        <img :src="imagePathSm + singleData.image" alt="Image" height="100" width="100">
                                     </span>
-                                    <span v-else class="text-danger"> No Image</span>   
+                                    <span v-else class="text-danger"> No Image</span>
                                 </td>
                                 <td>{{ singleData.login }}</td>
                                 <td>{{ singleData.name }}</td>
                                 <td>{{ singleData.email }}</td>
                                 <td>
-                                   <span v-if="singleData.roles.length">
+                                    <span v-if="singleData.roles.length">
                                         <span v-for="(role, index) in singleData.roles" :key="index">
                                             <span>{{ role.name }}, </span>
                                         </span>
-                                   </span>
-                                   <span v-else>
-                                       <span class="text-danger" >You have no roles</span>
-                                   </span>
+                                    </span>
+                                    <span v-else>
+                                        <span class="text-danger">You have no roles</span>
+                                    </span>
                                 </td>
-                               
+
                                 <td class="text-center">
-                                    <button @click="editRoleModel(singleData)" class="btn btn-warning btn-sm">
-                                        <i class="fa fa-edit blue"></i> Role
+                                    <button v-if="isRoleManagePermitted" @click="editRoleModel(singleData)"
+                                        class="btn btn-info btn-sm">
+                                        <i class="fab fa-r-project"></i> Role
                                     </button>
-                                    <button @click="editDataModel(singleData)" class="btn btn-warning btn-sm">
+                                    <button v-if="isEditPermitted" @click="editDataModel(singleData)"
+                                        class="btn btn-warning btn-sm">
                                         <i class="fa fa-edit blue"></i> Edit
                                     </button>
-                                    <button @click="deleteData(singleData.id)" class="btn btn-danger btn-sm"><i
-                                            class="fa fa-trash red"></i> Delete</button>
+                                    <button v-if="isDeletePermitted" @click="deleteData(singleData.id)"
+                                        class="btn btn-danger btn-sm"><i class="fa fa-trash red"></i> Delete</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -141,12 +142,15 @@
                 <b-form-group label="password:">
                     <b-form-input type="password" v-model="form.password" placeholder="Enter Admin password" size="sm"
                         :class="{ 'is-invalid': form.errors.has('password') }"></b-form-input>
-                    <div class="small text-danger" v-if="form.errors.has('password')" v-html="form.errors.get('password')" />
+                    <div class="small text-danger" v-if="form.errors.has('password')"
+                        v-html="form.errors.get('password')" />
                 </b-form-group>
                 <b-form-group label="Conform Password:">
-                    <b-form-input type="password" v-model="form.conformPassword" placeholder="Enter Admin Conform Password" size="sm"
+                    <b-form-input type="password" v-model="form.conformPassword"
+                        placeholder="Enter Admin Conform Password" size="sm"
                         :class="{ 'is-invalid': form.errors.has('conformPassword') }"></b-form-input>
-                    <div class="small text-danger" v-if="form.errors.has('conformPassword')" v-html="form.errors.get('conformPassword')" />
+                    <div class="small text-danger" v-if="form.errors.has('conformPassword')"
+                        v-html="form.errors.get('conformPassword')" />
                 </b-form-group>
 
 
@@ -178,34 +182,30 @@
 
             <form @submit.prevent="updateUserRole">
 
-            <div class="pb-4">
-                {{ currentRoles }}
-                <div class="row">
-                    <div class="col-3"  v-for="(role, index) in allRoles" :key="index">
-                    <b-form-checkbox 
-                    v-model="currentRoles"
-                    :value="role.id"
-                    unchecked-value=""
-                    >
-                    {{ role.name }}
-                    </b-form-checkbox>
+                <div class="pb-4">
+                    {{ currentRoles }}
+                    <div class="row">
+                        <div class="col-3" v-for="(role, index) in allRoles" :key="index">
+                            <b-form-checkbox v-model="currentRoles" :value="role.id" unchecked-value="">
+                                {{ role.name }}
+                            </b-form-checkbox>
+                        </div>
+
                     </div>
+                </div>
 
-                </div>   
-            </div>
-
-            <b-form-group v-if="roleUpdating">
-                <b-progress value="100"  variant="success" striped animated>
-                </b-progress>
-            </b-form-group>
+                <b-form-group v-if="roleUpdating">
+                    <b-progress value="100" variant="success" striped animated>
+                    </b-progress>
+                </b-form-group>
 
 
-            <b-form-group v-if="!roleUpdating">
-                <b-button type="submit" class="btn-block" variant="primary">Update</b-button>
-            </b-form-group>
+                <b-form-group v-if="!roleUpdating">
+                    <b-button type="submit" class="btn-block" variant="primary">Update</b-button>
+                </b-form-group>
 
             </form>
-           
+
         </b-modal>
 
 
@@ -217,14 +217,14 @@
 <script>
     // vform
     import Form from 'vform';
-   
+
     export default {
-       
+
         data() {
 
             return {
 
-                allRoles:{},
+                allRoles: {},
 
                 //current page url
                 currentUrl: '/api/admin/user',
@@ -232,7 +232,7 @@
                 imagePathSm: '/images/admin/small/',
                 imagePath: '/images/admin/',
                 imageMaxSize: '2111775',
-               
+
                 // Form
                 form: new Form({
                     id: '',
@@ -244,9 +244,9 @@
                     image: '',
                 }),
 
-                currentRoles:[],
-                currentRoleId:null,
-                roleUpdating:false,
+                currentRoles: [],
+                currentRoleId: null,
+                roleUpdating: false,
 
             }
 
@@ -255,65 +255,65 @@
 
         methods: {
             // All roles
-            getRoles(){
-                axios.get( this.currentUrl + '/roles')
-                .then(response=>{
-                    //console.log(response.data)
-                    this.allRoles = response.data
-                })
-                .catch(error=>{
-                    console.log(error)
-                })
+            getRoles() {
+                axios.get(this.currentUrl + '/roles')
+                    .then(response => {
+                        //console.log(response.data)
+                        this.allRoles = response.data
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
             },
 
             // Add Data Model
-            addRoleModel(){
+            addRoleModel() {
                 this.$refs['data-modal-role'].show();
             },
 
             // editRoleModel
-            editRoleModel(roleData){
+            editRoleModel(roleData) {
                 console.log(roleData.id)
                 this.currentRoleId = roleData.id
                 // Current role array empty
                 this.currentRoles = []
                 // role found then push in arry
-                roleData.roles.forEach(element =>{
-                   // console.log('loop', element.id)
+                roleData.roles.forEach(element => {
+                    // console.log('loop', element.id)
                     this.currentRoles.push(element.id)
                 })
-             
+
                 // Role modal show
                 this.$refs['data-modal-role'].show();
             },
 
             // update user role
-            updateUserRole(){
+            updateUserRole() {
 
                 this.roleUpdating = true
-                axios.post( this.currentUrl + '/roles_update', {
-                    currentRoleId: this.currentRoleId,
-                    roles: this.currentRoles,
-                })
-                .then(response=>{
-                    this.roleUpdating = false
-                    console.log(response)
-                    // Refetch
-                    this.getResults();
-                    // Modal closed
-                    this.$refs['data-modal-role'].hide();
-                    Toast.fire({
-                        icon: response.data.icon,
-                        title: response.data.msg
-                    });
-                })
-                .catch(error=>{
-                    console.log(error)
-                })
+                axios.post(this.currentUrl + '/roles_update', {
+                        currentRoleId: this.currentRoleId,
+                        roles: this.currentRoles,
+                    })
+                    .then(response => {
+                        this.roleUpdating = false
+                        console.log(response)
+                        // Refetch
+                        this.getResults();
+                        // Modal closed
+                        this.$refs['data-modal-role'].hide();
+                        Toast.fire({
+                            icon: response.data.icon,
+                            title: response.data.msg
+                        });
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
 
 
             }
-            
+
 
 
 

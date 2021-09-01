@@ -87,6 +87,49 @@ export default{
         })
     },
 
+    // Change Status
+    statusChange(data){
+        console.log('status', data.status)
+        if(data.status == 1){
+            var text = "Are you want to inactive ?"
+            var btnText = "Inactive"
+           
+        }else{
+            var text = "Are you want to active ?"
+            var btnText = "Active"
+        }
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: text,
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: btnText,
+        }).then((result) => {
+
+            // Send request to the server
+            if (result.value) {
+                //console.log(id);
+                this.$Progress.start();
+                this.form.post(this.currentUrl + '/status/' + data.id).then((response) => {
+                    //console.log(response);
+                    Swal.fire(
+                        'Changed!',
+                        'Your post status has been Changed.',
+                        'success'
+                    );
+                    // Refresh Tbl Data with current page
+                    this.getResults(this.currentPageNumber);
+                    this.$Progress.finish();
+
+                }).catch((data) => {
+                    Swal.fire("Failed!", data.message, "warning");
+                });
+            }
+        })
+    },
+
     // Add Data Model
     addDataModel(){
         this.editmode = false;

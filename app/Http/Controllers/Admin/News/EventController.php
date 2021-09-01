@@ -199,5 +199,26 @@ class EventController extends Controller
     }
 
 
+    // status
+    public function status($id){
+
+        $data       =  NewsEvent::find($id);
+        if($data){
+
+           $status = $data->status;
+           
+            if($status == 1){
+                $data->status = null;
+            }else{
+                $data->status = 1;
+            }
+            $success    =  $data->save();
+            return response()->json('success', 200);
+
+        }
+
+    }
+
+
 
 }

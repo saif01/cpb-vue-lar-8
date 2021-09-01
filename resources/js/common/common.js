@@ -5,6 +5,7 @@ import authenticationMethods from './authentiaction_methods'
 import imageMethods from './image_methods'
 import createUpdate from './crud'
 import roleCheck from './roles_check'
+import rolesPermission from './roles_permission'
 
 
 export default {
@@ -154,7 +155,11 @@ export default {
             'user'      : 'getUser',
             'adminUser' : 'getAdminUser',
             'loading'   : 'getLoading',
-        })
+        }),
+
+        // All Roles Permission
+        ...rolesPermission
+
     },
 
 

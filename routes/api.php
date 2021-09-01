@@ -92,7 +92,6 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
                 Route::get('/roles', 'UserController@roles');
                 Route::post('/roles_update', 'UserController@roles_update');
                 Route::post('/roles_check', 'UserController@roles_check');
-
             });
 
             Route::prefix('admin/role')->group( function(){
@@ -112,6 +111,7 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
                 Route::post('/store', 'EventController@store');
                 Route::put('/update/{id}', 'EventController@update');
                 Route::delete('/destroy/{id}', 'EventController@destroy');
+                Route::post('/status/{id}', 'EventController@status');
             });
         
             Route::prefix('admin/press')->group( function(){

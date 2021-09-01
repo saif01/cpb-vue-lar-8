@@ -8,7 +8,7 @@
                         <h3 class="card-title">Press Table</h3>
                     </div>
                     <div class="col-6">
-                        <b-button variant="outline-primary" size="sm" pill class="float-right" @click="addDataModel"><i
+                        <b-button v-if="isAddPermitted" variant="outline-primary" size="sm" pill class="float-right" @click="addDataModel"><i
                                 class="far fa-plus-square"></i>
                             Add</b-button>
                     </div>
@@ -91,10 +91,10 @@
                                 </td>
 
                                 <td class="text-center">
-                                    <button @click="editDataModel(singleData)" class="btn btn-warning btn-sm">
+                                    <button v-if="isEditPermitted" @click="editDataModel(singleData)" class="btn btn-warning btn-sm">
                                         <i class="fa fa-edit blue"></i> Edit
                                     </button>
-                                    <button @click="deleteData(singleData.id)" class="btn btn-danger btn-sm"><i
+                                    <button v-if="isDeletePermitted" @click="deleteData(singleData.id)" class="btn btn-danger btn-sm"><i
                                             class="fa fa-trash red"></i> Delete</button>
                                 </td>
                             </tr>

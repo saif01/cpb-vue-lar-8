@@ -22,8 +22,8 @@ export default{
 
     checkRole(role){
 
-        if(this.adminRoles.length){
-
+        if(this.adminRoles){
+            //console.log('roleCheck if')
             let result = false;
 
                 this.adminRoles.filter(function (element) {
@@ -50,7 +50,8 @@ export default{
     // Role check str or array
     checkAnyRole(roles=[]){
 
-        if(this.adminRoles.length){
+        if(this.adminRoles){
+            //console.log('checkAnyRole if')
 
             let result = false;
 

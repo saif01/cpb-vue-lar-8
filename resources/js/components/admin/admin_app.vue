@@ -94,7 +94,7 @@
             let resarr = this.checkAnyRole(['Administrator2', 'Add', 'dddd',])
             
             
-            console.log('Role mounted :', res, resarr)
+            console.log('Role mounted :', res,  resarr, this.isAdministrator)
 
             // window.axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
 

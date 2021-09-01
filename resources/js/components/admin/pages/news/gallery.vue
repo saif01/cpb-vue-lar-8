@@ -10,12 +10,12 @@
                     <div class="col-8">
                         <div class="row">
                             <div class="col-6">
-                                <b-button v-if="selectedAll" variant="outline-danger" size="sm" pill @click="bulk_delete"><i
+                                <b-button v-if="selectedAll && isDeletePermitted" variant="outline-danger" size="sm" pill @click="bulk_delete"><i
                                         class="far fa-plus-square"></i>
                                     Delete All</b-button>
                             </div>
                             <div class="col-6">
-                                <b-button variant="outline-primary" size="sm" pill class="float-right"
+                                <b-button v-if="isAddPermitted" variant="outline-primary" size="sm" pill class="float-right"
                                     @click="addGalleryModel"><i class="far fa-plus-square"></i>
                                     Add</b-button>
                             </div>
@@ -80,7 +80,7 @@
                                 </td>
 
                                 <td class="text-center">
-                                    <button @click="singleDeleteData(singleData.id)" class="btn btn-danger btn-sm"><i
+                                    <button v-if="isDeletePermitted" @click="singleDeleteData(singleData.id)" class="btn btn-danger btn-sm"><i
                                             class="fa fa-trash red"></i> Delete</button>
                                 </td>
                             </tr>
