@@ -17,7 +17,7 @@
             </div>
 
             <div class="card-body">
-                <div v-if="allData.data">
+                <div v-if="allData.data" class="table-responsive">
                     <div class="row mb-2">
                         <div class="col form-inline small">
                             <select v-model="paginate" class="form-control form-control-sm">
@@ -91,17 +91,17 @@
                                 </td>
 
                                 <td class="text-center">
-                                     <button v-if="singleData.status" @click="statusChange(singleData)" class="btn btn-success btn-sm">
+                                     <button v-if="singleData.status" @click="statusChange(singleData)" class="btn btn-success btn-sm m-1">
                                         <i class="far fa-check-circle"></i> Active
                                     </button>
-                                    <button v-else @click="statusChange(singleData)" class="btn btn-warning btn-sm">
+                                    <button v-else @click="statusChange(singleData)" class="btn btn-warning btn-sm m-1">
                                         <i class="far fa-times-circle"></i> Inactive
                                     </button>
 
-                                    <button v-if="isEditPermitted" @click="editDataModel(singleData)" class="btn btn-warning btn-sm">
+                                    <button v-if="isEditPermitted" @click="editDataModel(singleData)" class="btn btn-warning btn-sm m-1">
                                         <i class="fa fa-edit blue"></i> Edit
                                     </button>
-                                    <button v-if="isDeletePermitted" @click="deleteData(singleData.id)" class="btn btn-danger btn-sm"><i
+                                    <button v-if="isDeletePermitted" @click="deleteData(singleData.id)" class="btn btn-danger btn-sm m-1"><i
                                             class="fa fa-trash red"></i> Delete</button>
                                 </td>
                             </tr>

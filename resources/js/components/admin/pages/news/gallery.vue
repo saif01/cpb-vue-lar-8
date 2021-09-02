@@ -29,7 +29,7 @@
             <!-- <div>Selected data {{ selected }}</div> -->
 
             <div class="card-body">
-                <div v-if="allData.data">
+                <div v-if="allData.data" class="table-responsive">
                     <div class="row mb-2">
                         <div class="col form-inline small">
                             <select v-model="paginate" class="form-control form-control-sm">

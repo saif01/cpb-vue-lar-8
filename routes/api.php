@@ -134,6 +134,29 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
 
         });
 
+
+        // About Section
+        Route::namespace('About')->group( function(){ 
+
+            Route::prefix('admin/business_operation')->group( function(){
+                Route::get('/index', 'BusinessOperationController@index');
+                Route::post('/store', 'BusinessOperationController@store');
+                Route::put('/update/{id}', 'BusinessOperationController@update');
+                Route::delete('/destroy/{id}', 'BusinessOperationController@destroy');
+                Route::post('/status/{id}', 'BusinessOperationController@status');
+            });
+
+            Route::prefix('admin/headquarter')->group( function(){
+                Route::get('/index', 'HeadquarterController@index');
+                Route::post('/store', 'HeadquarterController@store');
+                Route::put('/update/{id}', 'HeadquarterController@update');
+                Route::delete('/destroy/{id}', 'HeadquarterController@destroy');
+                Route::post('/status/{id}', 'HeadquarterController@status');
+            });
+
+
+
+        });
        
 
     });

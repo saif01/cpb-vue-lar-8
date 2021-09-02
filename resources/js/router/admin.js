@@ -14,6 +14,10 @@ import admin_event from '../components/admin/pages/news/event.vue';
 import admin_press from '../components/admin/pages/news/press.vue';
 import admin_gallery from '../components/admin/pages/news/gallery.vue';
 
+// About 
+import admin_business_operation from '../components/admin/pages/about/business-operation.vue';
+import admin_headquarter from '../components/admin/pages/about/headquarter.vue';
+
 export default [
     {
         path: '/admin',
@@ -103,6 +107,27 @@ export default [
             adminAuth: true,
         },   
     },
+
+    // About Section
+    {
+        path: '/admin/about/business_operation',
+        component: admin_business_operation,
+        name: 'admin_business_operation',
+        meta:{
+            title: 'Admin About Business Operation',
+            adminAuth: true,
+        },   
+    },
+    {
+        path: '/admin/about/headquarter',
+        component: admin_headquarter,
+        name: 'admin_headquarter',
+        meta:{
+            title: 'Admin About Headquarter',
+            adminAuth: true,
+        },   
+    },
+
     
 
 ]

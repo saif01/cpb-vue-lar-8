@@ -32,5 +32,8 @@ export default {
     },
     isNewsPermitted(){
         return this.checkAnyRole(['Administrator', 'News']);
+    },
+    isAboutPermitted(){
+        return this.checkAnyRole(['Administrator', 'About']);
     }
 }

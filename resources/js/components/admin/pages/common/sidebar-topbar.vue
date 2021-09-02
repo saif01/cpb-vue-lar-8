@@ -55,6 +55,26 @@
                         </ul>
                     </li>
 
+                    <li class="nav-item" v-if="isAboutPermitted">
+                        <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
+                            data-target="#collapseSubItems4" aria-controls="collapseSubItems4" aria-expanded="false"><i
+                                class="far fa-newspaper"></i> About</a>
+                        <ul class="nav-second-level collapse" id="collapseSubItems4" data-parent="#navAccordion">
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_business_operation' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Business Operations</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_headquarter' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Headquarters</span>
+                                </router-link>
+                            </li>
+                            
+                        </ul>
+                    </li>
+
+
                     <li class="nav-item">
                         <router-link :to="{ name:'admin_blank' }" class="nav-link"><i class="fas fa-stream"></i> Blank
                         </router-link>

@@ -89,15 +89,15 @@
 
                                 <td class="text-center">
                                     <button v-if="isRoleManagePermitted" @click="editRoleModel(singleData)"
-                                        class="btn btn-info btn-sm">
+                                        class="btn btn-info btn-sm m-1">
                                         <i class="fab fa-r-project"></i> Role
                                     </button>
                                     <button v-if="isEditPermitted" @click="editDataModel(singleData)"
-                                        class="btn btn-warning btn-sm">
+                                        class="btn btn-warning btn-sm m-1">
                                         <i class="fa fa-edit blue"></i> Edit
                                     </button>
                                     <button v-if="isDeletePermitted" @click="deleteData(singleData.id)"
-                                        class="btn btn-danger btn-sm"><i class="fa fa-trash red"></i> Delete</button>
+                                        class="btn btn-danger btn-sm m-1"><i class="fa fa-trash red"></i> Delete</button>
                                 </td>
                             </tr>
                         </tbody>
