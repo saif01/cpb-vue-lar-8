@@ -69,22 +69,26 @@
                                     <span v-else class="text-danger"> No Image</span>
 
                                     <span v-if="singleData.image2">
-                                        <img :src="imagePathSm + singleData.image2" alt="Image" height="100" width="100">
+                                        <img :src="imagePathSm + singleData.image2" alt="Image" height="100"
+                                            width="100">
                                     </span>
                                     <span v-else class="text-danger"> No Image</span>
 
                                     <span v-if="singleData.image3">
-                                        <img :src="imagePathSm + singleData.image3" alt="Image" height="100" width="100">
+                                        <img :src="imagePathSm + singleData.image3" alt="Image" height="100"
+                                            width="100">
                                     </span>
                                     <span v-else class="text-danger"> No Image</span>
 
                                     <span v-if="singleData.image4">
-                                        <img :src="imagePathSm + singleData.image4" alt="Image" height="100" width="100">
+                                        <img :src="imagePathSm + singleData.image4" alt="Image" height="100"
+                                            width="100">
                                     </span>
                                     <span v-else class="text-danger"> No Image</span>
 
                                     <span v-if="singleData.image5">
-                                        <img :src="imagePathSm + singleData.image5" alt="Image" height="100" width="100">
+                                        <img :src="imagePathSm + singleData.image5" alt="Image" height="100"
+                                            width="100">
                                     </span>
                                     <span v-else class="text-danger"> No Image</span>
 
@@ -290,7 +294,7 @@
                 // Form
                 form: new Form({
                     id: '',
-                    name:'',
+                    name: '',
                     website: '',
                     title: '',
                     details: '',

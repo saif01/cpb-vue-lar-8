@@ -109,6 +109,16 @@
                                     <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Feed</span>
                                 </router-link>
                             </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_food' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Food</span>
+                                </router-link>
+                            </li>
+                             <li class="nav-item">
+                                <router-link :to="{ name:'admin_farm' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Farm</span>
+                                </router-link>
+                            </li>
                             
                         </ul>
                     </li>

@@ -25,6 +25,8 @@ import admin_history from '../components/admin/pages/about/history.vue';
 
 // Business
 import admin_feed from '../components/admin/pages/business/feed.vue';
+import admin_food from '../components/admin/pages/business/food.vue';
+import admin_farm from '../components/admin/pages/business/farm.vue';
 
 
 
@@ -190,6 +192,24 @@ export default [
         name: 'admin_feed',
         meta:{
             title: 'Admin Business Feed',
+            adminAuth: true,
+        },   
+    },
+    {
+        path: '/admin/business/food',
+        component: admin_food,
+        name: 'admin_food',
+        meta:{
+            title: 'Admin Business Food',
+            adminAuth: true,
+        },   
+    },
+    {
+        path: '/admin/business/farm',
+        component: admin_farm,
+        name: 'admin_farm',
+        meta:{
+            title: 'Admin Business Farm',
             adminAuth: true,
         },   
     },

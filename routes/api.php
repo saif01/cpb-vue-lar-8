@@ -217,6 +217,22 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
                 Route::post('/status/{id}', 'FeedController@status');
             });
 
+            Route::prefix('admin/food')->group( function(){
+                Route::get('/index', 'FoodController@index');
+                Route::post('/store', 'FoodController@store');
+                Route::put('/update/{id}', 'FoodController@update');
+                Route::delete('/destroy/{id}', 'FoodController@destroy');
+                Route::post('/status/{id}', 'FoodController@status');
+            });
+
+            Route::prefix('admin/farm')->group( function(){
+                Route::get('/index', 'FarmController@index');
+                Route::post('/store', 'FarmController@store');
+                Route::put('/update/{id}', 'FarmController@update');
+                Route::delete('/destroy/{id}', 'FarmController@destroy');
+                Route::post('/status/{id}', 'FarmController@status');
+            });
+
 
         });
        
