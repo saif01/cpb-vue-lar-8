@@ -116,7 +116,7 @@ export default{
                     //console.log(response);
                     Swal.fire(
                         'Changed!',
-                        'Your post status has been Changed.',
+                        'Status has been Changed.',
                         'success'
                     );
                     // Refresh Tbl Data with current page

@@ -195,5 +195,26 @@ class PressController extends Controller
         return response()->json('success', 200);
         
     }
+
+
+    // status
+    public function status($id){
+
+        $data       =  NewsPress::find($id);
+        if($data){
+
+           $status = $data->status;
+           
+            if($status == 1){
+                $data->status = null;
+            }else{
+                $data->status = 1;
+            }
+            $success    =  $data->save();
+            return response()->json('success', 200);
+
+        }
+
+    }
     
 }

@@ -183,7 +183,7 @@
             <form @submit.prevent="updateUserRole">
 
                 <div class="pb-4">
-                    {{ currentRoles }}
+                    <!-- {{ currentRoles }} -->
                     <div class="row">
                         <div class="col-3" v-for="(role, index) in allRoles" :key="index">
                             <b-form-checkbox v-model="currentRoles" :value="role.id" unchecked-value="">
