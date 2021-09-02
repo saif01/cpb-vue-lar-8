@@ -70,6 +70,45 @@
                                     <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Headquarters</span>
                                 </router-link>
                             </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_chairman_message' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Chairman Message</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_president_message' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> President Message</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_mission' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Mission</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_vision' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Vision</span>
+                                </router-link>
+                            </li>
+                             <li class="nav-item">
+                                <router-link :to="{ name:'admin_history' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> History</span>
+                                </router-link>
+                            </li>
+                            
+                        </ul>
+                    </li>
+
+                    <li class="nav-item" v-if="isBusinessPermitted">
+                        <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
+                            data-target="#collapseSubItems5" aria-controls="collapseSubItems5" aria-expanded="false"><i
+                                class="far fa-newspaper"></i> Business</a>
+                        <ul class="nav-second-level collapse" id="collapseSubItems5" data-parent="#navAccordion">
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_feed' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Feed</span>
+                                </router-link>
+                            </li>
                             
                         </ul>
                     </li>

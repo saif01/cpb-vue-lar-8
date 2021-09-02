@@ -17,6 +17,16 @@ import admin_gallery from '../components/admin/pages/news/gallery.vue';
 // About 
 import admin_business_operation from '../components/admin/pages/about/business-operation.vue';
 import admin_headquarter from '../components/admin/pages/about/headquarter.vue';
+import admin_chairman_message from '../components/admin/pages/about/chairman-message.vue';
+import admin_president_message from '../components/admin/pages/about/president-message.vue';
+import admin_mission from '../components/admin/pages/about/mission.vue';
+import admin_vision from '../components/admin/pages/about/vision.vue';
+import admin_history from '../components/admin/pages/about/history.vue';
+
+// Business
+import admin_feed from '../components/admin/pages/business/feed.vue';
+
+
 
 export default [
     {
@@ -127,6 +137,66 @@ export default [
             adminAuth: true,
         },   
     },
+    {
+        path: '/admin/about/chairman_message',
+        component: admin_chairman_message,
+        name: 'admin_chairman_message',
+        meta:{
+            title: 'Admin About Chairman Message',
+            adminAuth: true,
+        },   
+    },
+    {
+        path: '/admin/about/president_message',
+        component: admin_president_message,
+        name: 'admin_president_message',
+        meta:{
+            title: 'Admin About President Message',
+            adminAuth: true,
+        },   
+    },
+    {
+        path: '/admin/about/mission',
+        component: admin_mission,
+        name: 'admin_mission',
+        meta:{
+            title: 'Admin About Mission',
+            adminAuth: true,
+        },   
+    },
+    {
+        path: '/admin/about/vision',
+        component: admin_vision,
+        name: 'admin_vision',
+        meta:{
+            title: 'Admin About Vision',
+            adminAuth: true,
+        },   
+    },
+    {
+        path: '/admin/about/history',
+        component: admin_history,
+        name: 'admin_history',
+        meta:{
+            title: 'Admin About History',
+            adminAuth: true,
+        },   
+    },
+
+    // Business
+    {
+        path: '/admin/business/feed',
+        component: admin_feed,
+        name: 'admin_feed',
+        meta:{
+            title: 'Admin Business Feed',
+            adminAuth: true,
+        },   
+    },
+
+
+
+    
 
     
 

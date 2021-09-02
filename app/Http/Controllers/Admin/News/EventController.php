@@ -81,6 +81,7 @@ class EventController extends Controller
         $data->title      = $request->title;
         $data->date       = $request->date;
         $data->details    = $request->details;
+        $data->created_by = request()->user()->id ?? null;
         $success          = $data->save();
 
         if($success){
@@ -158,6 +159,7 @@ class EventController extends Controller
         $data->title      = $request->title;
         $data->date       = $request->date;
         $data->details    = $request->details;
+        $data->created_by = request()->user()->id ?? null;
         $success          = $data->save();
 
         if($success){

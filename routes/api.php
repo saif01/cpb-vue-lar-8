@@ -154,6 +154,68 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
                 Route::post('/status/{id}', 'HeadquarterController@status');
             });
 
+            Route::prefix('admin/chairman_message')->group( function(){
+                Route::get('/index', 'ChairmanMessageController@index');
+                Route::post('/store', 'ChairmanMessageController@store');
+                Route::put('/update/{id}', 'ChairmanMessageController@update');
+                Route::delete('/destroy/{id}', 'ChairmanMessageController@destroy');
+                Route::post('/status/{id}', 'ChairmanMessageController@status');
+            });
+
+            Route::prefix('admin/president_message')->group( function(){
+                Route::get('/index', 'PresidentMessageController@index');
+                Route::post('/store', 'PresidentMessageController@store');
+                Route::put('/update/{id}', 'PresidentMessageController@update');
+                Route::delete('/destroy/{id}', 'PresidentMessageController@destroy');
+                Route::post('/status/{id}', 'PresidentMessageController@status');
+            });
+
+            Route::prefix('admin/mission')->group( function(){
+                Route::get('/index', 'MissionController@index');
+                Route::post('/store', 'MissionController@store');
+                Route::put('/update/{id}', 'MissionController@update');
+                Route::delete('/destroy/{id}', 'MissionController@destroy');
+                Route::post('/status/{id}', 'MissionController@status');
+            });
+
+            Route::prefix('admin/mission')->group( function(){
+                Route::get('/index', 'MissionController@index');
+                Route::post('/store', 'MissionController@store');
+                Route::put('/update/{id}', 'MissionController@update');
+                Route::delete('/destroy/{id}', 'MissionController@destroy');
+                Route::post('/status/{id}', 'MissionController@status');
+            });
+
+            Route::prefix('admin/vision')->group( function(){
+                Route::get('/index', 'VisionController@index');
+                Route::post('/store', 'VisionController@store');
+                Route::put('/update/{id}', 'VisionController@update');
+                Route::delete('/destroy/{id}', 'VisionController@destroy');
+                Route::post('/status/{id}', 'VisionController@status');
+            });
+
+            Route::prefix('admin/history')->group( function(){
+                Route::get('/index', 'HistoryController@index');
+                Route::post('/store', 'HistoryController@store');
+                Route::put('/update/{id}', 'HistoryController@update');
+                Route::delete('/destroy/{id}', 'HistoryController@destroy');
+                Route::post('/status/{id}', 'HistoryController@status');
+            });
+
+
+        });
+
+
+        // Business Section
+        Route::namespace('Business')->group( function(){ 
+
+            Route::prefix('admin/feed')->group( function(){
+                Route::get('/index', 'FeedController@index');
+                Route::post('/store', 'FeedController@store');
+                Route::put('/update/{id}', 'FeedController@update');
+                Route::delete('/destroy/{id}', 'FeedController@destroy');
+                Route::post('/status/{id}', 'FeedController@status');
+            });
 
 
         });

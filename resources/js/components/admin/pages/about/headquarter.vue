@@ -170,8 +170,6 @@
                         v-html="form.errors.get('website')" />
                 </b-form-group>
 
-           
-
                 <b-form-group v-if="form.progress">
                     <b-progress :value="form.progress.percentage" variant="success" striped animated>
                     </b-progress>
