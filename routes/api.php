@@ -248,7 +248,7 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
                 Route::post('/status/{id}', 'CircularController@status');
             });
 
-            Route::prefix('admin/user')->group( function(){
+            Route::prefix('admin/recruit/user')->group( function(){
                 Route::get('/index', 'UserController@index');
                 // Route::post('/store', 'UserController@store');
                 // Route::put('/update/{id}', 'UserController@update');

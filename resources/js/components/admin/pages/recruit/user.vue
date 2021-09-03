@@ -129,7 +129,7 @@
             return {
 
                 //current page url
-                currentUrl: '/api/admin/user',
+                currentUrl: '/api/admin/recruit/user',
 
                 imagePathSm: '/images/admin/small/',
                 imagePath: '/images/admin/',
