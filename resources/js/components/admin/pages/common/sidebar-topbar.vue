@@ -16,19 +16,20 @@
 
                     <li class="nav-item" v-if="isAdminManagePermitted || isRoleManagePermitted">
                         <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
-                            data-target="#collapseSubItems2" aria-controls="collapseSubItems2" aria-expanded="false"><i class="fas fa-users-cog"></i> Admin Management</a>
+                            data-target="#collapseSubItems2" aria-controls="collapseSubItems2" aria-expanded="false"><i
+                                class="fas fa-users-cog"></i> Admin Management</a>
                         <ul class="nav-second-level collapse" id="collapseSubItems2" data-parent="#navAccordion">
-                            <li class="nav-item" v-if="isAdminManagePermitted" >
+                            <li class="nav-item" v-if="isAdminManagePermitted">
                                 <router-link :to="{ name:'admin_user' }" class="nav-link">
                                     <span class="nav-link-text"><i class="far fa-hand-point-right"></i> User</span>
                                 </router-link>
                             </li>
-                             <li class="nav-item" v-if="isRoleManagePermitted">
+                            <li class="nav-item" v-if="isRoleManagePermitted">
                                 <router-link :to="{ name:'admin_role' }" class="nav-link">
                                     <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Role</span>
                                 </router-link>
                             </li>
-                           
+
                         </ul>
                     </li>
 
@@ -42,7 +43,7 @@
                                     <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Event</span>
                                 </router-link>
                             </li>
-                             <li class="nav-item">
+                            <li class="nav-item">
                                 <router-link :to="{ name:'admin_press' }" class="nav-link">
                                     <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Press</span>
                                 </router-link>
@@ -62,22 +63,26 @@
                         <ul class="nav-second-level collapse" id="collapseSubItems4" data-parent="#navAccordion">
                             <li class="nav-item">
                                 <router-link :to="{ name:'admin_business_operation' }" class="nav-link">
-                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Business Operations</span>
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Business
+                                        Operations</span>
                                 </router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link :to="{ name:'admin_headquarter' }" class="nav-link">
-                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Headquarters</span>
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i>
+                                        Headquarters</span>
                                 </router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link :to="{ name:'admin_chairman_message' }" class="nav-link">
-                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Chairman Message</span>
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Chairman
+                                        Message</span>
                                 </router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link :to="{ name:'admin_president_message' }" class="nav-link">
-                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> President Message</span>
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> President
+                                        Message</span>
                                 </router-link>
                             </li>
                             <li class="nav-item">
@@ -90,12 +95,12 @@
                                     <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Vision</span>
                                 </router-link>
                             </li>
-                             <li class="nav-item">
+                            <li class="nav-item">
                                 <router-link :to="{ name:'admin_history' }" class="nav-link">
                                     <span class="nav-link-text"><i class="far fa-hand-point-right"></i> History</span>
                                 </router-link>
                             </li>
-                            
+
                         </ul>
                     </li>
 
@@ -114,12 +119,42 @@
                                     <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Food</span>
                                 </router-link>
                             </li>
-                             <li class="nav-item">
+                            <li class="nav-item">
                                 <router-link :to="{ name:'admin_farm' }" class="nav-link">
                                     <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Farm</span>
                                 </router-link>
                             </li>
-                            
+
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item" v-if="isRecruitPermitted">
+                        <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
+                            data-target="#collapseSubItems6" aria-controls="collapseSubItems6" aria-expanded="false"><i
+                                class="far fa-newspaper"></i> Recruit</a>
+                        <ul class="nav-second-level collapse" id="collapseSubItems6" data-parent="#navAccordion">
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_recruit_circular' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Circular</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_recruit_cv' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> CV</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_recruit_user' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> User</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_recruit_applicant' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Applicant</span>
+                                </router-link>
+                            </li>
+
                         </ul>
                     </li>
 
@@ -136,18 +171,11 @@
 
                 </ul>
                 <div class="ml-auto mt-2 mt-md-0 text-light">
-                    <span v-if="adminUser">Name: {{ adminUser.name }},  <span class="text-danger" v-if="isAdministrator">( Administrator ) </span> </span>
+                    <span v-if="adminUser">Name: {{ adminUser.name }}, <span class="text-danger"
+                            v-if="isAdministrator">( Administrator ) </span> </span>
                 </div>
-               
+
             </div>
         </nav>
     </div>
 </template>
-
-
-
-
-
-
-
-

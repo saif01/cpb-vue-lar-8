@@ -28,6 +28,12 @@ import admin_feed from '../components/admin/pages/business/feed.vue';
 import admin_food from '../components/admin/pages/business/food.vue';
 import admin_farm from '../components/admin/pages/business/farm.vue';
 
+// Recruit
+import admin_recruit_circular from '../components/admin/pages/recruit/circular.vue';
+import admin_recruit_user from '../components/admin/pages/recruit/user.vue';
+import admin_recruit_cv from '../components/admin/pages/recruit/cv.vue';
+import admin_recruit_applicant from '../components/admin/pages/recruit/applicant.vue';
+
 
 
 export default [
@@ -210,6 +216,45 @@ export default [
         name: 'admin_farm',
         meta:{
             title: 'Admin Business Farm',
+            adminAuth: true,
+        },   
+    },
+
+
+    // Recruit
+    {
+        path: '/admin/Recruit/circular',
+        component: admin_recruit_circular,
+        name: 'admin_recruit_circular',
+        meta:{
+            title: 'Admin Recruit Circular',
+            adminAuth: true,
+        },   
+    },
+    {
+        path: '/admin/Recruit/user',
+        component: admin_recruit_user,
+        name: 'admin_recruit_user',
+        meta:{
+            title: 'Admin Recruit User',
+            adminAuth: true,
+        },   
+    },
+    {
+        path: '/admin/Recruit/cv',
+        component: admin_recruit_cv,
+        name: 'admin_recruit_cv',
+        meta:{
+            title: 'Admin Recruit CV',
+            adminAuth: true,
+        },   
+    },
+    {
+        path: '/admin/Recruit/applicant',
+        component: admin_recruit_applicant,
+        name: 'admin_recruit_applicant',
+        meta:{
+            title: 'Admin Recruit Applicant',
             adminAuth: true,
         },   
     },

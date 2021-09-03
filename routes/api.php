@@ -235,10 +235,49 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
 
 
         });
+
+
+        // Recruit Section
+        Route::namespace('Recruit')->group( function(){ 
+
+            Route::prefix('admin/circular')->group( function(){
+                Route::get('/index', 'CircularController@index');
+                Route::post('/store', 'CircularController@store');
+                Route::put('/update/{id}', 'CircularController@update');
+                Route::delete('/destroy/{id}', 'CircularController@destroy');
+                Route::post('/status/{id}', 'CircularController@status');
+            });
+
+            Route::prefix('admin/user')->group( function(){
+                Route::get('/index', 'UserController@index');
+                // Route::post('/store', 'UserController@store');
+                // Route::put('/update/{id}', 'UserController@update');
+                Route::delete('/destroy/{id}', 'UserController@destroy');
+                Route::post('/status/{id}', 'UserController@status');
+            });
+
+            Route::prefix('admin/cv')->group( function(){
+                Route::get('/index', 'CVController@index');
+                // Route::post('/store', 'CVController@store');
+                // Route::put('/update/{id}', 'CVController@update');
+                Route::delete('/destroy/{id}', 'CVController@destroy');
+                Route::post('/status/{id}', 'CVController@status');
+            });
+
+            Route::prefix('admin/applicant')->group( function(){
+                Route::get('/index', 'ApplicantController@index');
+                // Route::post('/store', 'ApplicantController@store');
+                // Route::put('/update/{id}', 'ApplicantController@update');
+                Route::delete('/destroy/{id}', 'ApplicantController@destroy');
+                Route::post('/status/{id}', 'ApplicantController@status');
+            });
+
+        });
+
        
-
+        
     });
-
+    // Admin
    
 
 
