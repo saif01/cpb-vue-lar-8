@@ -8,7 +8,7 @@
                         <h3 class="card-title">Applicant Table</h3>
                     </div>
                     <div class="col-6">
-                        
+
                     </div>
 
                 </div>
@@ -27,8 +27,8 @@
                         </div>
 
                         <div class="col">
-                            <!-- <input v-model="search" class="form-control form-control-sm" type="text"
-                                placeholder="Search by any data at the table..."> -->
+                            <input v-model="search" class="form-control form-control-sm" type="text"
+                                placeholder="Search by any data at the table...">
                         </div>
                     </div>
 
@@ -64,23 +64,23 @@
                         <tbody>
                             <tr v-for="singleData in allData.data" :key="singleData.id">
                                 <td>{{ singleData.id }}</td>
-                               
+
                                 <td>
                                     <span v-if="singleData.user">
-                                        <p>Document:</p>
                                         <a :href="'/images/recruit/' + singleData.user.document" download><i
                                                 class="fas fa-download"></i> CV</a>
                                     </span>
-                                            <span v-else class="text-danger"> No CV</span>
+                                    <span v-else class="text-danger"> No CV</span>
                                 </td>
                                 <td>{{ singleData.circular.jobTitle }}</td>
                                 <td>{{ singleData.user.name }}</td>
-                                 <td>{{ singleData.created_at }}</td>
-                             
+                                <td>{{ singleData.created_at | moment("dddd, MMMM Do YYYY")  }} </td>
+
                                 <td class="text-center">
 
-                                    <button v-if="isDeletePermitted" @click="deleteData(singleData.id)" class="btn btn-danger btn-sm m-1"><i
-                                            class="fa fa-trash red"></i> Delete</button>
+                                    <button v-if="isDeletePermitted" @click="deleteData(singleData.id)"
+                                        class="btn btn-danger btn-sm m-1"><i class="fa fa-trash red"></i>
+                                        Delete</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -104,7 +104,7 @@
         </div>
 
 
-      
+
 
 
     </div>
@@ -113,9 +113,8 @@
 
 
 <script>
-   
     export default {
-      
+
         data() {
 
             return {
@@ -126,7 +125,7 @@
                 imagePathSm: '/images/admin/small/',
                 imagePath: '/images/admin/',
                 imageMaxSize: '2111775',
-              
+
 
             }
 

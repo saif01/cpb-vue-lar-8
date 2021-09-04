@@ -8,7 +8,7 @@
                         <h3 class="card-title">User Table</h3>
                     </div>
                     <div class="col-6">
-                        
+
                     </div>
 
                 </div>
@@ -61,7 +61,6 @@
                                 <td>{{ singleData.id }}</td>
                                 <td>
                                     <span v-if="singleData.document">
-                                        <p>Document:</p>
                                         <a :href="'/images/recruit/' + singleData.document" download><i
                                                 class="fas fa-download"></i> CV</a>
                                     </span>
@@ -69,11 +68,12 @@
                                 </td>
                                 <td>{{ singleData.subject }}</td>
                                 <td>{{ singleData.message }}</td>
-                              
+
                                 <td class="text-center">
 
-                                    <button v-if="isDeletePermitted" @click="deleteData(singleData.id)" class="btn btn-danger btn-sm m-1"><i
-                                            class="fa fa-trash red"></i> Delete</button>
+                                    <button v-if="isDeletePermitted" @click="deleteData(singleData.id)"
+                                        class="btn btn-danger btn-sm m-1"><i class="fa fa-trash red"></i>
+                                        Delete</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -97,7 +97,7 @@
         </div>
 
 
-      
+
 
 
     </div>
@@ -106,9 +106,8 @@
 
 
 <script>
-  
     export default {
-        
+
         data() {
 
             return {

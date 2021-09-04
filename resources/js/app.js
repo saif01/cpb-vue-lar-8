@@ -53,6 +53,11 @@ window.Toast = Toast;
 
 
 
+//vue-moment
+Vue.use(require('vue-moment'));
+
+
+
 // Store method call
 // if(store.getters.getAuthToken){
 //   console.log('This is app js', store.getters.getAuthToken)

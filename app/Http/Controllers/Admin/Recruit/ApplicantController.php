@@ -20,6 +20,7 @@ class ApplicantController extends Controller
         $allData = RecruitApply::orderBy($sort_field, $sort_direction)
                 ->with('circular', 'user')
                 //->search( trim(preg_replace('/\s+/' ,' ', $search)) )
+                ->search( $search )
                 ->paginate($paginate);
 
         return response()->json($allData, 200);

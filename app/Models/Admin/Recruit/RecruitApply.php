@@ -18,4 +18,24 @@ class RecruitApply extends Model
     public function user(){
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
+
+
+    //For Dynamic Search 
+    public function scopeSearch($query, $val='')
+    {
+        return $query
+        //->whereDate('created_at', 'LIKE', '%'.$val.'%')
+        ->WhereHas('user', function ($query) use($val){
+            $query->where('name', 'LIKE', '%' . $val . '%' );
+        })
+        ->orWhereHas('circular', function ($query) use($val){
+            $query->where('jobTitle', 'LIKE', '%' . $val . '%' );
+        });
+    
+       
+    }
+
+    
+
+    
 }

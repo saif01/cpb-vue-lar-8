@@ -8,8 +8,8 @@
                         <h3 class="card-title">Recruit Table</h3>
                     </div>
                     <div class="col-6">
-                        <b-button v-if="isAddPermitted" variant="outline-primary" size="sm" pill class="float-right" @click="addDataModel"><i
-                                class="far fa-plus-square"></i>
+                        <b-button v-if="isAddPermitted" variant="outline-primary" size="sm" pill class="float-right"
+                            @click="addDataModel"><i class="far fa-plus-square"></i>
                             Add</b-button>
                     </div>
 
@@ -68,25 +68,28 @@
                                 <td>{{ singleData.publishDate }}</td>
                                 <td>{{ singleData.jobTitle }}</td>
                                 <td>
-                                  
+
                                     <hr>
                                     <div v-html="singleData.details"></div>
                                 </td>
 
                                 <td class="text-center">
 
-                                    <button v-if="singleData.status" @click="statusChange(singleData)" class="btn btn-success btn-sm m-1">
+                                    <button v-if="singleData.status" @click="statusChange(singleData)"
+                                        class="btn btn-success btn-sm m-1">
                                         <i class="far fa-check-circle"></i> Active
                                     </button>
                                     <button v-else @click="statusChange(singleData)" class="btn btn-warning btn-sm m-1">
                                         <i class="far fa-times-circle"></i> Inactive
                                     </button>
 
-                                    <button v-if="isEditPermitted" @click="editDataModel(singleData)" class="btn btn-warning btn-sm m-1">
+                                    <button v-if="isEditPermitted" @click="editDataModel(singleData)"
+                                        class="btn btn-warning btn-sm m-1">
                                         <i class="fa fa-edit blue"></i> Edit
                                     </button>
-                                    <button v-if="isDeletePermitted" @click="deleteData(singleData.id)" class="btn btn-danger btn-sm m-1"><i
-                                            class="fa fa-trash red"></i> Delete</button>
+                                    <button v-if="isDeletePermitted" @click="deleteData(singleData.id)"
+                                        class="btn btn-danger btn-sm m-1"><i class="fa fa-trash red"></i>
+                                        Delete</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -113,21 +116,23 @@
         <b-modal ref="data-modal" :title="dataModelTitle" size="xl" hide-footer>
             <form @submit.prevent="editmode ? updateData() : createData()">
 
-                
+
 
                 <b-row>
                     <b-col>
                         <b-form-group label="Job Title:">
                             <b-form-input v-model="form.jobTitle" placeholder="Enter job title" size="sm"
                                 :class="{ 'is-invalid': form.errors.has('jobTitle') }"></b-form-input>
-                            <div class="small text-danger" v-if="form.errors.has('jobTitle')" v-html="form.errors.get('jobTitle')" />
+                            <div class="small text-danger" v-if="form.errors.has('jobTitle')"
+                                v-html="form.errors.get('jobTitle')" />
                         </b-form-group>
                     </b-col>
                     <b-col>
-                         <b-form-group label="Salary:">
+                        <b-form-group label="Salary:">
                             <b-form-input v-model="form.salary" placeholder="Enter salary" size="sm"
                                 :class="{ 'is-invalid': form.errors.has('salary') }"></b-form-input>
-                            <div class="small text-danger" v-if="form.errors.has('salary')" v-html="form.errors.get('salary')" />
+                            <div class="small text-danger" v-if="form.errors.has('salary')"
+                                v-html="form.errors.get('salary')" />
                         </b-form-group>
                     </b-col>
                 </b-row>
@@ -135,8 +140,8 @@
                 <b-row>
                     <b-col>
                         <b-form-group label="Publish Date:">
-                            <b-form-datepicker v-model="form.publishDate" today-button reset-button close-button locale="en"
-                                placeholder="YYYY-MM-DD" autocomplete="off" size="sm"
+                            <b-form-datepicker v-model="form.publishDate" today-button reset-button close-button
+                                locale="en" placeholder="YYYY-MM-DD" autocomplete="off" size="sm"
                                 :date-format-options="{ year: 'numeric', month: 'long', day: 'numeric' }"
                                 :class="{ 'is-invalid': form.errors.has('publishDate') }">
                             </b-form-datepicker>
@@ -146,8 +151,8 @@
                     </b-col>
                     <b-col>
                         <b-form-group label="Deadline Date:">
-                            <b-form-datepicker v-model="form.deadline" today-button reset-button close-button locale="en"
-                                placeholder="YYYY-MM-DD" autocomplete="off" size="sm"
+                            <b-form-datepicker v-model="form.deadline" today-button reset-button close-button
+                                locale="en" placeholder="YYYY-MM-DD" autocomplete="off" size="sm"
                                 :date-format-options="{ year: 'numeric', month: 'long', day: 'numeric' }"
                                 :class="{ 'is-invalid': form.errors.has('deadline') }">
                             </b-form-datepicker>
@@ -157,13 +162,14 @@
                     </b-col>
 
                     <b-col>
-                         <b-form-group label="Department:">
+                        <b-form-group label="Department:">
                             <b-form-input v-model="form.department" placeholder="Enter department name" size="sm"
                                 :class="{ 'is-invalid': form.errors.has('department') }"></b-form-input>
-                            <div class="small text-danger" v-if="form.errors.has('department')" v-html="form.errors.get('department')" />
+                            <div class="small text-danger" v-if="form.errors.has('department')"
+                                v-html="form.errors.get('department')" />
                         </b-form-group>
                     </b-col>
-                   
+
                 </b-row>
 
                 <b-row>
@@ -171,14 +177,16 @@
                         <b-form-group label="Location:">
                             <b-form-input v-model="form.location" placeholder="Enter job location" size="sm"
                                 :class="{ 'is-invalid': form.errors.has('location') }"></b-form-input>
-                            <div class="small text-danger" v-if="form.errors.has('location')" v-html="form.errors.get('location')" />
+                            <div class="small text-danger" v-if="form.errors.has('location')"
+                                v-html="form.errors.get('location')" />
                         </b-form-group>
                     </b-col>
                     <b-col>
-                         <b-form-group label="Education:">
+                        <b-form-group label="Education:">
                             <b-form-input v-model="form.education" placeholder="Enter education requirements" size="sm"
                                 :class="{ 'is-invalid': form.errors.has('education') }"></b-form-input>
-                            <div class="small text-danger" v-if="form.errors.has('education')" v-html="form.errors.get('education')" />
+                            <div class="small text-danger" v-if="form.errors.has('education')"
+                                v-html="form.errors.get('education')" />
                         </b-form-group>
                     </b-col>
                 </b-row>
@@ -187,22 +195,25 @@
                 <b-row>
                     <b-col>
                         <b-form-group label="Requirement:">
-                             <b-form-textarea v-model="form.requirement" placeholder="Enter job requirement" rows="2"
-                        max-rows="4" :class="{ 'is-invalid': form.errors.has('requirement') }"></b-form-textarea>
-                            <div class="small text-danger" v-if="form.errors.has('requirement')" v-html="form.errors.get('requirement')" />
+                            <b-form-textarea v-model="form.requirement" placeholder="Enter job requirement" rows="2"
+                                max-rows="4" :class="{ 'is-invalid': form.errors.has('requirement') }">
+                            </b-form-textarea>
+                            <div class="small text-danger" v-if="form.errors.has('requirement')"
+                                v-html="form.errors.get('requirement')" />
                         </b-form-group>
                     </b-col>
                     <b-col>
-                         <b-form-group label="experience:">
-                             <b-form-textarea v-model="form.experience" placeholder="Enter job experience" rows="2"
-                        max-rows="4" :class="{ 'is-invalid': form.errors.has('experience') }"></b-form-textarea>
-                            <div class="small text-danger" v-if="form.errors.has('experience')" v-html="form.errors.get('experience')" />
+                        <b-form-group label="experience:">
+                            <b-form-textarea v-model="form.experience" placeholder="Enter job experience" rows="2"
+                                max-rows="4" :class="{ 'is-invalid': form.errors.has('experience') }"></b-form-textarea>
+                            <div class="small text-danger" v-if="form.errors.has('experience')"
+                                v-html="form.errors.get('experience')" />
                         </b-form-group>
                     </b-col>
                 </b-row>
 
 
-                 <b-form-group label="Details:">
+                <b-form-group label="Details:">
                     <vue-editor v-model="form.details" :editorToolbar="customToolbar"></vue-editor>
                     <div class="small text-danger" v-if="form.errors.has('details')"
                         v-html="form.errors.get('details')" />
@@ -210,7 +221,7 @@
 
 
 
-               
+
 
                 <b-form-group v-if="form.progress">
                     <b-progress :value="form.progress.percentage" variant="success" striped animated>
@@ -255,7 +266,7 @@
                 //current page url
                 currentUrl: '/api/admin/circular',
 
-               
+
                 // Custom Toolbar for vue2 text editor
                 ...vue2EditorToolbar,
 
@@ -272,7 +283,7 @@
                     requirement: '',
                     experience: '',
                     details: '',
-                    
+
                 }),
 
             }
