@@ -20,9 +20,7 @@ class IndexController extends Controller
     public function visitor_log(Request $request){
 
         // get IP Address
-        return $ip=$_SERVER['REMOTE_ADDR'];
-
-        $clientIP = request()->ip();
+        $clientIP = $_SERVER['REMOTE_ADDR'];
         //$clientIP = '202.51.181.142';
         $geoip =  geoip()->getLocation($clientIP);
 
