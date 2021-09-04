@@ -27,9 +27,14 @@ Route::middleware('auth:sanctum')->get('/athenticated', function () {
     return true;
 });
 
+
+// Frontend Section
+// Route::middleware('visitorLog')->namespace('App\Http\Controllers\FrontEnd')->group( function(){
 Route::namespace('App\Http\Controllers\FrontEnd')->group( function(){
 
     Route::get('/auth_test', 'AuthApiController@auth_test');
+
+    Route::get('/visitor_log', 'IndexController@visitor_log');
 
     //Route::get('/footer', 'VueController@footer')->middleware('auth:sanctum');
     Route::get('/footer', 'VueController@footer');
@@ -73,6 +78,8 @@ Route::namespace('App\Http\Controllers\FrontEnd')->group( function(){
 });
 
 
+
+// Admin Section
 Route::namespace('App\Http\Controllers\Admin')->group( function(){
 
     Route::post('/admin_login', 'AdminAuthController@login')->name('login');

@@ -191,7 +191,9 @@
 
         mounted() {
 
-            console.log('main_app token : ', this.token,  this.user,  );
+            console.log('main_app token : ', this.token,  this.user);
+
+            this.$store.dispatch('visitor_log')
 
             // window.axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
 

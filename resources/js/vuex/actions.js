@@ -1,4 +1,15 @@
+import axios from "axios";
+
 export default {
+
+    // Visitor log
+    visitor_log(){
+        axios.get('/api/visitor_log').then(response=>{
+            //console.log(response.data)
+        }).catch(error=>{
+            console.log(error)
+        })
+    },
 
     // User data
     authUserData(context){
@@ -88,6 +99,9 @@ export default {
                 console.log(error)
             })
     },
+
+
+
 
 
 

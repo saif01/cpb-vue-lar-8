@@ -17,7 +17,7 @@
     </head>
     <body>
     <div id="app" class="h-100">
-        <main-app></main-app>
+        <frontend-app></frontend-app>
     </div>
 
 

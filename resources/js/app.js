@@ -90,7 +90,7 @@ Vue.use(require('vue-moment'));
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 // Front-end 
-Vue.component('main-app', require('./components/front_end/main_app.vue').default);
+Vue.component('frontend-app', require('./components/front_end/frontend_app.vue').default);
 
 // Admin 
 Vue.component('admin-app', require('./components/admin/admin_app.vue').default);

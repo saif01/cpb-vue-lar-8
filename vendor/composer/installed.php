@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '277c91c2f49a1a70276c4518a666fddb7970b76e',
+    'reference' => '572642dcfd9c014c7f5a8e9bb2e724b63cd58faa',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -431,6 +431,24 @@
       ),
       'reference' => '0925f10b259679b5d8ca58f3a2add9255ffcda45',
     ),
+    'jaybizzle/crawler-detect' => 
+    array (
+      'pretty_version' => 'v1.2.106',
+      'version' => '1.2.106.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '78bf6792cbf9c569dc0bf2465481978fd2ed0de9',
+    ),
+    'jenssegers/agent' => 
+    array (
+      'pretty_version' => 'v2.6.4',
+      'version' => '2.6.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'daa11c43729510b3700bc34d414664966b03bffe',
+    ),
     'kodova/hamcrest-php' => 
     array (
       'replaced' => 
@@ -454,7 +472,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '277c91c2f49a1a70276c4518a666fddb7970b76e',
+      'reference' => '572642dcfd9c014c7f5a8e9bb2e724b63cd58faa',
     ),
     'laravel/sail' => 
     array (
@@ -527,6 +545,15 @@
       array (
       ),
       'reference' => '3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3',
+    ),
+    'mobiledetect/mobiledetectlib' => 
+    array (
+      'pretty_version' => '2.8.37',
+      'version' => '2.8.37.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9841e3c46f5bd0739b53aed8ac677fa712943df7',
     ),
     'mockery/mockery' => 
     array (
@@ -1322,6 +1349,15 @@
       array (
       ),
       'reference' => 'b43b05cf43c1b6d849478965062b6ef73e223bb5',
+    ),
+    'torann/geoip' => 
+    array (
+      'pretty_version' => '3.0.2',
+      'version' => '3.0.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f16d5df66ecb6ba4ffaef52abef519fbc19596d3',
     ),
     'vlucas/phpdotenv' => 
     array (

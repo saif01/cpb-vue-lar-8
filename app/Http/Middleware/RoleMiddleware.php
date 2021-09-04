@@ -16,6 +16,8 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next, ... $roles)
     {
+
+        //\Log::info("Role Middleware Ok");
         $user = $request->user();
 
         //dd($user);

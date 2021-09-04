@@ -36,6 +36,7 @@ class ComposerStaticInitb6a2059c8a647eb2eb44a5b3be117893
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
+        '1e298922c3e2134d42dcdb03e6d5f55a' => __DIR__ . '/..' . '/torann/geoip/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -54,6 +55,7 @@ class ComposerStaticInitb6a2059c8a647eb2eb44a5b3be117893
         ),
         'T' => 
         array (
+            'Torann\\GeoIP\\' => 13,
             'TijsVerkoyen\\CssToInlineStyles\\' => 31,
             'Tests\\' => 6,
         ),
@@ -128,6 +130,11 @@ class ComposerStaticInitb6a2059c8a647eb2eb44a5b3be117893
             'Laravel\\Sanctum\\' => 16,
             'Laravel\\Sail\\' => 13,
         ),
+        'J' => 
+        array (
+            'Jenssegers\\Agent\\' => 17,
+            'Jaybizzle\\CrawlerDetect\\' => 24,
+        ),
         'I' => 
         array (
             'Intervention\\Image\\' => 19,
@@ -200,6 +207,10 @@ class ComposerStaticInitb6a2059c8a647eb2eb44a5b3be117893
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Torann\\GeoIP\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/torann/geoip/src',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -410,6 +421,14 @@ class ComposerStaticInitb6a2059c8a647eb2eb44a5b3be117893
         array (
             0 => __DIR__ . '/..' . '/laravel/sail/src',
         ),
+        'Jenssegers\\Agent\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jenssegers/agent/src',
+        ),
+        'Jaybizzle\\CrawlerDetect\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src',
+        ),
         'Intervention\\Image\\' => 
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
@@ -533,6 +552,13 @@ class ComposerStaticInitb6a2059c8a647eb2eb44a5b3be117893
                 0 => __DIR__ . '/..' . '/mockery/mockery/library',
             ),
         ),
+        'D' => 
+        array (
+            'Detection' => 
+            array (
+                0 => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/namespaced',
+            ),
+        ),
     );
 
     public static $classMap = array (
@@ -554,6 +580,10 @@ class ComposerStaticInitb6a2059c8a647eb2eb44a5b3be117893
         'App\\Http\\Controllers\\Admin\\News\\EventController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/News/EventController.php',
         'App\\Http\\Controllers\\Admin\\News\\GalleryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/News/GalleryController.php',
         'App\\Http\\Controllers\\Admin\\News\\PressController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/News/PressController.php',
+        'App\\Http\\Controllers\\Admin\\Recruit\\ApplicantController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Recruit/ApplicantController.php',
+        'App\\Http\\Controllers\\Admin\\Recruit\\CVController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Recruit/CVController.php',
+        'App\\Http\\Controllers\\Admin\\Recruit\\CircularController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Recruit/CircularController.php',
+        'App\\Http\\Controllers\\Admin\\Recruit\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Recruit/UserController.php',
         'App\\Http\\Controllers\\Admin\\User\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/User/RoleController.php',
         'App\\Http\\Controllers\\Admin\\User\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/User/UserController.php',
         'App\\Http\\Controllers\\Common\\ImageUpload' => __DIR__ . '/../..' . '/app/Http/Controllers/Common/ImageUpload.php',
@@ -571,6 +601,7 @@ class ComposerStaticInitb6a2059c8a647eb2eb44a5b3be117893
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Middleware\\VisitorLogMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/VisitorLogMiddleware.php',
         'App\\Models\\Admin\\About\\AboutBusinessOperation' => __DIR__ . '/../..' . '/app/Models/Admin/About/AboutBusinessOperation.php',
         'App\\Models\\Admin\\About\\AboutChairmanMessage' => __DIR__ . '/../..' . '/app/Models/Admin/About/AboutChairmanMessage.php',
         'App\\Models\\Admin\\About\\AboutHeadquarter' => __DIR__ . '/../..' . '/app/Models/Admin/About/AboutHeadquarter.php',
@@ -582,7 +613,6 @@ class ComposerStaticInitb6a2059c8a647eb2eb44a5b3be117893
         'App\\Models\\Admin\\Business\\BusinessFarm' => __DIR__ . '/../..' . '/app/Models/Admin/Business/BusinessFarm.php',
         'App\\Models\\Admin\\Business\\BusinessFeed' => __DIR__ . '/../..' . '/app/Models/Admin/Business/BusinessFeed.php',
         'App\\Models\\Admin\\Business\\BusinessFood' => __DIR__ . '/../..' . '/app/Models/Admin/Business/BusinessFood.php',
-        'App\\Models\\Admin\\Business\\FoodController' => __DIR__ . '/../..' . '/app/Models/Admin/Business/FoodController.php',
         'App\\Models\\Admin\\News\\NewsEvent' => __DIR__ . '/../..' . '/app/Models/Admin/News/NewsEvent.php',
         'App\\Models\\Admin\\News\\NewsGallery' => __DIR__ . '/../..' . '/app/Models/Admin/News/NewsGallery.php',
         'App\\Models\\Admin\\News\\NewsPress' => __DIR__ . '/../..' . '/app/Models/Admin/News/NewsPress.php',
@@ -598,6 +628,8 @@ class ComposerStaticInitb6a2059c8a647eb2eb44a5b3be117893
         'App\\Models\\Auth\\AuthApiToken' => __DIR__ . '/../..' . '/app/Models/Auth/AuthApiToken.php',
         'App\\Models\\Auth\\Role' => __DIR__ . '/../..' . '/app/Models/Auth/Role.php',
         'App\\Models\\Auth\\UserLoginLog' => __DIR__ . '/../..' . '/app/Models/Auth/UserLoginLog.php',
+        'App\\Models\\Log\\AdminLog' => __DIR__ . '/../..' . '/app/Models/Log/AdminLog.php',
+        'App\\Models\\Log\\VisitorLog' => __DIR__ . '/../..' . '/app/Models/Log/VisitorLog.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -732,6 +764,7 @@ class ComposerStaticInitb6a2059c8a647eb2eb44a5b3be117893
         'DeepCopy\\TypeFilter\\Spl\\SplDoublyLinkedListFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Spl/SplDoublyLinkedListFilter.php',
         'DeepCopy\\TypeFilter\\TypeFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/TypeFilter.php',
         'DeepCopy\\TypeMatcher\\TypeMatcher' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeMatcher/TypeMatcher.php',
+        'Detection\\MobileDetect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/namespaced/Detection/MobileDetect.php',
         'Dflydev\\DotAccessData\\Data' => __DIR__ . '/..' . '/dflydev/dot-access-data/src/Data.php',
         'Dflydev\\DotAccessData\\DataInterface' => __DIR__ . '/..' . '/dflydev/dot-access-data/src/DataInterface.php',
         'Dflydev\\DotAccessData\\Exception\\DataException' => __DIR__ . '/..' . '/dflydev/dot-access-data/src/Exception/DataException.php',
@@ -2808,6 +2841,14 @@ class ComposerStaticInitb6a2059c8a647eb2eb44a5b3be117893
         'Intervention\\Image\\Point' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Point.php',
         'Intervention\\Image\\Response' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Response.php',
         'Intervention\\Image\\Size' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Size.php',
+        'Jaybizzle\\CrawlerDetect\\CrawlerDetect' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/CrawlerDetect.php',
+        'Jaybizzle\\CrawlerDetect\\Fixtures\\AbstractProvider' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/AbstractProvider.php',
+        'Jaybizzle\\CrawlerDetect\\Fixtures\\Crawlers' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Crawlers.php',
+        'Jaybizzle\\CrawlerDetect\\Fixtures\\Exclusions' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Exclusions.php',
+        'Jaybizzle\\CrawlerDetect\\Fixtures\\Headers' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Headers.php',
+        'Jenssegers\\Agent\\Agent' => __DIR__ . '/..' . '/jenssegers/agent/src/Agent.php',
+        'Jenssegers\\Agent\\AgentServiceProvider' => __DIR__ . '/..' . '/jenssegers/agent/src/AgentServiceProvider.php',
+        'Jenssegers\\Agent\\Facades\\Agent' => __DIR__ . '/..' . '/jenssegers/agent/src/Facades/Agent.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Laravel\\Sail\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/InstallCommand.php',
         'Laravel\\Sail\\Console\\PublishCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/PublishCommand.php',
@@ -3172,6 +3213,7 @@ class ComposerStaticInitb6a2059c8a647eb2eb44a5b3be117893
         'League\\MimeTypeDetection\\FinfoMimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/FinfoMimeTypeDetector.php',
         'League\\MimeTypeDetection\\GeneratedExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/GeneratedExtensionToMimeTypeMap.php',
         'League\\MimeTypeDetection\\MimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/MimeTypeDetector.php',
+        'Mobile_Detect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegrationAssertPostConditions' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegrationAssertPostConditions.php',
@@ -5533,6 +5575,22 @@ class ComposerStaticInitb6a2059c8a647eb2eb44a5b3be117893
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'Torann\\GeoIP\\Cache' => __DIR__ . '/..' . '/torann/geoip/src/Cache.php',
+        'Torann\\GeoIP\\Console\\Clear' => __DIR__ . '/..' . '/torann/geoip/src/Console/Clear.php',
+        'Torann\\GeoIP\\Console\\Update' => __DIR__ . '/..' . '/torann/geoip/src/Console/Update.php',
+        'Torann\\GeoIP\\Contracts\\ServiceInterface' => __DIR__ . '/..' . '/torann/geoip/src/Contracts/ServiceInterface.php',
+        'Torann\\GeoIP\\Facades\\GeoIP' => __DIR__ . '/..' . '/torann/geoip/src/Facades/GeoIP.php',
+        'Torann\\GeoIP\\GeoIP' => __DIR__ . '/..' . '/torann/geoip/src/GeoIP.php',
+        'Torann\\GeoIP\\GeoIPServiceProvider' => __DIR__ . '/..' . '/torann/geoip/src/GeoIPServiceProvider.php',
+        'Torann\\GeoIP\\Location' => __DIR__ . '/..' . '/torann/geoip/src/Location.php',
+        'Torann\\GeoIP\\Services\\AbstractService' => __DIR__ . '/..' . '/torann/geoip/src/Services/AbstractService.php',
+        'Torann\\GeoIP\\Services\\IPApi' => __DIR__ . '/..' . '/torann/geoip/src/Services/IPApi.php',
+        'Torann\\GeoIP\\Services\\IPData' => __DIR__ . '/..' . '/torann/geoip/src/Services/IPData.php',
+        'Torann\\GeoIP\\Services\\IPFinder' => __DIR__ . '/..' . '/torann/geoip/src/Services/IPFinder.php',
+        'Torann\\GeoIP\\Services\\IPGeoLocation' => __DIR__ . '/..' . '/torann/geoip/src/Services/IPGeoLocation.php',
+        'Torann\\GeoIP\\Services\\MaxMindDatabase' => __DIR__ . '/..' . '/torann/geoip/src/Services/MaxMindDatabase.php',
+        'Torann\\GeoIP\\Services\\MaxMindWebService' => __DIR__ . '/..' . '/torann/geoip/src/Services/MaxMindWebService.php',
+        'Torann\\GeoIP\\Support\\HttpClient' => __DIR__ . '/..' . '/torann/geoip/src/Support/HttpClient.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
