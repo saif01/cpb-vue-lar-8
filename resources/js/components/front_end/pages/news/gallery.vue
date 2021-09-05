@@ -10,7 +10,7 @@
                         <h2>Our Photo Gallery</h2>
                         <ol>
                             <li>
-                                <router-link to="/">Home</router-link>
+                                <router-link :to="{name:'index'}">Home</router-link>
                             </li>
                             <li>News / Photo Gallery</li>
                         </ol>
@@ -24,7 +24,8 @@
                     <div class="float-right small">Showing {{ dataShowFrom }} to {{ dataShowTo }} out of
                         {{ totalValue }} items</div><br>
                     <div class="pagination justify-content-end">
-                        <pagination :data="allData" @pagination-change-page="getGalleryData" class="justify-content-end">
+                        <pagination :data="allData" @pagination-change-page="getGalleryData"
+                            class="justify-content-end">
                             <span slot="prev-nav">&lt; Previous</span>
                             <span slot="next-nav">Next &gt;</span>
                         </pagination>
@@ -47,7 +48,8 @@
                     <div class="float-right small">Showing {{ dataShowFrom }} to {{ dataShowTo }} out of
                         {{ totalValue }} items</div><br>
                     <div class="pagination justify-content-end">
-                        <pagination :data="allData" @pagination-change-page="getGalleryData" class="justify-content-end">
+                        <pagination :data="allData" @pagination-change-page="getGalleryData"
+                            class="justify-content-end">
                             <span slot="prev-nav">&lt; Previous</span>
                             <span slot="next-nav">Next &gt;</span>
                         </pagination>
@@ -75,12 +77,15 @@
     import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
 
     export default {
-        
-        name:'Gallery',
+        name: 'Gallery',
+        components: {
+            // vue-cool-lightbox 
+            CoolLightBox,
+        },
 
         data() {
             return {
-                
+
                 // DataTbl Common Featurs 
                 paginate: 12,
 
@@ -121,16 +126,17 @@
         },
 
         mounted() {
+            // Store Visitor Log
+            this.$store.dispatch('visitor_log')
+        },
+
+        created() {
             this.$Progress.start();
             // Fetch initial results
             this.getGalleryData();
             this.$Progress.finish();
         },
 
-        components: {
-            // vue-cool-lightbox 
-            CoolLightBox,
-        },
 
 
     }

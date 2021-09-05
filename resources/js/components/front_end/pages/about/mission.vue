@@ -9,7 +9,7 @@
                         <h2>Our Mission</h2>
                         <ol>
                             <li>
-                                <router-link to="/">Home</router-link>
+                                <router-link :to="{name:'index'}">Home</router-link>
                             </li>
                             <li>About / Our Mission</li>
                         </ol>
@@ -26,7 +26,7 @@
                         <h2>Mission</h2>
                         <p>C.P.Bangladesh Co. Ltd. Mission</p>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="main-timeline">
@@ -59,7 +59,7 @@
 <script>
     export default {
 
-        name:'Mission',
+        name: 'Mission',
 
         data() {
             return {
@@ -88,11 +88,16 @@
 
         },
 
-
         mounted() {
+            // Store Visitor Log
+            this.$store.dispatch('visitor_log')
+        },
+
+
+        created() {
             this.$Progress.start();
             this.getDirectData();
-            console.log('Mission Component');
+            //console.log('Mission Component');
             this.$Progress.finish();
         },
 

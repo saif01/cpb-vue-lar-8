@@ -9,7 +9,7 @@
                         <h2>Contact</h2>
                         <ol>
                             <li>
-                                <router-link to="/">Home</router-link>
+                                <router-link :to="{name:'index'}">Home</router-link>
                             </li>
                             <li>Contact</li>
                         </ol>
@@ -182,6 +182,11 @@
                 }
             },
 
+        },
+
+        mounted(){
+            // Store Visitor Log
+            this.$store.dispatch('visitor_log')
         },
 
 

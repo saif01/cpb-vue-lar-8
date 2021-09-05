@@ -51,6 +51,13 @@ Route::namespace('App\Http\Controllers\FrontEnd')->group( function(){
         Route::get('/press/index', 'VueController@press');
         Route::get('/event/index', 'VueController@event')->name('user.event');
     });
+
+    // Business
+    Route::prefix('business')->group(function(){
+        Route::get('/feed', 'VueController@feed');
+        Route::get('/food', 'VueController@food');
+        Route::get('/farm', 'VueController@farm');
+    });
    
 
     // About

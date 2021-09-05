@@ -9,7 +9,7 @@
                         <h2>All Histories</h2>
                         <ol>
                             <li>
-                                <router-link to="/">Home</router-link>
+                                <router-link :to="{name:'index'}">Home</router-link>
                             </li>
                             <li>About / Histories</li>
                         </ol>
@@ -33,13 +33,13 @@
                                         <span class="timeline-year">{{ item.year }}</span>
                                         <div class="timeline-icon">
                                             <!-- <i class="fa fa-globe"></i> -->
-                                             <img :src="'images/history/small/'+item.image" class="rounded" alt="Image"
-                                    style="max-height: 50px;">
+                                            <img :src="'images/history/small/'+item.image" class="rounded" alt="Image"
+                                                style="max-height: 50px;">
                                         </div>
                                         <h3 class="title">{{ item.title }}</h3>
-                                      
+
                                         <div class="description" v-html="item.details"></div>
-                                    
+
                                     </a>
                                 </div>
 
@@ -60,8 +60,8 @@
 <script>
     export default {
 
-        name:'Histories',
-        
+        name: 'Histories',
+
         data() {
             return {
                 allData: {},
@@ -89,11 +89,16 @@
 
         },
 
-
         mounted() {
+            // Store Visitor Log
+            this.$store.dispatch('visitor_log')
+        },
+
+
+        created() {
             this.$Progress.start();
             this.getDirectData();
-            console.log('Mission Component');
+            //console.log('History Component');
             this.$Progress.finish();
         },
 
@@ -292,7 +297,7 @@
     }
 
 
-    .main-timeline .timeline-icon{
+    .main-timeline .timeline-icon {
         font-size: inherit !important;
     }
 

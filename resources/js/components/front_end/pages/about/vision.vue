@@ -9,7 +9,7 @@
                         <h2>Our Vision</h2>
                         <ol>
                             <li>
-                                <router-link to="/">Home</router-link>
+                                <router-link :to="{name:'index'}">Home</router-link>
                             </li>
                             <li>About / Our Vision</li>
                         </ol>
@@ -67,7 +67,7 @@
                     //console.log(res.data)
                     if (res.status == 200) {
                         this.allData = res.data
-                        console.log(this.allData.data)
+                        //console.log(this.allData.data)
                     } else {
                         console.log(res.data)
                     }
@@ -76,11 +76,16 @@
             },
         },
 
+        mounted() {
+            // Store Visitor Log
+            this.$store.dispatch('visitor_log')
+        },
+
 
         created() {
             this.$Progress.start();
             this.getDirectData();
-            console.log('Vison Component');
+            //console.log('Vison Component');
             this.$Progress.finish();
 
         },

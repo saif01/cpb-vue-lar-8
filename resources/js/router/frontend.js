@@ -22,12 +22,17 @@ import circular_logout from '../components/front_end/circular/logout.vue';
 import circular_applied from '../components/front_end/circular/applied.vue';
 import circular_register from '../components/front_end/circular/register.vue';
 
+// Business
+import business_feed from '../components/front_end/pages/business/feed.vue';
+import business_food from '../components/front_end/pages/business/food.vue';
+import business_farm from '../components/front_end/pages/business/farm.vue';
+
 
 export default [
     {
         path: '/',
         component: index,
-        name: '/',
+        name: 'index',
         meta:{
             title: 'Home'
         }
@@ -123,6 +128,32 @@ export default [
             title: 'Business Index'
         }
     },
+
+    {
+        path: '/business_feed',
+        component: business_feed,
+        name: 'business_feed',
+        meta:{
+            title: 'Business Feed'
+        }
+    },
+    {
+        path: '/business_farm',
+        component: business_farm,
+        name: 'business_farm',
+        meta:{
+            title: 'Business Farm'
+        }
+    },
+    {
+        path: '/business_food',
+        component: business_food,
+        name: 'business_food',
+        meta:{
+            title: 'Business food'
+        }
+    },
+
 
 
 

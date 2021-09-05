@@ -8,11 +8,11 @@
 
     }
 
-    .first-letter::v-deep p::first-letter {  
+    .first-letter::v-deep p::first-letter {
         font-size: 300%;
         color: #147219;
-        margin-left: 30px; 
-        }
+        margin-left: 30px;
+    }
 
 </style>
 
@@ -27,7 +27,7 @@
                         <h2>President Message</h2>
                         <ol>
                             <li>
-                                <router-link to="/">Home</router-link>
+                                <router-link :to="{name:'index'}">Home</router-link>
                             </li>
                             <li>About / President Message</li>
                         </ol>
@@ -73,7 +73,7 @@
 <script>
     export default {
 
-        name:'President Message',
+        name: 'PresidentMessage',
 
         data() {
             return {
@@ -88,7 +88,7 @@
 
                     if (res.status == 200) {
                         this.allData = res.data
-                       // console.log(this.allData)
+                        // console.log(this.allData)
                     } else {
                         console.log(res.data)
                     }
@@ -97,13 +97,16 @@
             },
         },
 
+        mounted() {
+            // Store Visitor Log
+            this.$store.dispatch('visitor_log')
+        },
+
 
         created() {
             this.$Progress.start();
-
             this.getDirectData();
-            console.log('president_message Component');
-
+            //console.log('president_message Component');
             this.$Progress.finish();
 
         },
@@ -112,5 +115,3 @@
     }
 
 </script>
-
-

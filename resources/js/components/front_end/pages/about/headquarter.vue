@@ -9,7 +9,7 @@
                         <h2>All Our Headquarter</h2>
                         <ol>
                             <li>
-                                <router-link to="/">Home</router-link>
+                                <router-link :to="{name:'index'}">Home</router-link>
                             </li>
                             <li>About / Our Headquarter</li>
                         </ol>
@@ -29,17 +29,17 @@
                             </div>
                             <div class="desc">
 
-                             
-                                    <p class="mb-0" v-if="item.company">{{ item.company }}</p>
-                                    <p class="mb-0" v-if="item.phone"> <a :href="'tel:'+item.phone">Phone:
-                                            {{ item.phone }}</a></p>
-                                    <p class="mb-0" v-if="item.email"> <a :href="'mailto:'+item.email">Email:
-                                            {{ item.email }}</a></p>
-                                    <p class="mb-0" v-if="item.website"><a :href="item.website" target="_blank">Website
-                                            Link</a></p>
-                                    <p class="mb-0" v-if="item.address">{{ item.address }}</p>
-                               
-                               
+
+                                <p class="mb-0" v-if="item.company">{{ item.company }}</p>
+                                <p class="mb-0" v-if="item.phone"> <a :href="'tel:'+item.phone">Phone:
+                                        {{ item.phone }}</a></p>
+                                <p class="mb-0" v-if="item.email"> <a :href="'mailto:'+item.email">Email:
+                                        {{ item.email }}</a></p>
+                                <p class="mb-0" v-if="item.website"><a :href="item.website" target="_blank">Website
+                                        Link</a></p>
+                                <p class="mb-0" v-if="item.address">{{ item.address }}</p>
+
+
                             </div>
                         </div>
                     </li>
@@ -57,7 +57,7 @@
 <script>
     export default {
 
-        name:'Headquarter',
+        name: 'Headquarter',
 
         data() {
             return {
@@ -96,11 +96,16 @@
 
         },
 
-
         mounted() {
+            // Store Visitor Log
+            this.$store.dispatch('visitor_log')
+        },
+
+
+        created() {
             this.$Progress.start();
             this.getDirectData();
-            console.log('Mission Component');
+            //console.log('Headquarter Component');
             this.$Progress.finish();
         },
 
@@ -375,7 +380,7 @@
 
     }
 
-    @media screen and (min-width: 400px ) {
+    @media screen and (min-width: 400px) {
 
         .direction-l .desc,
         .direction-r .desc {
@@ -384,7 +389,7 @@
 
     }
 
-     @media screen and ( max-width: 660px) {
+    @media screen and (max-width: 660px) {
 
         .direction-l .desc,
         .direction-r .desc {

@@ -24,6 +24,10 @@ use App\Models\Admin\Recruit\RecuitCircular;
 use App\Models\Admin\Recruit\RecuitCvSend;
 use App\Models\Admin\Recruit\RecruitApply;
 
+use App\Models\Admin\Business\BusinessFeed;
+use App\Models\Admin\Business\BusinessFood;
+use App\Models\Admin\Business\BusinessFarm;
+
 
 use Auth;
 use App\Models\User;
@@ -57,6 +61,25 @@ class VueController extends Controller
     public function businessById($id){
 
         $data = BusinessAll::where('status', '1')->where('id', $id)->first();
+        return response()->json($data, 200);
+    }
+
+
+    // feed
+    public function feed(){
+        $data = BusinessFeed::where('status', 1)->orderBy('id', 'desc')->first();
+        return response()->json($data, 200);
+    }
+
+    // food
+    public function food(){
+        $data = BusinessFood::where('status', 1)->orderBy('id', 'desc')->first();
+        return response()->json($data, 200);
+    }
+
+    // farm
+    public function farm(){
+        $data = BusinessFarm::where('status', 1)->orderBy('id', 'desc')->first();
         return response()->json($data, 200);
     }
 

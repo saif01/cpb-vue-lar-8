@@ -55,15 +55,15 @@
         <div class="container">
             <div class="row" data-aos="fade-up">
                 <div data-aos="slide-left" class="col-6" >
-                    <b-embed type="video" tag="div" controls poster="all-assets/front-end/img/bg/song-bg.jpg" :title="'CP Food Production Process in Bangladesh'">
+                    <b-embed type="video" tag="div" controls poster="/all-assets/front-end/img/bg/song-bg.jpg" :title="'CP Food Production Process in Bangladesh'">
                         <source
-                            :src="'all-assets/front-end/videos/CP Food Production Process in Bangladesh.mp4'"
+                            :src="'/all-assets/front-end/videos/CP Food Production Process in Bangladesh.mp4'"
                             type="video/mp4" >
                     </b-embed>
                 </div>
                 <div data-aos="slide-right" class="col-6"  > 
-                    <b-embed type="video" tag="div" controls poster="all-assets/front-end/img/bg/video-bg.jpg" :title="'CP Bangladesh CP way Song ( সিপি ওয়ে গান )'">
-                        <source :src="'all-assets/front-end/song/CPwaySong.mp3'" type="audio/mpeg">
+                    <b-embed type="video" tag="div" controls poster="/all-assets/front-end/img/bg/video-bg.jpg" :title="'CP Bangladesh CP way Song ( সিপি ওয়ে গান )'">
+                        <source :src="'/all-assets/front-end/song/CPwaySong.mp3'" type="audio/mpeg">
                     </b-embed>
                 </div>
 

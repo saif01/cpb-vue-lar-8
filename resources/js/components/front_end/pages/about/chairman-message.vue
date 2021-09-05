@@ -9,7 +9,7 @@
                         <h2>Chairman Message</h2>
                         <ol>
                             <li>
-                                <router-link to="/">Home</router-link>
+                                <router-link :to="{name:'index'}">Home</router-link>
                             </li>
                             <li>About / Chairman Message</li>
                         </ol>
@@ -33,7 +33,7 @@
                             <img :src="'images/chairman/small/'+allData.image" data-aos="zoom-in" class="picture"
                                 alt="CPB">
                         </div>
-                        <div class="card-body text-center" >
+                        <div class="card-body text-center">
                             <h4 class="card-title colorthm-1">{{ allData.title }}</h4>
 
                             <div class="watermark">
@@ -54,8 +54,8 @@
 
 <script>
     export default {
-   
-        name:'Chairman Message',
+
+        name: 'ChairmanMessage',
 
         data() {
             return {
@@ -79,13 +79,16 @@
             },
         },
 
+        mounted() {
+            // Store Visitor Log
+            this.$store.dispatch('visitor_log')
+        },
+
 
         created() {
             this.$Progress.start();
-
             this.getDirectData();
-            console.log('president_message Component');
-
+            //console.log('president_message Component');
             this.$Progress.finish();
 
         },
@@ -107,57 +110,36 @@
 
     }
 
-    .first-letter::v-deep p::first-letter {  
+    .first-letter::v-deep p::first-letter {
         font-size: 300%;
         color: #147219;
-        margin-left: 30px; 
-        }
+        margin-left: 30px;
+    }
 
-     /* .first-letter::v-deep p{
-        content: ""; 
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 100%;
-        height: 100%;
-        transform: translate(-50%, -50%);
-        z-index: -5; 
-        opacity: 0.05;
-        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 70" width="70" height="70"><rect x="0" y="40" width="30" height="30"></rect><path d="M 0 40 q 0 -40 30 -40 v 15 q -15 0 -15 25"></path><rect x="40" y="40" width="30" height="30"></rect><path d="M 40 40 q 0 -40 30 -40 v 15 q -15 0 -15 25"></path></svg>'),
-            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 70" width="70" height="70" transform="rotate(180)"><rect x="0" y="40" width="30" height="30"></rect><path d="M 0 40 q 0 -40 30 -40 v 15 q -15 0 -15 25"></path><rect x="40" y="40" width="30" height="30"></rect><path d="M 40 40 q 0 -40 30 -40 v 15 q -15 0 -15 25"></path></svg>');
-        background-position: 20% 20%, 80% 80%;
-        background-repeat: no-repeat;
-    } */
-
+   
     .watermark {
-  /* width: 300px;
-  height: 100px; */
-  display: block;
-  position: relative;
-}
+        display: block;
+        position: relative;
+    }
 
-.watermark::before, .watermark::after {
-  content: "";
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1; 
-}
+    .watermark::before,
+    .watermark::after {
+        content: "";
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1;
+    }
 
-.watermark::before {
-  background:#C52F11;
-}
+    .watermark::before {
+        background: #C52F11;
+    }
 
-.watermark::after {
- background: url(https://www.google.com/images/srpr/logo11w.png) no-repeat;
-  opacity: 0.2;
-}
+    .watermark::after {
+        background: url(https://www.google.com/images/srpr/logo11w.png) no-repeat;
+        opacity: 0.2;
+    }
 
 </style>
-
-
-
-
-

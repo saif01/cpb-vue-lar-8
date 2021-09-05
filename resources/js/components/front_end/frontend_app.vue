@@ -7,7 +7,7 @@
 
                 <nav class="navbar navbar-expand-lg p-0 navbar-dark bg-transparent">
 
-                    <router-link :to="{name:'/'}" class="navbar-brand"><img :src="'all-assets/front-end/img/logo/cpb.png'"
+                    <router-link :to="{ name: 'index'}" class="navbar-brand"><img :src="'all-assets/front-end/img/logo/cpb.png'"
                             alt="CPB" width="40" height="40">
                     </router-link>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -19,7 +19,7 @@
                     <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto forsmbg">
                             <li class="nav-item">
-                                <router-link :to="{name:'/'}" class="nav-link">Home</router-link>
+                                <router-link :to="{ name: 'index'}" class="nav-link">Home</router-link>
                             </li>
 
                             <li class="nav-item dropdown">
@@ -53,8 +53,21 @@
                                 </div>
                             </li>
 
-
                             <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Business
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <router-link :to="{name:'business_feed'}" class="dropdown-item">Feed</router-link>
+                                    <router-link :to="{name:'business_food'}" class="dropdown-item">Food</router-link>
+                                    <router-link :to="{name:'business_farm'}" class="dropdown-item">Farm</router-link>
+
+                                </div>
+                            </li>
+
+
+                            <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Business
@@ -64,7 +77,7 @@
                                     <router-link v-for="(item, index) in business" :key="index"  :to="{ path: 'business_index', query: { id: item.id, data:item } }" class="dropdown-item" >{{ item.name }}</router-link>
                                    
                                 </div>
-                            </li>
+                            </li> -->
 
 
                             <li class="nav-item">
@@ -143,7 +156,7 @@
 
         methods: {
 
-             getUserData() {
+            getUserData() {
                 axios.get('/api/athenticated').then(res => {
                     console.log(res.data)
                   
@@ -152,38 +165,7 @@
             },
 
 
-            // // Localstorage data update at store
-            // setAuthInStore(){
-            //     let auth_token = this.getLocalStorage('auth_token');
-            //     if( auth_token ){
-            //         // Data update in store
-            //         this.$store.commit( 'setAuthToken', auth_token );
-            //     }
-
-            
-            // },
-
-            // // Get Localstorage Data
-            // getLocalStorage(localkey, localStrogeExpHour = 1){
-
-            //     // Check Localstorage time limit
-            //     let hours = localStrogeExpHour;
-            //     let etl = localStorage.getItem('etl');
-            //     if ( etl && (new Date().getTime() - etl > hours * 60 * 60 * 1000) ) {
-            //         // Clear all localstorage
-            //         localStorage.clear();
-            //     }
-
-            //     // Get Localstorage data
-            //     let localStorageData = localStorage.getItem(localkey);
-            //     if( localStorageData ){
-            //        return localStorageData;
-            //     }else{
-            //         return null;
-            //     }
-
-            // }
-
+          
 
 
         },
@@ -191,9 +173,10 @@
 
         mounted() {
 
-            console.log('main_app token : ', this.token,  this.user);
-
+            // Store Visitor Log
             this.$store.dispatch('visitor_log')
+
+            // console.log('main_app token : ', this.token,  this.user);
 
             // window.axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
 
@@ -208,7 +191,7 @@
         created() {
             this.$Progress.start();
             //this.getDirectData();
-            this.$store.dispatch('businessData')
+            //this.$store.dispatch('businessData')
 
             
             if(this.token){
@@ -232,7 +215,7 @@
             ...mapGetters({
                 //'token'     : 'getAuthToken',
                 // 'user'      : 'getUser',
-                'business'  : 'getBusinessData'
+                //'business'  : 'getBusinessData'
                 
             })
         },

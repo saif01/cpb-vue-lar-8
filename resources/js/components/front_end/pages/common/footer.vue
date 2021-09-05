@@ -8,11 +8,11 @@
                         <div class="col-lg-4 col-md-6 footer-links">
                             <h4>Useful Links</h4>
                             <ul>
-                                <li><i class="bx bx-chevron-right"></i> <a href="http://cpb-8">Home</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="http://cpb-8/contact">Contact us</a>
+                                <li><i class="bx bx-chevron-right"></i> <router-link :to="{ name: 'index'}">Home</router-link>
+                                <li><i class="bx bx-chevron-right"></i> <router-link :to="{ name: 'contact' }">Contact us</router-link>
                                 </li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="http://cpb-8/about/headquarters">Our
-                                        Headquarters</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <router-link :to="{ name: 'about_headquarter' }">Our
+                                        Headquarters</router-link></li>
                             </ul>
                         </div>
 
@@ -33,19 +33,19 @@
                             <h3>We Certified From</h3>
                             <div class="row">
                                 <div class="col">
-                                    <img src="http://cpb-8/all-assets/front-end/img/footer/ISO.png"
+                                    <img src="/all-assets/front-end/img/footer/ISO.png"
                                         class="img-fluid rounded" alt="CPB-Image">
                                 </div>
                                 <div class="col">
-                                    <img src="http://cpb-8/all-assets/front-end/img/footer/Halal.png"
+                                    <img src="/all-assets/front-end/img/footer/Halal.png"
                                         class="img-fluid rounded" alt="CPB-Image">
                                 </div>
                                 <div class="col">
-                                    <img src="http://cpb-8/all-assets/front-end/img/footer/GMP.png"
+                                    <img src="/all-assets/front-end/img/footer/GMP.png"
                                         class="img-fluid rounded" alt="CPB-Image">
                                 </div>
                                 <div class="col">
-                                    <img src="http://cpb-8/all-assets/front-end/img/footer/HACCP.png"
+                                    <img src="/all-assets/front-end/img/footer/HACCP.png"
                                         class="img-fluid rounded" alt="CPB-Image">
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
             <div class="container">
                 <div class="copyright">
                     &copy; Copyright <strong><span>CPB-IT</span> <img
-                            src="http://cpb-8/all-assets/common/logo/cpb/cpbit-96x96.png" height="24" weidth="24"
+                            src="/all-assets/common/logo/cpb/cpbit-96x96.png" height="24" weidth="24"
                             alt=""></strong>&nbsp;&nbsp; All Rights Reserved
                 </div>
             </div>

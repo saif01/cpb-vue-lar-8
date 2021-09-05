@@ -5,7 +5,7 @@ Vue.use(VueRouter);
 // Vuex File
 import store from '../vuex/store';
 
-import common from '../common/common';
+//import common from '../common/common';
 
 
 

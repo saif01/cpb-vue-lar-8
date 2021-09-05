@@ -8,7 +8,9 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h2>Our Press Releases</h2>
                         <ol>
-                            <li><router-link to="/">Home</router-link></li>
+                            <li>
+                                <router-link :to="{name:'index'}">Home</router-link>
+                            </li>
                             <li>News / Press Releases</li>
                         </ol>
                     </div>
@@ -83,7 +85,7 @@
 <script>
     export default {
 
-        name:'Press',
+        name: 'Press',
 
         data() {
             return {
@@ -100,6 +102,11 @@
         },
 
         mounted() {
+            // Store Visitor Log
+            this.$store.dispatch('visitor_log')
+        },
+
+        created() {
             this.$Progress.start();
             // Fetch initial results
             this.getResults();

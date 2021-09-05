@@ -9,7 +9,7 @@
                         <h2>Our All Events</h2>
                         <ol>
                             <li>
-                                <router-link to="/">Home</router-link>
+                                <router-link :to="{name:'index'}">Home</router-link>
                             </li>
                             <li>News / All Events</li>
                         </ol>
@@ -41,7 +41,7 @@
                                     <b class="float-right mx-2 text-muted"><i class='bx bx-calendar-event'></i>
                                         {{ item.date }} </b>
                                     <hr>
-                                  
+
                                     <div v-html="item.details"></div>
 
                                     <hr>
@@ -86,14 +86,14 @@
 <script>
     export default {
 
-        name:'Event',
+        name: 'Event',
 
         data() {
             return {
                 // Loading Animation 
                 dataLoading: true,
                 currentUrl: '/api/news/event',
-                
+
             }
         },
 
@@ -103,6 +103,11 @@
         },
 
         mounted() {
+            // Store Visitor Log
+            this.$store.dispatch('visitor_log')
+        },
+
+        created() {
             this.$Progress.start();
             // Fetch initial results
             this.getResults();
