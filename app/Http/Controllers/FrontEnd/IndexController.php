@@ -23,8 +23,8 @@ class IndexController extends Controller
         //$clientIP = $_SERVER['REMOTE_ADDR'];
         $clientIP = $this->get_ip();
         
-        //$clientIP = '202.51.181.142';
-        $geoip =  geoip()->getLocation($clientIP);
+        //$clientIP   = '10.64.5.1';
+        $geoip      =  geoip()->getLocation($clientIP);
 
         $agent = new Agent();
         if( $agent->isDesktop() ){

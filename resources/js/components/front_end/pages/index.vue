@@ -55,9 +55,9 @@
         <div class="container">
             <div class="row" data-aos="fade-up">
                 <div data-aos="slide-left" class="col-6" >
-                    <b-embed type="video" tag="div" controls poster="all-assets/front-end/img/bg/song-bg.jpg" :title="'CP Food Production Process in Bangladesh ( সিপি ফুড উৎপাদন প্রক্রিয়া )'">
+                    <b-embed type="video" tag="div" controls poster="all-assets/front-end/img/bg/song-bg.jpg" :title="'CP Food Production Process in Bangladesh'">
                         <source
-                            :src="'all-assets/front-end/videos/CP Food Production Process in Bangladesh (সিপি ফুড উৎপাদন প্রক্রিয়া) [720p].mp4'"
+                            :src="'all-assets/front-end/videos/CP Food Production Process in Bangladesh.mp4'"
                             type="video/mp4" >
                     </b-embed>
                 </div>
