@@ -20,7 +20,8 @@ class IndexController extends Controller
     public function visitor_log(Request $request){
 
         // get IP Address
-        $clientIP = $_SERVER['REMOTE_ADDR'];
+        //$clientIP = $_SERVER['REMOTE_ADDR'];
+        $clientIP = $my_current_ip=exec("ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'");
         //$clientIP = '202.51.181.142';
         $geoip =  geoip()->getLocation($clientIP);
 
@@ -70,7 +71,7 @@ class IndexController extends Controller
             
         }
 
-        return response()->json('visitor log stored', 200);
+        return response()->json($clientIP, 200);
     }
 
 
