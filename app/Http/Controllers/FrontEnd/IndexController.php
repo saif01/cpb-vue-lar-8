@@ -21,9 +21,10 @@ class IndexController extends Controller
 
         // get IP Address
         //$clientIP = $_SERVER['REMOTE_ADDR'];
-        $clientIP = $this->get_ip();
+        $clientIP = $this->get_ip_address();
         
         //$clientIP   = '10.64.5.1';
+        //$clientIP   = '202.51.181.142';
         $geoip      =  geoip()->getLocation($clientIP);
 
         $agent = new Agent();
@@ -81,20 +82,35 @@ class IndexController extends Controller
     {
         $mainIp = '';
         if (getenv('HTTP_CLIENT_IP'))
-            $mainIp = getenv('HTTP_CLIENT_IP');
-        else if (getenv('HTTP_X_FORWARDED_FOR'))
-            $mainIp = getenv('HTTP_X_FORWARDED_FOR');
-        else if (getenv('HTTP_X_FORWARDED'))
-            $mainIp = getenv('HTTP_X_FORWARDED');
-        else if (getenv('HTTP_FORWARDED_FOR'))
-            $mainIp = getenv('HTTP_FORWARDED_FOR');
-        else if (getenv('HTTP_FORWARDED'))
-            $mainIp = getenv('HTTP_FORWARDED');
-        else if (getenv('REMOTE_ADDR'))
-            $mainIp = getenv('REMOTE_ADDR');
+           { $mainIp = getenv('HTTP_CLIENT_IP'); }
+        elseif (getenv('HTTP_X_FORWARDED_FOR'))
+           { $mainIp = getenv('HTTP_X_FORWARDED_FOR'); }
+        elseif (getenv('HTTP_X_FORWARDED'))
+           { $mainIp = getenv('HTTP_X_FORWARDED');  }
+        elseif (getenv('HTTP_FORWARDED_FOR'))
+           { $mainIp = getenv('HTTP_FORWARDED_FOR'); }
+        elseif (getenv('HTTP_FORWARDED'))
+           { $mainIp = getenv('HTTP_FORWARDED'); }
+        elseif (getenv('REMOTE_ADDR'))
+           { $mainIp = getenv('REMOTE_ADDR'); }
         else
-            $mainIp = 'UNKNOWN';
+           { $mainIp = 'UNKNOWN'; }
         return $mainIp;
+    }
+
+
+    public function get_ip_address(){
+        foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key){
+            if (array_key_exists($key, $_SERVER) === true){
+                foreach (explode(',', $_SERVER[$key]) as $ip){
+                    $ip = trim($ip); // just to be safe
+    
+                    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false){
+                        return $ip;
+                    }
+                }
+            }
+        }
     }
 
 
