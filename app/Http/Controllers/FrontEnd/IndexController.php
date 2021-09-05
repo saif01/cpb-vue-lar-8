@@ -50,7 +50,7 @@ class IndexController extends Controller
 
             $data = new VisitorLog();
 
-            $data->ip           =  $geoip->ip;
+            $data->ip           =  $clientIP;
             $data->iso_code     =  $geoip->iso_code;
             $data->country      =  $geoip->country;
             $data->city         =  $geoip->city;
@@ -58,7 +58,7 @@ class IndexController extends Controller
             $data->postal_code  =  $geoip->postal_code;
             $data->lat          =  $geoip->lat;
             $data->lon          =  $geoip->lon;
-            $data->timezone     = $geoip->timezone;
+            $data->timezone     =  $geoip->timezone;
             $data->currency     =  $geoip->currency;
     
             $data->device       =  $device;
