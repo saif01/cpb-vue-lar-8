@@ -94,6 +94,15 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
 
     Route::middleware('auth:sanctum')->group( function(){
 
+        // Dashboard
+        Route::prefix('admin')->group(function(){
+
+            Route::get('chart_data', 'AdminController@chart_data');
+            Route::get('dashoboard', 'AdminController@dashoboard');
+
+        });
+        
+
         // News Section
         Route::namespace('User')->group( function(){ 
 
