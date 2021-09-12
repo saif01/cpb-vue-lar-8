@@ -20,26 +20,26 @@
 
 
             <section class="portfolio-details">
-                <div class="container" v-if="allData.length">
+                <div class="container" v-if="businessdata">
 
                     <div class="portfolio-details-container">
                         <div class="portfolio-details-carousel">
 
                             <b-carousel id="carousel-no-animation" style="text-shadow: 0px 0px 2px #000" no-animation
                                 controls indicators img-width="1110" img-height="480">
-                                <b-carousel-slide v-if="allData.image" :img-src="'images/business/'+allData.image"
+                                <b-carousel-slide v-if="businessdata.image" :img-src="'images/business/'+businessdata.image"
+                                    class="img-fluid" alt="CPB-Business" >
+                                </b-carousel-slide>
+                                <b-carousel-slide v-if="businessdata.image2" :img-src="'images/business/'+businessdata.image2"
                                     class="img-fluid" alt="CPB-Business">
                                 </b-carousel-slide>
-                                <b-carousel-slide v-if="allData.image2" :img-src="'images/business/'+allData.image2"
+                                <b-carousel-slide v-if="businessdata.image3" :img-src="'images/business/'+businessdata.image3"
                                     class="img-fluid" alt="CPB-Business">
                                 </b-carousel-slide>
-                                <b-carousel-slide v-if="allData.image3" :img-src="'images/business/'+allData.image3"
+                                <b-carousel-slide v-if="businessdata.image4" :img-src="'images/business/'+businessdata.image4"
                                     class="img-fluid" alt="CPB-Business">
                                 </b-carousel-slide>
-                                <b-carousel-slide v-if="allData.image4" :img-src="'images/business/'+allData.image4"
-                                    class="img-fluid" alt="CPB-Business">
-                                </b-carousel-slide>
-                                <b-carousel-slide v-if="allData.image5" :img-src="'images/business/'+allData.image5"
+                                <b-carousel-slide v-if="businessdata.image5" :img-src="'images/business/'+businessdata.image5"
                                     class="img-fluid" alt="CPB-Business">
                                 </b-carousel-slide>
                             </b-carousel>
@@ -47,24 +47,26 @@
                         </div>
 
                         <div class="portfolio-info" data-aos="zoom-in-down">
-                            <h3>{{ allData.title }}</h3>
+                            <h3>{{ businessdata.title }}</h3>
                             <ul>
-                                <li><strong>Name</strong>: {{ allData.name }}</li>
-                                <li><strong>Project URL</strong>: <a :href="allData.website"
-                                        target="_blank">{{ allData.website }}</a></li>
+                                <li><strong>Name</strong>: {{ businessdata.name }}</li>
+                                <li><strong>Project URL</strong>: <a :href="businessdata.website"
+                                        target="_blank">{{ businessdata.website }}</a></li>
                             </ul>
                         </div>
 
                     </div>
 
                     <div class="portfolio-description" data-aos="fade-up">
-                        <h2>{{ allData.title }} Detail</h2>
-                        <div v-html="allData.details"></div>
+                        <h2>{{ businessdata.title }} Detail</h2>
+                        <div v-html="businessdata.details"></div>
 
                     </div>
                 </div>
-                <div v-else>
-                    <h1 class="text-danger text-center">Sorry !! Data Not Available</h1>
+                <div>
+                    <div v-if="dataLoading && !businessdata" class="p-5 my-5">
+                        <p class="text-center"><i class="fas fa-spinner fa-pulse text-success fa-10x"></i></p>
+                    </div>
                 </div>
             </section>
 
@@ -83,23 +85,27 @@
 
         data() {
             return {
-                allData: '',
+                businessdata:'',
+                dataLoading:true,
             }
 
         },
 
         methods: {
 
-            async getDirectData() {
 
-                const res = await this.callApi('get', '/api/business/food')
-                console.log('runnn-after : ' + res.data)
-                if (res.status == 200) {
-                    this.allData = res.data
-                } else {
-                    console.log(res)
-                }
-            },
+            getDirectData(){
+                //console.log('running business')
+                axios.get('/api/business/food')
+                .then(response=>{
+                    this.businessdata = response.data
+                    //console.log('runnn-after : ' + response.data.name)
+                    this.dataLoading = false;
+                })
+                .catch(error=>{
+                    console.log(error)
+                })
+            }
 
         },
 
@@ -123,3 +129,11 @@
     }
 
 </script>
+
+
+
+<style>
+    .carousel-item img {
+        height:480px !important ;
+    }
+</style>

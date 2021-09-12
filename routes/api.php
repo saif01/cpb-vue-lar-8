@@ -297,6 +297,16 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
 
         });
 
+        // Logs
+        Route::namespace('Logs')->group( function(){ 
+
+            Route::prefix('admin/visitors')->group( function(){
+                Route::get('/index', 'VisitorsController@index');
+            });
+
+          
+        });
+
        
         
     });

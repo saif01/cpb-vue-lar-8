@@ -34,6 +34,9 @@ import admin_recruit_user from '../components/admin/pages/recruit/user.vue';
 import admin_recruit_cv from '../components/admin/pages/recruit/cv.vue';
 import admin_recruit_applicant from '../components/admin/pages/recruit/applicant.vue';
 
+//Log
+import admin_visitors_log from '../components/admin/pages/logs/visitors.vue';
+
 
 
 export default [
@@ -255,6 +258,15 @@ export default [
         name: 'admin_recruit_applicant',
         meta:{
             title: 'Admin Recruit Applicant',
+            adminAuth: true,
+        },   
+    },
+    {
+        path: '/admin/visitors/log',
+        component: admin_visitors_log,
+        name: 'admin_visitors_log',
+        meta:{
+            title: 'Admin Visitors Log',
             adminAuth: true,
         },   
     },

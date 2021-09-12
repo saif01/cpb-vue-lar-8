@@ -50,8 +50,8 @@
                         // Call Chart
                         this.barChart()
 
-                        console.log(this.total_hit)
-                        console.log(this.level_date)
+                        //console.log(this.total_hit)
+                        //console.log(this.level_date)
 
                     })
                     .catch(error => {

@@ -173,7 +173,7 @@
                         v-html="form.errors.get('details')" />
                 </b-form-group>
 
-
+                <p class="text-danger text-center">All Image Resulation img-width 1110px img-height 480px (1110*480)px</p>
                 <b-row>
                     <b-col>
                         <b-form-group label="File: (.jpg, .png, .jpeg)">

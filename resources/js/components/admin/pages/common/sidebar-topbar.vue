@@ -158,6 +158,19 @@
                         </ul>
                     </li>
 
+                    <li class="nav-item" v-if="isRecruitPermitted">
+                        <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
+                            data-target="#collapseSubItems7" aria-controls="collapseSubItems7" aria-expanded="false"><i
+                                class="far fa-newspaper"></i> Login Logs</a>
+                        <ul class="nav-second-level collapse" id="collapseSubItems7" data-parent="#navAccordion">
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_visitors_log' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Visitors Logs</span>
+                                </router-link>
+                            </li>
+                        </ul>
+                    </li>
+
 
                     <li class="nav-item">
                         <router-link :to="{ name:'admin_blank' }" class="nav-link"><i class="fas fa-stream"></i> Blank

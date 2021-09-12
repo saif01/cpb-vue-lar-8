@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row m-2">
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
                 <!-- small box -->
                 <div class="small-box gradient-r">
                     <div class="inner">
@@ -13,7 +13,7 @@
                     <p class="small-box-footer">Total Admins</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
                 <!-- small box -->
                 <div class="small-box gradient-g">
                     <div class="inner">
@@ -25,7 +25,7 @@
                     <p class="small-box-footer">Total Users</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
                 <!-- small box -->
                 <div class="small-box gradient-b">
                     <div class="inner">
@@ -37,18 +37,7 @@
                     <p class="small-box-footer">Live Circulars</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box gradient-y">
-                    <div class="inner">
-                        <h3>150</h3>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <p class="small-box-footer">Total Users</p>
-                </div>
-            </div>
+           
 
         </div>
 
