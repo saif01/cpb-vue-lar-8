@@ -24,7 +24,7 @@
                     <div class="portfolio-details-container">
                         <div class="portfolio-details-carousel">
 
-                            <b-carousel id="carousel-no-animation" style="text-shadow: 0px 0px 2px #000" no-animation
+                            <b-carousel id="carousel-no-animation" style="text-shadow: 0px 0px 2px #000" fade
                                 controls indicators img-width="1110" img-height="480">
                                 <b-carousel-slide v-if="businessdata.image" :img-src="'images/business/'+businessdata.image"
                                     class="img-fluid" alt="CPB-Business">
@@ -57,7 +57,8 @@
                     </div>
 
                     <div class="portfolio-description" data-aos="fade-up">
-                        <h2>{{ businessdata.title }} Detail</h2>
+                        <h2>{{ businessdata.title }} Details</h2>
+
                         <div v-html="businessdata.details"></div>
 
                     </div>
@@ -129,3 +130,36 @@ import axios from 'axios'
     }
 
 </script>
+
+
+
+<style>
+
+blockquote{
+  text-align:right;
+  font-size: 1.4em;
+  width:100%;
+  margin:50px auto;
+  font-style:normal;
+  color: #555555;
+  padding:1.2em 30px 1.2em 75px;
+  border-bottom:8px solid #78C0A8 ;
+  line-height:1.6;
+  position: relative;
+  background:#EDEDED;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+blockquote::before{
+    font-size: 200px;
+  font-family:Arial;
+  content: "\201C";
+  color:#78C0A8;
+  position: absolute;
+  left: 10px;
+  top:-45px;
+}
+
+
+</style>

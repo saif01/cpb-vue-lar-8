@@ -25,7 +25,7 @@
                     <div class="portfolio-details-container">
                         <div class="portfolio-details-carousel">
 
-                            <b-carousel id="carousel-no-animation" style="text-shadow: 0px 0px 2px #000" no-animation
+                            <b-carousel id="carousel-no-animation" style="text-shadow: 0px 0px 2px #000" fade
                                 controls indicators img-width="1110" img-height="480">
                                 <b-carousel-slide v-if="businessdata.image" :img-src="'images/business/'+businessdata.image"
                                     class="img-fluid" alt="CPB-Business">
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="portfolio-description" data-aos="fade-up">
-                        <h2>{{ businessdata.title }} Detail</h2>
+                        <h2>{{ businessdata.title }} Details</h2>
                         <div v-html="businessdata.details"></div>
 
                     </div>

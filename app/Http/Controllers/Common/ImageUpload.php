@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Common;
+use Illuminate\Support\Str;
 
 class ImageUpload{
 
@@ -8,8 +9,9 @@ class ImageUpload{
     public static function imgSingleUpload($image, $imagePath, $imagePathsm = null){
 
         $imgPathSm = $imagePathsm ?? $imagePath.'small/';
-
-        $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+        $randomStr = Str::random(8);
+        $name =$randomStr. time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+       
         // Original Image Save
         \Image::make($image)
         ->save(public_path($imagePath).$name);
@@ -36,15 +38,15 @@ class ImageUpload{
                 unlink( $imgPathSm . $oldImg );
             }
         }
-
-        $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+        $randomStr = Str::random(8);
+        $name = $randomStr. time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
         // Original Image Save
         \Image::make($image)
         ->save(public_path($imagePath).$name);
         // Resized image save
         \Image::make($image)
         ->resize(300, 200)
-        ->save(public_path($imgPathSm).$name);
+        ->save(public_path($imgPathSm).$name); 
 
         return $name;
     }
