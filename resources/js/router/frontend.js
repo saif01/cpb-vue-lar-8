@@ -15,12 +15,15 @@ import about_headquarter from '../components/front_end/pages/about/headquarter.v
 import about_history from '../components/front_end/pages/about/history.vue';
 import business_index from '../components/front_end/pages/business/index.vue';
 
-// Circulars
-import circular_index from '../components/front_end/circular/index.vue';
-import circular_login from '../components/front_end/circular/login.vue';
-import circular_logout from '../components/front_end/circular/logout.vue';
-import circular_applied from '../components/front_end/circular/applied.vue';
-import circular_register from '../components/front_end/circular/register.vue';
+// carriers
+import carrier_index from '../components/front_end/carrier/index.vue';
+import carrier_login from '../components/front_end/carrier/login.vue';
+import carrier_logout from '../components/front_end/carrier/logout.vue';
+import carrier_applied from '../components/front_end/carrier/applied.vue';
+import carrier_register from '../components/front_end/carrier/register.vue';
+import carrier_user_profile from '../components/front_end/carrier/profile.vue';
+import carrier_reset_pass from '../components/front_end/carrier/reset_pass.vue';
+
 
 // Business
 import business_feed from '../components/front_end/pages/business/feed.vue';
@@ -47,7 +50,7 @@ export default [
     },
 
     {
-        path: '/news_gallery',
+        path: '/news-gallery',
         component: news_gallery,
         name: 'news_gallery',
         meta:{
@@ -55,7 +58,7 @@ export default [
         }
     },
     {
-        path: '/news_press',
+        path: '/news-press',
         component: news_press,
         name: 'news_press',
         meta:{
@@ -63,7 +66,7 @@ export default [
         }
     },
     {
-        path: '/news_event',
+        path: '/news-event',
         component: news_event,
         name: 'news_event',
         meta:{
@@ -72,7 +75,7 @@ export default [
     },
 
     {
-        path: '/about_chairman_message',
+        path: '/about-chairman_message',
         component: about_chairman_message,
         name: 'about_chairman_message',
         meta:{
@@ -80,7 +83,7 @@ export default [
         }
     },
     {
-        path: '/about_president_message',
+        path: '/about-president_message',
         component: about_president_message,
         name: 'about_president_message',
         meta:{
@@ -88,7 +91,7 @@ export default [
         }
     },
     {
-        path: '/about_vision',
+        path: '/about-vision',
         component: about_vision,
         name: 'about_vision',
         meta:{
@@ -96,7 +99,7 @@ export default [
         }
     },
     {
-        path: '/about_mission',
+        path: '/about-mission',
         component: about_mission,
         name: 'about_mission',
         meta:{
@@ -104,7 +107,7 @@ export default [
         }
     },
     {
-        path: '/about_headquarter',
+        path: '/about-headquarter',
         component: about_headquarter,
         name: 'about_headquarter',
         meta:{
@@ -112,7 +115,7 @@ export default [
         }
     },
     {
-        path: '/about_history',
+        path: '/about-history',
         component: about_history,
         name: 'about_history',
         meta:{
@@ -120,7 +123,7 @@ export default [
         }
     },
     {
-        path: '/business_index',
+        path: '/business-index',
         component: business_index,
         name: 'business_index',
         props: true,
@@ -130,7 +133,7 @@ export default [
     },
 
     {
-        path: '/business_feed',
+        path: '/business-feed',
         component: business_feed,
         name: 'business_feed',
         meta:{
@@ -138,7 +141,7 @@ export default [
         }
     },
     {
-        path: '/business_farm',
+        path: '/business-farm',
         component: business_farm,
         name: 'business_farm',
         meta:{
@@ -146,7 +149,7 @@ export default [
         }
     },
     {
-        path: '/business_food',
+        path: '/business-food',
         component: business_food,
         name: 'business_food',
         meta:{
@@ -160,8 +163,8 @@ export default [
 
     {
         path: '/carrier-index',
-        component: circular_index,
-        name: 'circular_index',
+        component: carrier_index,
+        name: 'carrier_index',
         meta:{
             title: 'Carrier Index'
         }
@@ -169,8 +172,8 @@ export default [
 
     {
         path: '/carrier-login',
-        component: circular_login,
-        name: 'circular_login',
+        component: carrier_login,
+        name: 'carrier_login',
         meta:{
             title: 'Carrier Login'
         }
@@ -178,16 +181,16 @@ export default [
 
     {
         path: '/carrier-logout',
-        component: circular_logout,
-        name: 'circular_logout',
+        component: carrier_logout,
+        name: 'carrier_logout',
         meta:{
             title: 'Carrier Logout'
         }
     },
     {
         path: '/carrier-register',
-        component: circular_register,
-        name: 'circular_register',
+        component: carrier_register,
+        name: 'carrier_register',
         meta:{
             title: 'Carrier Register'
         }
@@ -195,12 +198,31 @@ export default [
 
 
     {
-        path: '/circular_applied',
-        component: circular_applied,
-        name: 'circular_applied',
+        path: '/carrier-applied',
+        component: carrier_applied,
+        name: 'carrier_applied',
         meta:{
-            title: 'Circular Applied',
+            title: 'Carrier Applied',
             auth: true
+        }
+    },
+
+    {
+        path: '/carrier-user-profile',
+        component: carrier_user_profile,
+        name: 'carrier_user_profile',
+        meta:{
+            title: 'Carrier User Profile',
+            auth: true
+        }
+    },
+
+    {
+        path: '/carrier-reset-password',
+        component: carrier_reset_pass,
+        name: 'carrier_reset_pass',
+        meta:{
+            title: 'Carrier reset password',
         }
     },
 ]

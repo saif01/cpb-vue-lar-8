@@ -73,10 +73,10 @@ export default {
 
 
    
-    // Recruit Circular Data
+    // Recruit carrier Data
     recruitData(context){
         context.commit('setLoading', true)
-        axios.get('/api/circular')
+        axios.get('/api/carrier')
             .then(response=> {
                 context.commit('setRecruitData', response.data)
                 context.commit('setLoading', false)
@@ -89,8 +89,9 @@ export default {
 
     // Recruit Job Applied Data
     recruitAppliedData(context){
+        //console.log(data, context)
         context.commit('setLoading', true)
-        axios.post('/api/circular_job_applied')
+        axios.post('/api/carrier_job_applied')
             .then(response=> {
                 context.commit('setRecruitAppliedData', response.data)
                 context.commit('setLoading', false)

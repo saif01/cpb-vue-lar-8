@@ -36,7 +36,7 @@
                     <li class="nav-item" v-if="isNewsPermitted">
                         <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
                             data-target="#collapseSubItems3" aria-controls="collapseSubItems3" aria-expanded="false"><i
-                                class="far fa-newspaper"></i> News</a>
+                                class="far fa-newspaper"></i> News Section</a>
                         <ul class="nav-second-level collapse" id="collapseSubItems3" data-parent="#navAccordion">
                             <li class="nav-item">
                                 <router-link :to="{ name:'admin_event' }" class="nav-link">
@@ -59,7 +59,7 @@
                     <li class="nav-item" v-if="isAboutPermitted">
                         <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
                             data-target="#collapseSubItems4" aria-controls="collapseSubItems4" aria-expanded="false"><i
-                                class="far fa-newspaper"></i> About</a>
+                                class="far fa-newspaper"></i> About Section</a>
                         <ul class="nav-second-level collapse" id="collapseSubItems4" data-parent="#navAccordion">
                             <li class="nav-item">
                                 <router-link :to="{ name:'admin_business_operation' }" class="nav-link">
@@ -107,7 +107,7 @@
                     <li class="nav-item" v-if="isBusinessPermitted">
                         <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
                             data-target="#collapseSubItems5" aria-controls="collapseSubItems5" aria-expanded="false"><i
-                                class="far fa-newspaper"></i> Business</a>
+                                class="far fa-newspaper"></i> Business Section</a>
                         <ul class="nav-second-level collapse" id="collapseSubItems5" data-parent="#navAccordion">
                             <li class="nav-item">
                                 <router-link :to="{ name:'admin_feed' }" class="nav-link">
@@ -132,7 +132,7 @@
                     <li class="nav-item" v-if="isRecruitPermitted">
                         <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
                             data-target="#collapseSubItems6" aria-controls="collapseSubItems6" aria-expanded="false"><i
-                                class="far fa-newspaper"></i> Recruit</a>
+                                class="far fa-newspaper"></i> Carrier Section</a>
                         <ul class="nav-second-level collapse" id="collapseSubItems6" data-parent="#navAccordion">
                             <li class="nav-item">
                                 <router-link :to="{ name:'admin_recruit_circular' }" class="nav-link">
@@ -172,10 +172,10 @@
                     </li>
 
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <router-link :to="{ name:'admin_blank' }" class="nav-link"><i class="fas fa-stream"></i> Blank
                         </router-link>
-                    </li>
+                    </li> -->
 
                     <li class="nav-item">
                         <router-link :to="{ name:'admin_logout' }" class="nav-link"><i class="fas fa-sign-out-alt"></i>

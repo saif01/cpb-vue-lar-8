@@ -224,40 +224,40 @@ export default [
     },
 
 
-    // Recruit
+    // Carrier
     {
-        path: '/admin/Recruit/circular',
+        path: '/admin/carrier/circular',
         component: admin_recruit_circular,
         name: 'admin_recruit_circular',
         meta:{
-            title: 'Admin Recruit Circular',
+            title: 'Admin Carrier Circular',
             adminAuth: true,
         },   
     },
     {
-        path: '/admin/Recruit/user',
+        path: '/admin/carrier/user',
         component: admin_recruit_user,
         name: 'admin_recruit_user',
         meta:{
-            title: 'Admin Recruit User',
+            title: 'Admin Carrier User',
             adminAuth: true,
         },   
     },
     {
-        path: '/admin/Recruit/cv',
+        path: '/admin/carrier/cv',
         component: admin_recruit_cv,
         name: 'admin_recruit_cv',
         meta:{
-            title: 'Admin Recruit CV',
+            title: 'Admin Carrier CV',
             adminAuth: true,
         },   
     },
     {
-        path: '/admin/Recruit/applicant',
+        path: '/admin/carrier/applicant',
         component: admin_recruit_applicant,
         name: 'admin_recruit_applicant',
         meta:{
-            title: 'Admin Recruit Applicant',
+            title: 'Admin Carrier Applicant',
             adminAuth: true,
         },   
     },

@@ -68,18 +68,20 @@ Route::namespace('App\Http\Controllers\FrontEnd')->group( function(){
     Route::get('/headquaters', 'VueController@headquaters');
     Route::get('/history', 'VueController@history');
 
-    // Circular
-    Route::get('/circular', 'VueController@circular');
-    Route::post('/circular_msg', 'VueController@circular_msg');
+    // carrier
+    Route::get('/carrier', 'VueController@carrier');
+    Route::post('/carrier_msg', 'VueController@carrier_msg');
 
-    // Route::post('/circular_login', 'VueController@circular_login');
-    //Route::post('/circular_logout', 'VueController@circular_logout');
-    Route::post('/circular_login', 'AuthApiController@login');
-    Route::post('/circular_logout', 'AuthApiController@logout');
+    // Route::post('/carrier_login', 'VueController@carrier_login');
+    //Route::post('/carrier_logout', 'VueController@carrier_logout');
+    Route::post('/carrier_login', 'AuthApiController@login');
+    Route::post('/carrier_logout', 'AuthApiController@logout');
 
-    Route::post('/circular_job_apply', 'VueController@circular_job_apply');
-    Route::post('/circular_register', 'VueController@circular_register');
-    Route::post('/circular_job_applied', 'VueController@circular_job_applied')->middleware('auth:sanctum');
+    Route::post('/carrier_job_apply', 'VueController@carrier_job_apply');
+    Route::post('/carrier_register', 'VueController@carrier_register');
+    Route::post('/carrier_profile_update/{id}', 'VueController@carrier_profile_update');
+    Route::post('/carrier_reset_pass', 'VueController@carrier_reset_pass');
+    Route::post('/carrier_job_applied', 'VueController@carrier_job_applied')->middleware('auth:sanctum');
 
 
 });

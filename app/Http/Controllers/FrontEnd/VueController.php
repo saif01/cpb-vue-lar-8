@@ -211,8 +211,8 @@ class VueController extends Controller
     }
 
 
-    //circular
-    public function circular(){ 
+    //carrier
+    public function carrier(){ 
 
         $now = date('Y-m-d');
         $data= RecuitCircular::with('user_apply')
@@ -228,20 +228,22 @@ class VueController extends Controller
     }
 
 
-    //circular_apply
-    public function circular_job_apply(Request $request){
+    //carrier_apply
+    public function carrier_job_apply(Request $request){
 
-        //dd( $request->circularId, $request->user);
+        //dd( $request->carrierId, $request->user);
 
 
-        $circularId = $request->circularId;
+        $carrierId = $request->carrierId;
+        $user =(object) $request->user;
+        
         //$user       = (object) $request->user;
 
         // Current User
-        $user =  $request->user();
+       // $user =  $request->user();
 
        
-        //dd($user->is_admin);
+        //dd($user, $user->id,  $carrierId);
 
         // Check login or not
         
@@ -256,7 +258,7 @@ class VueController extends Controller
             $data = new RecruitApply();
 
             $data->user_id              = $user->id;
-            $data->recuit_circular_id   = $circularId;
+            $data->recuit_circular_id   = $carrierId;
             $success                    = $data->save();
 
             
@@ -275,8 +277,8 @@ class VueController extends Controller
     }
 
 
-    //circular_msg
-    public function circular_msg(Request $request){ 
+    //carrier_msg
+    public function carrier_msg(Request $request){ 
 
         $this->validate($request,[
             'subject'   => 'nullable|string|max:100',
@@ -318,8 +320,8 @@ class VueController extends Controller
     }
 
 
-    // circular_login
-    public function circular_login(Request $request){
+    // carrier_login
+    public function carrier_login(Request $request){
 
         $this->validate($request,[
             'email'     => 'required|max:100',
@@ -357,20 +359,22 @@ class VueController extends Controller
     }
 
 
-    // circular_logout
-    public function circular_logout(){
+    // carrier_logout
+    public function carrier_logout(){
         Session::flush();
         Auth::logout();
         return response()->json(['msg'=>'Logout successfully', 'icon'=>'success'], 200);
     }
 
 
-    // circular_job_applied
-    public function circular_job_applied(Request $request){ 
+    // carrier_job_applied
+    public function carrier_job_applied(Request $request){ 
 
        
         // Current User
         $user_data =  $request->user();
+
+        //dd($user_data);
 
         $user_id = $user_data->id;
 
@@ -384,13 +388,13 @@ class VueController extends Controller
 
 
 
-    // circular_register
-    public function circular_register(Request $request){
+    // carrier_register
+    public function carrier_register(Request $request){
 
           //Validate
           $this->validate($request,[
             'name'     => 'required|string|max:100',
-            'email'    => 'nullable|string|max:100',
+            'email'    => 'required|string|max:100',
             'contact'  => 'required|string|max:1000',
             'password' => 'required|string|same:conformPassword',
             'image'    => 'nullable',
@@ -445,6 +449,119 @@ class VueController extends Controller
                'msg' => 'Data not save in DB !!'
            ], 422);
         }
+
+    }
+
+
+    // carrier_profile_update
+    public function carrier_profile_update(Request $request, $id){
+
+        //Validate
+        $this->validate($request,[
+          'name'     => 'required|string|max:100',
+          'email'    => 'required|string|max:100',
+          'contact'  => 'required|string|max:1000',
+          'password' => 'nullable|string|max:100|same:conformPassword',
+          'image'    => 'nullable',
+          'document' => 'nullable',
+      ]);
+
+    
+      $data = User::find($id);
+
+      
+      if( $request->image != $data->image ){
+
+          $imagePath = 'images/admin/';
+
+          // Delete Image
+          $imgDB = $data->image;
+          //return $imgDB;
+          if(!empty($imgDB)){
+              //Delete Old File
+              if (file_exists($imagePath . $imgDB)){
+                  unlink( $imagePath . $imgDB );
+              }
+              if (file_exists($imagePath . 'small/' . $imgDB)){
+                  unlink( $imagePath . 'small/' . $imgDB );
+              }
+          }
+
+          $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+          // Original Image Save
+          \Image::make($request->image)
+          ->save(public_path($imagePath).$name);
+          // Resized image save
+          \Image::make($request->image)
+          ->resize(300, 200)
+          ->save(public_path($imagePath.'small/').$name);
+
+          $data->image     = $name;
+         
+      }
+
+
+      $document = $request->file('document');
+      // Direct any file store
+      if ($document) {
+          $document_name      = Str::random(5);
+          $ext                = strtolower($document->getClientOriginalExtension());
+          $document_full_name = $document_name . '.' . $ext;
+          $upload_path        = 'images/recruit/';
+          $document_url       = $upload_path . $document_full_name;
+          $successImg         = $document->move($upload_path, $document_full_name);
+
+          $data->document     = $document_full_name;
+      }
+
+
+      $data->name      = $request->name;
+      $data->email     = $request->email;
+      $data->contact   = $request->contact;
+      if($request->password){
+        $data->password  = $request->password;
+      }
+      $success         = $data->save();
+
+      if($success){
+          return response()->json(['user'=>$data ,'msg'=>'Updated successfully', 'icon'=>'success'], 200);
+      }else{
+          return response()->json([
+             'msg' => 'Data not save in DB !!'
+         ], 422);
+      }
+
+  }
+
+
+    // carrier_reset_pass
+    public function carrier_reset_pass(Request $request){
+
+        //Validate
+        $this->validate($request,[
+          'email'    => 'required|string|max:100',
+          'contact'  => 'required|string|max:1000',
+          'password' => 'required|string|same:conformPassword',
+      ]);
+
+      $data = User::where('email', $request->email)->where('contact', $request->contact)->first();
+
+      if($data){
+        $data->password  = $request->password;
+        $success         = $data->save();
+
+        if($success){
+            return response()->json(['msg'=>'Password reset successfully', 'icon'=>'success'], 200);
+        }else{
+            return response()->json([
+               'msg' => 'Data not save in DB !!'
+           ], 422);
+        }
+
+      }else{
+
+        return response()->json(['msg'=>'You have entered invalid email or contact', 'icon'=>'error'], 203);
+      }
 
     }
 

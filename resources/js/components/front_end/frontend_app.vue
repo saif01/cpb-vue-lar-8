@@ -8,7 +8,7 @@
                 <nav class="navbar navbar-expand-lg p-0 navbar-dark bg-transparent">
 
                     <router-link :to="{ name: 'index'}" class="navbar-brand"><img :src="'all-assets/front-end/img/logo/cpb.png'"
-                            alt="CPB" width="40" height="40">
+                            alt="cpb" width="40" height="40">
                     </router-link>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -85,11 +85,11 @@
                             </li>
 
                             <li class="nav-item">
-                                <router-link :to="{name:'circular_index'}" class="nav-link">Carrier</router-link>
+                                <router-link :to="{name:'carrier_index'}" class="nav-link">Carrier</router-link>
                             </li>
 
                             <li v-if="!user" class="nav-item">
-                                <router-link :to="{name:'circular_login'}" class="nav-link">Login</router-link>
+                                <router-link :to="{name:'carrier_login'}" class="nav-link">Login</router-link>
                             </li>
 
                             <li v-if="user" class="nav-item dropdown">
@@ -99,8 +99,9 @@
                                             class="rounded-circle" alt="Profile-Image">
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <router-link :to="{name:'circular_applied'}" class="dropdown-item" >Applied</router-link>
-                                    <router-link :to="{name:'circular_logout'}" class="dropdown-item" >Logout</router-link>
+                                    <router-link :to="{name:'carrier_applied'}" class="dropdown-item" >Applied</router-link>
+                                    <router-link :to="{name:'carrier_user_profile'}" class="dropdown-item" >My Profile</router-link>
+                                    <router-link :to="{name:'carrier_logout'}" class="dropdown-item" >Logout</router-link>
                                 </div>
                             </li>
 

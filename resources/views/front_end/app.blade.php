@@ -4,6 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>C.P. Banglaesh</title>
+        <meta name="description" content="C.P. Bangladesh Co.Ltd is a sister concern of C.P Group Founded in 1999. C.P Bangladesh Co.Ltd is doing business in the Agricultural industry">
+        <meta name="keywords" content="Agricultural, Food, Feed, Farm">
+        <meta name="author" content="Md.Syful Islam">
+         <meta name="author" content="Md.Syful Islam, syful.cse.bd@gmail.com">
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/all-assets/front-end/img/logo/icon/apple-touch-icon.png') }}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/all-assets/front-end/img/logo/icon/favicon-32x32.png') }}">
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/all-assets/front-end/img/logo/icon/favicon-16x16.png') }}">

@@ -43,7 +43,7 @@ routes.beforeEach( (to, from, next) => {
 
                 if(! response.data){
                    // Redirect to dashboard
-                    return next('circular_login');
+                    return next({name:'carrier_login'});
                 }
                 
             }).catch((errors) => {
@@ -51,7 +51,7 @@ routes.beforeEach( (to, from, next) => {
             })
         }else{
             // Redirect to dashboard
-            return next('circular_login');
+            return next({name:'carrier_login'}); 
         }
     }
 
