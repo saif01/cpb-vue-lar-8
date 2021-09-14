@@ -1,7 +1,72 @@
+import axios from "axios";
+
+// Vuex File
+import store from '../vuex/store';
+
 export default{
 
-      // // Get Localstorage Data
-      getLocalStorage(localkey, localStrogeExpHour = 1){
+    getAuthTokenLocalStorage(){
+        let auth_token = localStorage.getItem('auth_token');
+        // console.log('getUserLocalStorage called', auth_token);
+        if(auth_token){
+           
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + auth_token;
+                axios.get('/api/athenticated').then(response=>{
+                    console.log('getAuthTokenLocalStorage if', response)
+                    // Response update in Store
+                    store.commit('setAuthToken',  auth_token);
+
+                }).catch (error=>{
+                    localStorage.clear();
+                    console.log('errrr', error)
+                })
+                
+
+        }else{
+            console.log('getAuthTokenLocalStorage else')
+            localStorage.clear();
+            return null;
+            //store.state.user = null;
+        }
+        
+    },
+
+    getUserLocalStorage(){
+        let auth_token = localStorage.getItem('auth_token');
+        // console.log('getUserLocalStorage called', auth_token);
+        if(auth_token){
+           
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + auth_token;
+                axios.get('/api/user').then(response=>{
+                    console.log('getUserLocalStorage if', response)
+                    // Response update in Store
+                    store.commit('setUser',  response.data)
+
+                }).catch (error=>{
+                    localStorage.clear();
+                    console.log('errrr', error)
+                })
+                
+
+        }else{
+            console.log('getUserLocalStorage else')
+            localStorage.clear();
+            return null;
+            //store.state.user = null;
+        }
+        
+    },
+
+
+
+
+
+
+
+
+
+    // // Get Localstorage Data
+    getLocalStorage(localkey, localStrogeExpHour = 1){
 
         // Check Localstorage time limit
         let hours = localStrogeExpHour;

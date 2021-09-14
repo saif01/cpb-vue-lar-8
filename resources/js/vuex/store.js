@@ -14,8 +14,10 @@ import common from '../common/common';
 export default new Vuex.Store({
 
     state : {
-        authToken       : localStorage.getItem('auth_token') || null,
-        user            : null,
+        authToken       : common.methods.getAuthTokenLocalStorage('auth_token') || null,
+        //authToken       : localStorage.getItem('auth_token') || null,
+        user            : common.methods.getUserLocalStorage() || null,
+        //user            : null,
         loading         : false,
         footerData      : '',
         businessData    : {},

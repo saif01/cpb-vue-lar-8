@@ -9,7 +9,7 @@
                         <h2>Circular</h2>
                         <ol>
                             <li>
-                                <router-link to="/">Home</router-link>
+                                <router-link :to="{name:'index'}">Home</router-link>
                             </li>
                             <li>Circular</li>
                             <li>Dashboard</li>
@@ -237,7 +237,7 @@
 
                         
                             // Redirect to dashboard
-                            this.$router.push('circular_login');
+                            this.$router.push({ name:'circular_login' });
 
                             Toast.fire({
                                 icon: response.data.icon,

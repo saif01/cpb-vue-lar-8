@@ -9,7 +9,7 @@
                         <h2>Circular</h2>
                         <ol>
                             <li>
-                                <router-link to="/">Home</router-link>
+                                <router-link :to="{name:'index'}">Home</router-link>
                             </li>
                             <li>Register</li>
                         </ol>
@@ -170,7 +170,7 @@
                    
 
                     // Redirect to dashboard
-                    this.$router.push('circular_login')
+                    this.$router.push({name:'circular_login'})
 
                 }else {
                     Swal.fire("Failed!", data.message, "warning");

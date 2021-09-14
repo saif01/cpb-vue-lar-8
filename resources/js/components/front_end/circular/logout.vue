@@ -30,7 +30,7 @@ export default {
 
     mounted(){
         console.log('Logout Component', this.user)
-        if(this.user){
+        if(this.user.id){
             this.logout(this.user.id);
         }
 
@@ -44,7 +44,7 @@ export default {
 
 
         // Redirect to dashboard
-        this.$router.push({ name:'/'});
+        this.$router.push({ name:'index'});
 
     },
 

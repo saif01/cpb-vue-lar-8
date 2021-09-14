@@ -85,7 +85,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <router-link :to="{name:'circular_index'}" class="nav-link">Circulars</router-link>
+                                <router-link :to="{name:'circular_index'}" class="nav-link">Carrier</router-link>
                             </li>
 
                             <li v-if="!user" class="nav-item">
@@ -176,7 +176,7 @@
             // Store Visitor Log
             this.$store.dispatch('visitor_log')
 
-            // console.log('main_app token : ', this.token,  this.user);
+            console.log('main_app mount : ', this.token,  this.user);
 
             // window.axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
 
@@ -191,14 +191,14 @@
         created() {
             this.$Progress.start();
             //this.getDirectData();
-            //this.$store.dispatch('businessData')
+            //this.$store.dispatch('businessData') 
 
-            
-            if(this.token){
-                // Authenticated user data
-                console.log('main_app created')
-                this.$store.dispatch('authUserData')
-            }
+            console.log('main_app created', this.token)
+            // if(this.token){
+            //     // Authenticated user data
+            //     console.log('main_app created')
+            //     this.$store.dispatch('authUserData')
+            // }
            
 
             // Localstorage data update at store
@@ -213,10 +213,9 @@
         computed : {
             // map this.count to store.state.count
             ...mapGetters({
-                //'token'     : 'getAuthToken',
+                // 'token'     : 'getAuthToken',
                 // 'user'      : 'getUser',
-                //'business'  : 'getBusinessData'
-                
+               
             })
         },
 

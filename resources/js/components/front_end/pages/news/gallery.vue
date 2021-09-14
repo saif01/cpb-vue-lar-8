@@ -63,7 +63,7 @@
                     <p class="text-center"><i class="fas fa-spinner fa-pulse text-success fa-10x"></i></p>
                 </div>
             </div>
-            <h1 v-if="!totalValue && !dataLoading" class="text-danger text-center">Sorry !! Data Not Available</h1>
+            <!-- <h1 v-if="!totalValue && !dataLoading" class="text-danger text-center">Sorry !! Data Not Available</h1> -->
 
 
         </main>
@@ -88,7 +88,7 @@
 
                 // DataTbl Common Featurs 
                 paginate: 12,
-
+                dataLoading: true,
                 // vue-cool-lightbox
                 images: [],
                 index: null,

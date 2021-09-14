@@ -71,8 +71,8 @@
                         </div>
                     </div>
 
-                    <h1 v-if="!totalValue && !dataLoading" class="text-danger text-center">Sorry !! Data Not Available
-                    </h1>
+                    <!-- <h1 v-if="!totalValue && !dataLoading" class="text-danger text-center">Sorry !! Data Not Available
+                    </h1> -->
 
                 </div>
             </section>

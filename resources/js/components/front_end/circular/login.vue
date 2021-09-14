@@ -9,7 +9,7 @@
                         <h2>Circular</h2>
                         <ol>
                             <li>
-                                <router-link to="/">Home</router-link>
+                                <router-link :to="{name:'index'}">Home</router-link>
                             </li>
                             <li>Login</li>
                         </ol>
@@ -151,7 +151,7 @@
                     // console.log( JSON.parse( this.$store.state.user ) )
 
                     // Redirect to dashboard
-                    this.$router.push('circular_index')
+                    this.$router.push({name:'circular_index'})
 
                    
                 }else if(response.status == 203){
@@ -177,15 +177,15 @@
 
 
         created() {
-
-            if(this.token){
+            console.log('Circular Login Component', this.user);
+            if(this.user){
                 // Auth true redirect to dashboard
-                this.$router.push('circular_index')
+                this.$router.push({name:'circular_index'})
             }
 
             this.$Progress.start();
             //this.getDirectData();
-            console.log('Circular Login Component');
+            
             this.$Progress.finish();
 
         },

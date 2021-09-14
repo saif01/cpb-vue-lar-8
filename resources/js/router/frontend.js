@@ -159,37 +159,37 @@ export default [
 
 
     {
-        path: '/circular_index',
+        path: '/carrier-index',
         component: circular_index,
         name: 'circular_index',
         meta:{
-            title: 'Circular Index'
+            title: 'Carrier Index'
         }
     },
 
     {
-        path: '/circular_login',
+        path: '/carrier-login',
         component: circular_login,
         name: 'circular_login',
         meta:{
-            title: 'Circular Login'
+            title: 'Carrier Login'
         }
     },
 
     {
-        path: '/circular_logout',
+        path: '/carrier-logout',
         component: circular_logout,
         name: 'circular_logout',
         meta:{
-            title: 'Circular Logout'
+            title: 'Carrier Logout'
         }
     },
     {
-        path: '/circular_register',
+        path: '/carrier-register',
         component: circular_register,
         name: 'circular_register',
         meta:{
-            title: 'Circular Register'
+            title: 'Carrier Register'
         }
     },
 

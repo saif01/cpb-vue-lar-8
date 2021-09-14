@@ -127,8 +127,8 @@ class GalleryController extends Controller
     public function bulk_store(Request $request)
     {
         // dd($request->file('file')->getRealPath(), $request->file('file'), $request->all());
-
-    	$imageName = time().'.'.$request->file->getClientOriginalExtension();
+        $random_name      = Str::random(8);
+    	$imageName = $random_name. time().'.'.$request->file->getClientOriginalExtension();
         $request->file->move(public_path('images/gallery/'), $imageName);
 
        // dd(public_path('images/gallery/'). $imageName);
