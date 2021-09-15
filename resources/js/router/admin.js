@@ -1,7 +1,7 @@
 import admin_index from '../components/admin/pages/index.vue';
 import admin_login from '../components/admin/pages/auth/login.vue';
 import admin_logout from '../components/admin/pages/auth/logout.vue';
-import admin_404 from '../components/admin/pages/404.vue';
+import admin_404 from '../components/admin/pages/404_admin.vue';
 import admin_blank from '../components/admin/pages/blank.vue';
 
 // User
@@ -48,6 +48,14 @@ export default [
             title: 'Admin Dashboard',
             adminAuth: true,
         },   
+    },
+    {
+        path: '/admin/*',
+        component: admin_404,
+        name: 'admin_404',
+        meta:{
+            title: 'Page Not Found'
+        }
     },
     {
         path: '/admin/login',

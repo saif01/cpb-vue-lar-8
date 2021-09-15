@@ -1,5 +1,6 @@
-import index from '../components/front_end/pages/index.vue'
-import contact from '../components/front_end/pages/contact.vue'
+import index from '../components/front_end/pages/index.vue';
+import not_found from '../components/front_end/pages/404.vue';
+import contact from '../components/front_end/pages/contact.vue';
 
 // News
 import news_gallery from '../components/front_end/pages/news/gallery.vue';
@@ -38,6 +39,14 @@ export default [
         name: 'index',
         meta:{
             title: 'Home'
+        }
+    },
+    {
+        path: '*',
+        component: not_found,
+        name: 'not_found',
+        meta:{
+            title: 'Not Found'
         }
     },
     {
