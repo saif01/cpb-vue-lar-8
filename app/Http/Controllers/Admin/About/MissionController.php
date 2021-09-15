@@ -40,6 +40,7 @@ class MissionController extends Controller
 
     
         $data->details    = $request->details;
+        $data->status       = null;
         $data->created_by = request()->user()->id ?? null;
         $success          = $data->save();
 
@@ -66,6 +67,7 @@ class MissionController extends Controller
 
       
         $data->details    = $request->details;
+        $data->status       = null;
         $data->created_by = request()->user()->id ?? null;
         $success          = $data->save();
 

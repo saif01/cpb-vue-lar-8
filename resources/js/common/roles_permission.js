@@ -35,5 +35,11 @@ export default {
     },
     isAboutPermitted(){
         return this.checkAnyRole(['Administrator', 'About']);
+    },
+    isPublishPermitted(){
+        return this.checkAnyRole(['Administrator', 'Publish']);
+    },
+    isLogPermitted(){
+        return this.checkAnyRole(['Administrator', 'Log']);
     }
 }

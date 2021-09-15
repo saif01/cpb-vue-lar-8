@@ -68,6 +68,7 @@ class FeedController extends Controller
         $data->website    = $request->website;
         $data->name       = $request->name;
         $data->details    = $request->details;
+        $data->status       = null;
         $data->created_by = request()->user()->id ?? null;
         $success          = $data->save();
 
@@ -120,6 +121,7 @@ class FeedController extends Controller
         $data->website    = $request->website;
         $data->name       = $request->name;
         $data->details    = $request->details;
+        $data->status       = null;
         $data->created_by = request()->user()->id ?? null;
         $success          = $data->save();
 

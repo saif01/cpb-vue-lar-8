@@ -58,6 +58,14 @@
                                 <td>{{ singleData.details }}</td>
                                 
                                 <td class="text-center">
+                                    <div v-if="isPublishPermitted">
+                                        <button v-if="singleData.status" @click="statusChange(singleData)" class="btn btn-success btn-sm m-1">
+                                            <i class="far fa-check-circle"></i> Active
+                                        </button>
+                                        <button v-else @click="statusChange(singleData)" class="btn btn-warning btn-sm m-1">
+                                            <i class="far fa-times-circle"></i> Inactive
+                                        </button>
+                                    </div>
                                     <button v-if="isEditPermitted" @click="editDataModel(singleData)" class="btn btn-warning btn-sm">
                                         <i class="fa fa-edit blue"></i> Edit
                                     </button>

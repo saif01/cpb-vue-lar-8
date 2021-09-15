@@ -158,7 +158,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item" v-if="isRecruitPermitted">
+                    <li class="nav-item" v-if="isLogPermitted">
                         <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
                             data-target="#collapseSubItems7" aria-controls="collapseSubItems7" aria-expanded="false"><i
                                 class="far fa-newspaper"></i> Login Logs</a>

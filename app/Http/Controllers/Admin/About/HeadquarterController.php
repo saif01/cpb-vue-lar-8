@@ -48,6 +48,7 @@ class HeadquarterController extends Controller
         $data->email      = $request->email;
         $data->website    = $request->website;
       
+        $data->status       = null;
         $data->created_by = request()->user()->id ?? null;
         $success          = $data->save();
 
@@ -84,6 +85,7 @@ class HeadquarterController extends Controller
         $data->email      = $request->email;
         $data->website    = $request->website;
       
+        $data->status       = null;
         $data->created_by = request()->user()->id ?? null;
         $success          = $data->save();
 

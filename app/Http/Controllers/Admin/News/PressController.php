@@ -79,6 +79,7 @@ class PressController extends Controller
         $data->title      = $request->title;
         $data->date       = $request->date;
         $data->details    = $request->details;
+        $data->status     = null;
         $data->created_by = request()->user()->id ?? null;
         $success          = $data->save();
 
@@ -157,6 +158,7 @@ class PressController extends Controller
         $data->title      = $request->title;
         $data->date       = $request->date;
         $data->details    = $request->details;
+        $data->status     = null;
         $data->created_by = request()->user()->id ?? null;
         $success          = $data->save();
 
