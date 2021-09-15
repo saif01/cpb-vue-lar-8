@@ -42,14 +42,6 @@ export default [
         }
     },
     {
-        path: '*',
-        component: not_found,
-        name: 'not_found',
-        meta:{
-            title: 'Not Found'
-        }
-    },
-    {
         path: '/contact',
         component: contact,
         name: 'contact',
@@ -232,6 +224,16 @@ export default [
         name: 'carrier_reset_pass',
         meta:{
             title: 'Carrier reset password',
+        }
+    },
+
+
+    {
+        path: '*',
+        component: not_found,
+        name: 'not_found',
+        meta:{
+            title: 'Not Found'
         }
     },
 ]

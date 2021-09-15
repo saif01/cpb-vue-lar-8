@@ -50,14 +50,6 @@ export default [
         },   
     },
     {
-        path: '/admin/*',
-        component: admin_404,
-        name: 'admin_404',
-        meta:{
-            title: 'Page Not Found'
-        }
-    },
-    {
         path: '/admin/login',
         component: admin_login,
         name: 'admin_login',
@@ -279,7 +271,14 @@ export default [
         },   
     },
 
-
+    {
+        path: '/admin/*',
+        component: admin_404,
+        name: 'admin_404',
+        meta:{
+            title: 'Page Not Found'
+        }
+    },
 
     
 
