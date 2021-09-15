@@ -5,7 +5,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-6">
-                        <h3 class="card-title">User Table</h3>
+                        <h3 class="card-title">CV Table</h3>
                     </div>
                     <div class="col-6">
 

@@ -43,6 +43,11 @@
                                     <span v-if="sort_direction == 'asc' && sort_field == 'id'">&darr;</span>
 
                                 </th>
+                                 <th>
+                                    <a href="#" @click.prevent="change_sort('title')">Title</a>
+                                    <span v-if="sort_direction == 'desc' && sort_field == 'title'">&uarr;</span>
+                                    <span v-if="sort_direction == 'asc' && sort_field == 'title'">&darr;</span>
+                                </th>
                                 <th>
                                     <a href="#" @click.prevent="change_sort('details')">Details</a>
                                     <span v-if="sort_direction == 'desc' && sort_field == 'details'">&uarr;</span>
@@ -55,7 +60,6 @@
                         <tbody>
                             <tr v-for="singleData in allData.data" :key="singleData.id">
                                 <td>{{ singleData.id }}</td>
-                                <td>{{ singleData.date }}</td>
                                 <td>{{ singleData.title }}</td>
                                 <td class="text-center">
                                

@@ -228,6 +228,11 @@ export default [
     },
 
 
+
+
+
+    
+
     {
         path: '*',
         component: not_found,

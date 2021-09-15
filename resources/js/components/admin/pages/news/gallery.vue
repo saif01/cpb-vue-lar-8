@@ -5,12 +5,12 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-4">
-                        <h3 class="card-title">Press Table</h3>
+                        <h3 class="card-title">Gallery Table</h3>
                     </div>
                     <div class="col-8">
                         <div class="row">
                             <div class="col-6">
-                                <b-button v-if="selectedAll && isDeletePermitted" variant="outline-danger" size="sm" pill @click="bulk_delete"><i
+                                <b-button v-if="isDeletePermitted" variant="outline-danger" size="sm" pill @click="bulk_delete"><i
                                         class="far fa-plus-square"></i>
                                     Delete All</b-button>
                             </div>
@@ -246,47 +246,56 @@
 
              // bulk_delete
             bulk_delete() {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Yes, delete All!'
-                }).then((result) => {
 
-                    // Send request to the server
-                    if (result.value) {
-                        //console.log(id);
-                        this.$Progress.start();
-                        console.log('delete data', this.selected)
+                if(this.selected.length < 1){
+                    console.log('bulk delete if :', this.selected.length)
+                    alert('Please, select item for delete');
+                }else{
+                
 
-                        axios({
-                                method: 'delete',
-                                url: this.currentUrl + '/bulk_delete/',
-                                data: {
-                                    selected: this.selected,
-                                }
-                            }).then((response) => {
-                                console.log(response);
-                                Swal.fire(
-                                    'Deleted!',
-                                    'Your file has been deleted.',
-                                    'success'
-                                );
-                                // Refresh Tbl Data with current page
-                                this.selected = [];
-                                this.selectedAll = '';
-                                this.getGallery();
-                                this.$Progress.finish();
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yes, delete All!'
+                    }).then((result) => {
 
-                            }).catch((data) => {
-                                Swal.fire("Failed!", data.message, "warning");
-                            });
+                        // Send request to the server
+                        if (result.value) {
+                            //console.log(id);
+                            this.$Progress.start();
+                            console.log('delete data', this.selected)
 
-                      
-                    }
-                })
+                            axios({
+                                    method: 'delete',
+                                    url: this.currentUrl + '/bulk_delete/',
+                                    data: {
+                                        selected: this.selected,
+                                    }
+                                }).then((response) => {
+                                    console.log(response);
+                                    Swal.fire(
+                                        'Deleted!',
+                                        'Your file has been deleted.',
+                                        'success'
+                                    );
+                                    // Refresh Tbl Data with current page
+                                    this.selected = [];
+                                    this.selectedAll = '';
+                                    this.getGallery();
+                                    this.$Progress.finish();
+
+                                }).catch((data) => {
+                                    Swal.fire("Failed!", data.message, "warning");
+                                });
+
+                        
+                        }
+                    })
+                    
+                }
             },
 
 

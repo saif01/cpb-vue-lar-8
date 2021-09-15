@@ -271,6 +271,10 @@ export default [
         },   
     },
 
+
+
+
+    
     {
         path: '/admin/*',
         component: admin_404,
