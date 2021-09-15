@@ -114,6 +114,17 @@ class AdminAuthController extends Controller
         // dd($agent, $device, $browser, $browser_version, $platform, $platform_version);
         $oldData = AdminLog::where('login_id', $login_id)->orderBy('id', 'desc')->whereDate('created_at', $today_date)->first();
         if($oldData){
+
+            $oldData->ip           =  $clientIP;
+            $oldData->iso_code     =  $geoip->iso_code;
+            $oldData->country      =  $geoip->country;
+            $oldData->city         =  $geoip->city;
+            $oldData->state_name   =  $geoip->state_name;
+            $oldData->postal_code  =  $geoip->postal_code;
+            $oldData->lat          =  $geoip->lat;
+            $oldData->lon          =  $geoip->lon;
+            $oldData->timezone     =  $geoip->timezone;
+            $oldData->currency     =  $geoip->currency;
             
             $oldData->device       =  $device;
             $oldData->browser      =  $browser;
