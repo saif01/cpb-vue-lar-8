@@ -6,7 +6,7 @@
                 <div class="container">
 
                     <div class="d-flex justify-content-between align-items-center">
-                        <h2>Carrier</h2>
+                        <h2>Login</h2>
                         <ol>
                             <li>
                                 <router-link :to="{name:'index'}">Home</router-link>
