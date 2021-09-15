@@ -407,15 +407,15 @@ class VueController extends Controller
         if($request->image){
 
             $imagePath = 'images/admin/';
-
-            $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+            $random_name      = Str::random(8);
+            $name = $random_name.time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
             // Original Image Save
             \Image::make($request->image)
-            ->save(public_path($imagePath).$name);
+            ->save($imagePath.$name);
             // Resized image save
             \Image::make($request->image)
             ->resize(300, 200)
-            ->save(public_path($imagePath.'small/').$name);
+            ->save($imagePath.'small/'.$name);
 
             $data->image     = $name;
            
@@ -425,7 +425,7 @@ class VueController extends Controller
         $document = $request->file('document');
         // Direct any file store
         if ($document) {
-            $document_name      = Str::random(5);
+            $document_name      = Str::random(8);
             $ext                = strtolower($document->getClientOriginalExtension());
             $document_full_name = $document_name . '.' . $ext;
             $upload_path        = 'images/recruit/';
@@ -486,15 +486,17 @@ class VueController extends Controller
                   unlink( $imagePath . 'small/' . $imgDB );
               }
           }
-
-          $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+          $random_name      = Str::random(8);
+          $name = $random_name. time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
           // Original Image Save
           \Image::make($request->image)
-          ->save(public_path($imagePath).$name);
+          ->save($imagePath.$name);
+          //->save(public_path($imagePath).$name);
           // Resized image save
           \Image::make($request->image)
           ->resize(300, 200)
-          ->save(public_path($imagePath.'small/').$name);
+          ->save($imagePath.'small/'.$name);
+          //->save(public_path($imagePath.'small/').$name);
 
           $data->image     = $name;
          
@@ -504,7 +506,7 @@ class VueController extends Controller
       $document = $request->file('document');
       // Direct any file store
       if ($document) {
-          $document_name      = Str::random(5);
+          $document_name      = Str::random(8);
           $ext                = strtolower($document->getClientOriginalExtension());
           $document_full_name = $document_name . '.' . $ext;
           $upload_path        = 'images/recruit/';

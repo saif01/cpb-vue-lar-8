@@ -47,11 +47,11 @@ class PresidentMessageController extends Controller
             $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
             // Original Image Save
             \Image::make($request->image)
-            ->save(public_path($imagePath).$name);
+            ->save($imagePath.$name);
             // Resized image save
             \Image::make($request->image)
             ->resize(300, 200)
-            ->save(public_path($imagePath.'small/').$name);
+            ->save($imagePath.'small/'.$name);
 
             $data->image     = $name;
             
@@ -109,11 +109,11 @@ class PresidentMessageController extends Controller
             $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
             // Original Image Save
             \Image::make($request->image)
-            ->save(public_path($imagePath).$name);
+            ->save($imagePath.$name);
             // Resized image save
             \Image::make($request->image)
             ->resize(300, 200)
-            ->save(public_path($imagePath.'small/').$name);
+            ->save($imagePath.'small/'.$name);
 
             $data->image     = $name;
             

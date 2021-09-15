@@ -129,13 +129,13 @@ class GalleryController extends Controller
         // dd($request->file('file')->getRealPath(), $request->file('file'), $request->all());
         $random_name      = Str::random(8);
     	$imageName = $random_name. time().'.'.$request->file->getClientOriginalExtension();
-        $request->file->move(public_path('images/gallery/'), $imageName);
+        $request->file->move('images/gallery/', $imageName);
 
        // dd(public_path('images/gallery/'). $imageName);
-        $full_path = public_path('images/gallery/').$imageName;
+        $full_path = 'images/gallery/'.$imageName;
         \Image::make($full_path)
         ->resize(300, 200)
-        ->save(public_path('images/gallery/small/').$imageName);
+        ->save('images/gallery/small/'.$imageName);
 
 
         $data = new NewsGallery();

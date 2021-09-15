@@ -14,11 +14,14 @@ class ImageUpload{
        
         // Original Image Save
         \Image::make($image)
-        ->save(public_path($imagePath).$name);
+        ->save($imagePath.$name);
+        //->save(public_path($imagePath).$name);
         // Resized image save
         \Image::make($image)
         ->resize(300, 200)
-        ->save(public_path($imgPathSm).$name);
+        ->save($imgPathSm.$name);
+        //->save(public_path($imgPathSm).$name);
+
 
         return $name;
     }
@@ -42,11 +45,13 @@ class ImageUpload{
         $name = $randomStr. time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
         // Original Image Save
         \Image::make($image)
-        ->save(public_path($imagePath).$name);
+        ->save($imagePath.$name);
+        //->save(public_path($imagePath).$name);
         // Resized image save
         \Image::make($image)
         ->resize(300, 200)
-        ->save(public_path($imgPathSm).$name); 
+        ->save($imgPathSm.$name);
+        //->save(public_path($imgPathSm).$name);  
 
         return $name;
     }
