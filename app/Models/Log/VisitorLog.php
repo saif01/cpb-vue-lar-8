@@ -9,6 +9,8 @@ class VisitorLog extends Model
 {
     use HasFactory;
 
+    protected $guarded=[];
+
     public function user(){
         return $this->belongsTo('App\Models\User', 'login_id', 'id');
     }
@@ -23,12 +25,10 @@ class VisitorLog extends Model
         ->Orwhere('browser', 'LIKE', '%'.$val.'%')
         ->Orwhere('platform', 'LIKE', '%'.$val.'%')
         ->Orwhere('count', 'LIKE', '%'.$val.'%')
-        ->Orwhere('created_at', 'LIKE', '%'.$val.'%')
-        ->WhereHas('user', function ($query) use($val){
-            $query->where('name', 'LIKE', '%' . $val . '%' );
-        });
-        
-    
+        ->Orwhere('created_at', 'LIKE', '%'.$val.'%');
+        // ->WhereHas('user', function ($query) use($val){
+        //     $query->where('name', 'LIKE', '%' . $val . '%' );
+        // });
        
     }
 }

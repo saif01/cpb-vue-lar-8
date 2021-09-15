@@ -167,6 +167,9 @@
                                 <router-link :to="{ name:'admin_visitors_log' }" class="nav-link">
                                     <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Visitors Logs</span>
                                 </router-link>
+                                <router-link :to="{ name:'admin_login_log' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Admins Logs</span>
+                                </router-link>
                             </li>
                         </ul>
                     </li>

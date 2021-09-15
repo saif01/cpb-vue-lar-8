@@ -217,8 +217,8 @@ class VueController extends Controller
         $now = date('Y-m-d');
         $data= RecuitCircular::with('user_apply')
             ->where('status', '1')
-            //->where('publishDate', '<=', $now)
-            //->where('deadline', '>=', $now)
+            ->where('publishDate', '<=', $now)
+            ->where('deadline', '>=', $now)
             ->orderBy('publishDate')
             ->get();
 

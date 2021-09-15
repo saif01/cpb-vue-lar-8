@@ -50,7 +50,7 @@
                                 <th scope="row">{{ index + 1 }}</th>
                                 <td v-if="item.circular">{{ item.circular.jobTitle }}</td>
                                 <td>{{ item.user.name }}</td>
-                                <td>{{ item.created_at }}</td>
+                                <td>{{ item.created_at | moment("dddd, MMMM Do YYYY") }}</td>
                             </tr>
                         </tbody>
                     </table>

@@ -85,7 +85,7 @@
 
                                 <td class="text-center">
 
-                                    <button v-if="isDeletePermitted" @click="deleteData(singleData.id)"
+                                    <button v-if="isDeletePermitted" @click="deleteDataDirict(singleData.id)"
                                         class="btn btn-danger btn-sm m-1"><i class="fa fa-trash red"></i>
                                         Delete</button>
                                 </td>

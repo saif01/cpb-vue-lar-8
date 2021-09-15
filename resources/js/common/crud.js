@@ -87,6 +87,40 @@ export default{
         })
     },
 
+
+    // Delete DataDirict Data without form
+    deleteDataDirict(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+
+            // Send request to the server
+            if (result.value) {
+                //console.log(id);
+                this.$Progress.start();
+                axios.delete(this.currentUrl + '/destroy/' + id).then((response) => {
+                    //console.log(response);
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    );
+                    // Refresh Tbl Data with current page
+                    this.getResults(this.currentPageNumber);
+                    this.$Progress.finish();
+
+                }).catch((data) => {
+                    Swal.fire("Failed!", data.message, "warning");
+                });
+            }
+        })
+    },
+
     // Change Status
     statusChange(data){
         console.log('status', data.status)

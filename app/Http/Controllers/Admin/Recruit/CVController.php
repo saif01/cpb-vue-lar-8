@@ -30,6 +30,7 @@ class CVController extends Controller
     // destroy
     public function destroy($id)
     {
+        
         $data       =  RecuitCvSend::find($id);
         $success    =  $data->delete();
 

@@ -5,7 +5,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-6">
-                        <h3 class="card-title">Visitors Log Table</h3>
+                        <h3 class="card-title">Visitors Logs Table</h3>
                     </div>
                     <div class="col-6">
 
@@ -84,7 +84,7 @@
                                 <td>{{ singleData.id }}</td>
                                 <td>{{ singleData.ip }}</td>
                                 <td>{{ singleData.country }}</td>
-                                <td>{{ singleData.created_at | moment("dddd, MMMM Do YYYY")  }} </td>
+                                <td>{{ singleData.created_at | moment("ddd, MMMM Do YYYY, h:mm:ss a")  }} </td>
                                 <td>{{ singleData.device }}</td>
                                 <td>{{ singleData.browser }} - {{ singleData.browser_version }}</td>
                                 <td>{{ singleData.platform }} - {{ singleData.platform_version }}</td>

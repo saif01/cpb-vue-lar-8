@@ -36,6 +36,7 @@ import admin_recruit_applicant from '../components/admin/pages/recruit/applicant
 
 //Log
 import admin_visitors_log from '../components/admin/pages/logs/visitors.vue';
+import admin_login_log from '../components/admin/pages/logs/admins.vue';
 
 
 
@@ -270,6 +271,22 @@ export default [
             adminAuth: true,
         },   
     },
+    {
+        path: '/admin/login/log',
+        component: admin_login_log,
+        name: 'admin_login_log',
+        meta:{
+            title: 'Admin Login Log',
+            adminAuth: true,
+        },   
+    },
+
+
+
+
+
+
+
 
 
 
