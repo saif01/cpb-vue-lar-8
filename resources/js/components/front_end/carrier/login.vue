@@ -59,7 +59,7 @@
 
                                         <div class="row mt-4">
                                             <div class="col">
-                                                <router-link to="carrier_register" class="btn btn-info btn-sm text-white" >Do you want to register ?</router-link>
+                                                <router-link :to="{name:'carrier_register'}" class="btn btn-info btn-sm text-white" >Do you want to register ?</router-link>
                                             </div>
                                             <div class="col">
                                                 <router-link :to="{name:'carrier_reset_pass'}" class="btn btn-warning btn-sm float-right" >Password Reset ?</router-link>
