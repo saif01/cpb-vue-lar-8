@@ -18,7 +18,7 @@ class CVController extends Controller
         $sort_field     = Request('sort_field', 'id');
 
         $allData = RecuitCvSend::orderBy($sort_field, $sort_direction)
-                //->search( trim(preg_replace('/\s+/' ,' ', $search)) )
+                ->search( trim(preg_replace('/\s+/' ,' ', $search)) )
                 ->paginate($paginate);
 
         return response()->json($allData, 200);

@@ -27,8 +27,8 @@
                         </div>
 
                         <div class="col">
-                            <!-- <input v-model="search" class="form-control form-control-sm" type="text"
-                                placeholder="Search by any data at the table..."> -->
+                            <input v-model="search" class="form-control form-control-sm" type="text"
+                                placeholder="Search by any data at the table...">
                         </div>
                     </div>
 
@@ -52,6 +52,11 @@
                                     <span v-if="sort_direction == 'desc' && sort_field == 'message'">&uarr;</span>
                                     <span v-if="sort_direction == 'asc' && sort_field == 'message'">&darr;</span>
                                 </th>
+                                <th>
+                                    <a href="#" @click.prevent="change_sort('created_at')">Send Date</a>
+                                    <span v-if="sort_direction == 'desc' && sort_field == 'created_at'">&uarr;</span>
+                                    <span v-if="sort_direction == 'asc' && sort_field == 'created_at'">&darr;</span>
+                                </th>
 
                                 <th>Action</th>
                             </tr>
@@ -68,6 +73,7 @@
                                 </td>
                                 <td>{{ singleData.subject }}</td>
                                 <td>{{ singleData.message }}</td>
+                                <td>{{ singleData.created_at | moment("ddd, MMMM Do YYYY")  }} </td>
 
                                 <td class="text-center">
 
@@ -106,7 +112,7 @@
 
 
 <script>
-import axios from 'axios';
+    //  import axios from 'axios';
     export default {
 
         data() {

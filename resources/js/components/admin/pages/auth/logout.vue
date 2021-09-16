@@ -35,7 +35,11 @@ export default {
             this.logout(this.adminUser.id);
         }
 
+        // Clear Session data by key
         this.clearSessionStorage('admin_auth_token');
+        this.clearSessionStorage('admin_user');
+        // Clear All Session
+        this.clearSessionStorage();
 
         // Store update
         this.$store.commit('setAdminAuthToken', null)

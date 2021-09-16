@@ -1,84 +1,202 @@
 <template>
     <div>
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-                </li>
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">CPB Admin</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            <span v-if="adminUser">Name: {{ adminUser.name }}</span>
-        </nav>
-        <!-- /.navbar -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto sidenav" id="navAccordion">
+                    <li class="nav-item active">
+                        <router-link :to="{name: 'admin'}" class="nav-link"><i class="fas fa-home"></i> Home
+                        </router-link>
+                    </li>
 
-        <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <router-link :to="{name: 'admin'}" class="brand-link">
-                <img src="#" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Admin</span>
-            </router-link>
+                    <li class="nav-item" v-if="isAdminManagePermitted || isRoleManagePermitted">
+                        <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
+                            data-target="#collapseSubItems2" aria-controls="collapseSubItems2" aria-expanded="false"><i
+                                class="fas fa-users-cog"></i> Admin Management</a>
+                        <ul class="nav-second-level collapse" id="collapseSubItems2" data-parent="#navAccordion">
+                            <li class="nav-item" v-if="isAdminManagePermitted">
+                                <router-link :to="{ name:'admin_user' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> User</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item" v-if="isRoleManagePermitted">
+                                <router-link :to="{ name:'admin_role' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Role</span>
+                                </router-link>
+                            </li>
 
-            <!-- Sidebar -->
-            <div class="sidebar">
+                        </ul>
+                    </li>
 
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                    <li class="nav-item" v-if="isNewsPermitted">
+                        <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
+                            data-target="#collapseSubItems3" aria-controls="collapseSubItems3" aria-expanded="false"><i
+                                class="far fa-newspaper"></i> News Section</a>
+                        <ul class="nav-second-level collapse" id="collapseSubItems3" data-parent="#navAccordion">
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_event' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Event</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_press' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Press</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_gallery' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Gallery</span>
+                                </router-link>
+                            </li>
+                        </ul>
+                    </li>
 
-                        <li class="nav-item">
-                            <router-link :to="{name: 'admin'}" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Dashboard</p>
-                            </router-link>
-                        </li>
+                    <li class="nav-item" v-if="isAboutPermitted">
+                        <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
+                            data-target="#collapseSubItems4" aria-controls="collapseSubItems4" aria-expanded="false"><i
+                                class="far fa-newspaper"></i> About Section</a>
+                        <ul class="nav-second-level collapse" id="collapseSubItems4" data-parent="#navAccordion">
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_business_operation' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Business
+                                        Operations</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_headquarter' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i>
+                                        Headquarters</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_chairman_message' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Chairman
+                                        Message</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_president_message' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> President
+                                        Message</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_mission' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Mission</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_vision' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Vision</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_history' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> History</span>
+                                </router-link>
+                            </li>
 
-                        <li class="nav-item">
-                            <router-link :to="{name: 'admin_blank'}" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Blank Page</p>
-                            </router-link>
-                        </li>
+                        </ul>
+                    </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    News
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <router-link :to="{name:'admin_event'}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Event</p>
-                                    </router-link>
-                                </li>
+                    <li class="nav-item" v-if="isBusinessPermitted">
+                        <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
+                            data-target="#collapseSubItems5" aria-controls="collapseSubItems5" aria-expanded="false"><i
+                                class="far fa-newspaper"></i> Business Section</a>
+                        <ul class="nav-second-level collapse" id="collapseSubItems5" data-parent="#navAccordion">
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_feed' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Feed</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_food' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Food</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_farm' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Farm</span>
+                                </router-link>
+                            </li>
 
-                            </ul>
-                        </li>
-
-
-
+                        </ul>
+                    </li>
 
 
+                    <li class="nav-item" v-if="isRecruitPermitted">
+                        <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
+                            data-target="#collapseSubItems6" aria-controls="collapseSubItems6" aria-expanded="false"><i
+                                class="far fa-newspaper"></i> Carrier Section</a>
+                        <ul class="nav-second-level collapse" id="collapseSubItems6" data-parent="#navAccordion">
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_recruit_circular' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Circular</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_recruit_cv' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> CV</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_recruit_user' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> User</span>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_recruit_applicant' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Applicant</span>
+                                </router-link>
+                            </li>
 
-                        <li class="nav-item">
-                            <router-link :to="{name:'admin_logout'}" class="nav-link">
-                                <i class="nav-icon fas fa-sign-out-alt"></i>
-                                <p>Logout</p>
-                            </router-link>
-                        </li>
+                        </ul>
+                    </li>
 
-                    </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
+                    <li class="nav-item" v-if="isLogPermitted">
+                        <a class="nav-link nav-link-collapse" href="#" id="hasSubItems" data-toggle="collapse"
+                            data-target="#collapseSubItems7" aria-controls="collapseSubItems7" aria-expanded="false"><i
+                                class="far fa-newspaper"></i> Login Logs</a>
+                        <ul class="nav-second-level collapse" id="collapseSubItems7" data-parent="#navAccordion">
+                            <li class="nav-item">
+                                <router-link :to="{ name:'admin_visitors_log' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Visitors Logs</span>
+                                </router-link>
+                                <router-link :to="{ name:'admin_login_log' }" class="nav-link">
+                                    <span class="nav-link-text"><i class="far fa-hand-point-right"></i> Admins Logs</span>
+                                </router-link>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <!-- <li class="nav-item">
+                        <router-link :to="{ name:'admin_blank' }" class="nav-link"><i class="fas fa-stream"></i> Blank
+                        </router-link>
+                    </li> -->
+
+                    <li class="nav-item">
+                        <router-link :to="{ name:'admin_profile' }" class="nav-link"><i class="fas fa-sign-out-alt"></i>
+                            My Profile</router-link>
+                    </li>
+
+                    <li class="nav-item">
+                        <router-link :to="{ name:'admin_logout' }" class="nav-link"><i class="fas fa-sign-out-alt"></i>
+                            Logout</router-link>
+                    </li>
+
+                </ul>
+                <div class="ml-auto mt-2 mt-md-0 text-light">
+                    <span v-if="adminUser">Name: {{ adminUser.name }}, <span class="text-danger"
+                            v-if="isAdministrator">( Administrator ) </span> </span>
+                </div>
+
             </div>
-            <!-- /.sidebar -->
-        </aside>
+        </nav>
     </div>
 </template>

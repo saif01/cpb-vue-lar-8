@@ -72,8 +72,8 @@
                                     </span>
                                     <span v-else class="text-danger"> No CV</span>
                                 </td>
-                                <td>{{ singleData.circular.jobTitle }}</td>
-                                <td>{{ singleData.user.name }}</td>
+                                <td><span v-if="singleData.circular">{{ singleData.circular.jobTitle }}</span></td>
+                                <td><span v-if="singleData.user">{{ singleData.user.name }}</span></td>
                                 <td>{{ singleData.created_at | moment("dddd, MMMM Do YYYY")  }} </td>
 
                                 <td class="text-center">

@@ -26,9 +26,6 @@
     import From from 'vform';
 
     export default {
-
-        name: '404Component',
-
         data() {
             return {}
         },

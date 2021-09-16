@@ -23,61 +23,70 @@
                 <div class="container">
 
                     <div class="row justify-content-center">
-                        <div class="col-6">
+                        <div class="col-md-6">
 
-                             <p class="text-center h4"><b>Reset Login Password</b></p>
+                            <p class="text-center h4"><b>Reset Login Password</b></p>
 
-                                <div v-if="error" class="alert alert-danger text-center">
-                                    <span>{{ errorMsg }}</span>
-                                </div>
+                            <div v-if="error" class="alert alert-danger text-center">
+                                <span>{{ errorMsg }}</span>
+                            </div>
 
-                           
-                                <form @submit.prevent="register()">
-                                    <div class="php-email-form-vue">
 
-                                        
+                            <form @submit.prevent="register()">
+                                <div class="php-email-form-vue">
 
-                                         <div class="form-group">
-                                            <b-form-input type="email" class="form-control" :class="{ 'is-invalid': form.errors.has('email') }" v-model="form.email" placeholder="Enter your E-mail"></b-form-input>
-                                            <div class="small text-danger" v-if="form.errors.has('email')"
-                                                v-html="form.errors.get('email')" />
-                                        </div>
 
-                                         <div class="form-group">
-                                            <b-form-input class="form-control" :class="{ 'is-invalid': form.errors.has('contact') }" v-model="form.contact" placeholder="Enter your contact "></b-form-input>
-                                            <div class="small text-danger" v-if="form.errors.has('contact')"
-                                                v-html="form.errors.get('contact')" />
-                                        </div>
-
-                                        <div class="form-group">
-                                            <b-form-input type="password" class="form-control" :class="{ 'is-invalid': form.errors.has('password') }" v-model="form.password" placeholder="Enter new password"></b-form-input>
-                                            <div class="small text-danger" v-if="form.errors.has('password')"
-                                                v-html="form.errors.get('password')" />
-                                        </div>
-                                      
-                                       <div class="form-group">
-                                            <b-form-input type="password" class="form-control" :class="{ 'is-invalid': form.errors.has('conformPassword') }" v-model="form.conformPassword" placeholder="Enter new conform password"></b-form-input>
-                                            <div class="small text-danger" v-if="form.errors.has('conformPassword')"
-                                                v-html="form.errors.get('conformPassword')" />
-                                        </div>
-
-                                         <b-form-group v-if="form.progress">
-                                            <b-progress :value="form.progress.percentage" variant="success" striped animated>
-                                            </b-progress>
-                                        </b-form-group>
-                                      
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i>
-                                               Submit </button>
-                                        </div>
-
+                                    <div class="form-group">
+                                        <b-form-input type="email" class="form-control"
+                                            :class="{ 'is-invalid': form.errors.has('email') }" v-model="form.email"
+                                            placeholder="Enter your E-mail"></b-form-input>
+                                        <div class="small text-danger" v-if="form.errors.has('email')"
+                                            v-html="form.errors.get('email')" />
                                     </div>
-                                </form>
+
+                                    <div class="form-group">
+                                        <b-form-input class="form-control"
+                                            :class="{ 'is-invalid': form.errors.has('contact') }" v-model="form.contact"
+                                            placeholder="Enter your contact "></b-form-input>
+                                        <div class="small text-danger" v-if="form.errors.has('contact')"
+                                            v-html="form.errors.get('contact')" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <b-form-input type="password" class="form-control"
+                                            :class="{ 'is-invalid': form.errors.has('password') }"
+                                            v-model="form.password" placeholder="Enter new password"></b-form-input>
+                                        <div class="small text-danger" v-if="form.errors.has('password')"
+                                            v-html="form.errors.get('password')" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <b-form-input type="password" class="form-control"
+                                            :class="{ 'is-invalid': form.errors.has('conformPassword') }"
+                                            v-model="form.conformPassword" placeholder="Enter new conform password">
+                                        </b-form-input>
+                                        <div class="small text-danger" v-if="form.errors.has('conformPassword')"
+                                            v-html="form.errors.get('conformPassword')" />
+                                    </div>
+
+                                    <b-form-group v-if="form.progress">
+                                        <b-progress :value="form.progress.percentage" variant="success" striped
+                                            animated>
+                                        </b-progress>
+                                    </b-form-group>
+
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i>
+                                            Submit </button>
+                                    </div>
+
+                                </div>
+                            </form>
 
                         </div>
                     </div>
 
-        
+
 
 
                 </div>
@@ -94,21 +103,21 @@
 <script>
     import From from 'vform';
     // in full builds helpers are exposed as Vuex.mapState
-    
+
     export default {
-        name:'ResetPassword',
+        name: 'ResetPassword',
         data() {
             return {
 
                 error: false,
-                errorMsg:'',
+                errorMsg: '',
 
                 form: new From({
                     email: '',
                     contact: '',
                     password: '',
                     conformPassword: '',
-                   
+
                 }),
 
             }
@@ -116,7 +125,7 @@
 
         methods: {
 
-           
+
 
             // register 
             async register() {
@@ -138,12 +147,14 @@
                         icon: response.data.icon,
                         title: response.data.msg
                     });
-                   
+
 
                     // Redirect to dashboard
-                    this.$router.push({name:'carrier_login'})
+                    this.$router.push({
+                        name: 'carrier_login'
+                    })
 
-                }else if(response.status == 203){
+                } else if (response.status == 203) {
 
                     this.error = true;
                     this.errorMsg = response.data.msg;
@@ -153,9 +164,9 @@
                         title: response.data.msg
                     });
 
-                   // console.log('else if', response.data, response.data.msg)
+                    // console.log('else if', response.data, response.data.msg)
 
-                }else {
+                } else {
                     Swal.fire("Failed!", data.message, "warning");
                     console.log(response);
                 }
@@ -167,16 +178,15 @@
         created() {
 
             this.$Progress.start();
-           
+
             console.log('carrier Password Reset');
             this.$Progress.finish();
 
         },
 
 
-      
+
 
     }
 
 </script>
-

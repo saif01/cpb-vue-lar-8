@@ -294,7 +294,7 @@ class VueController extends Controller
         $document = $request->file('document');
         // Direct any file store
         if ($document) {
-            $document_name      = Str::random(5);
+            $document_name      = Str::random(9);
             $ext                = strtolower($document->getClientOriginalExtension());
             $document_full_name = $document_name . '.' . $ext;
             $upload_path        = 'images/recruit/';

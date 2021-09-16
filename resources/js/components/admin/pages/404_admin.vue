@@ -25,9 +25,6 @@
 <script>
    
     export default {
-
-        name: '404Component',
-
         data() {
             return {}
         },

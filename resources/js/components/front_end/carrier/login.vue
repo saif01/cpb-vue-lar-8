@@ -23,7 +23,7 @@
                 <div class="container">
 
                     <div class="row justify-content-center">
-                        <div class="col-6">
+                        <div class="col-md-6">
 
                              <p class="text-center h4"><b>Login</b></p>
 

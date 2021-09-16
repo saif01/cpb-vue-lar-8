@@ -149,7 +149,7 @@
         },
         methods: {
 
-             // Add model show
+            // Add model show
             profileModal() {
                 this.form.reset();
                 //this.form.fill(this.user);

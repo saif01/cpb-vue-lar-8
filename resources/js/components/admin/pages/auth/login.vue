@@ -123,6 +123,8 @@
                         //   // Localstorage Update
                         //   this.setLocalStorage('admin_user', userData)
 
+                        // Clear All Session
+                        this.setSessionStorage()
                         // SessionStorage Update
                         this.setSessionStorage('admin_auth_token', token)
                         // SessionStorage Update
