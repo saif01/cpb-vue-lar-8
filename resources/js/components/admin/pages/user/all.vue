@@ -59,6 +59,11 @@
                                     <span v-if="sort_direction == 'desc' && sort_field == 'email'">&uarr;</span>
                                     <span v-if="sort_direction == 'asc' && sort_field == 'email'">&darr;</span>
                                 </th>
+                                <th>
+                                    <a href="#" @click.prevent="change_sort('contact')">Contact</a>
+                                    <span v-if="sort_direction == 'desc' && sort_field == 'contact'">&uarr;</span>
+                                    <span v-if="sort_direction == 'asc' && sort_field == 'contact'">&darr;</span>
+                                </th>
                                 <th>Roles</th>
 
                                 <th>Action</th>
@@ -76,6 +81,7 @@
                                 <td>{{ singleData.login }}</td>
                                 <td>{{ singleData.name }}</td>
                                 <td>{{ singleData.email }}</td>
+                                <td>{{ singleData.contact }}</td>
                                 <td>
                                     <span v-if="singleData.roles.length">
                                         <span v-for="(role, index) in singleData.roles" :key="index">
