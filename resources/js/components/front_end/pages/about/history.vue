@@ -33,7 +33,7 @@
                                         <span class="timeline-year">{{ item.year }}</span>
                                         <div class="timeline-icon">
                                             <!-- <i class="fa fa-globe"></i> -->
-                                            <img :src="'images/history/small/'+item.image" class="rounded" alt="Image"
+                                            <img :src="'/images/history/small/'+item.image" class="rounded" alt="Image"
                                                 style="max-height: 50px;">
                                         </div>
                                         <h3 class="title">{{ item.title }}</h3>

@@ -39,7 +39,7 @@
                     <div class="row images-wrapper">
                         <div class="image my-1 rounded mx-auto d-block hober-effect"
                             v-for="(image, imageIndex) in images" :key="imageIndex" @click="index = imageIndex"
-                            :style="{ backgroundImage: `url(${image.thumb})` }">
+                            :style="{ backgroundImage: `url(/${image.thumb})` }">
                         </div>
                     </div>
 

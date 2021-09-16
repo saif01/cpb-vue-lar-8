@@ -27,19 +27,19 @@
 
                             <b-carousel id="carousel-no-animation" style="text-shadow: 0px 0px 2px #000" fade
                                 controls indicators img-width="1110" img-height="480">
-                                <b-carousel-slide v-if="businessdata.image" :img-src="'images/business/'+businessdata.image"
+                                <b-carousel-slide v-if="businessdata.image" :img-src="imageAssetSrc+businessdata.image"
                                     class="img-fluid" alt="CPB-Business" >
                                 </b-carousel-slide>
-                                <b-carousel-slide v-if="businessdata.image2" :img-src="'images/business/'+businessdata.image2"
+                                <b-carousel-slide v-if="businessdata.image2" :img-src="imageAssetSrc+businessdata.image2"
                                     class="img-fluid" alt="CPB-Business">
                                 </b-carousel-slide>
-                                <b-carousel-slide v-if="businessdata.image3" :img-src="'images/business/'+businessdata.image3"
+                                <b-carousel-slide v-if="businessdata.image3" :img-src="imageAssetSrc+businessdata.image3"
                                     class="img-fluid" alt="CPB-Business">
                                 </b-carousel-slide>
-                                <b-carousel-slide v-if="businessdata.image4" :img-src="'images/business/'+businessdata.image4"
+                                <b-carousel-slide v-if="businessdata.image4" :img-src="imageAssetSrc+businessdata.image4"
                                     class="img-fluid" alt="CPB-Business">
                                 </b-carousel-slide>
-                                <b-carousel-slide v-if="businessdata.image5" :img-src="'images/business/'+businessdata.image5"
+                                <b-carousel-slide v-if="businessdata.image5" :img-src="imageAssetSrc+businessdata.image5"
                                     class="img-fluid" alt="CPB-Business">
                                 </b-carousel-slide>
                             </b-carousel>
@@ -85,6 +85,8 @@
 
         data() {
             return {
+                imageAssetSrc : '/images/business/',
+
                 businessdata:'',
                 dataLoading:true,
             }

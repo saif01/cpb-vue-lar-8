@@ -7,7 +7,7 @@
 
                 <b-navbar toggleable="lg" type="dark" variant="dark" class="p-0 bg-transparent">
                     <b-navbar-brand :to="{ name: 'index'}">
-                        <img :src="'all-assets/front-end/img/logo/cpb.png'"
+                        <img :src="'/all-assets/front-end/img/logo/cpb.png'"
                              width="40" height="40">
                     </b-navbar-brand>
 

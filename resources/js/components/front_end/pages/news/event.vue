@@ -34,7 +34,7 @@
 
                             <div class="row" v-for="(item, index) in  allData.data" :key="index">
                                 <div class="col-lg-6 p-2" data-aos="fade-left">
-                                    <img :src="'images/event/'+item.image" class="img-fluid rounded" alt="CPB">
+                                    <img :src="'/images/event/'+item.image" class="img-fluid rounded" alt="CPB">
                                 </div>
                                 <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-right">
                                     <h3>{{ item.title }}</h3>
@@ -46,7 +46,7 @@
 
                                     <hr>
                                     <a v-if="item.document" class="btn btn-sm btn-success float-right mt-2"
-                                        :href="'images/event/'+item.document" download="PressNew"><i
+                                        :href="'/images/event/'+item.document" download="PressNew"><i
                                             class='bx bx-download'></i> Documnet</a>
 
                                 </div>

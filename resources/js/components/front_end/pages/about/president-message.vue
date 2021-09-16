@@ -48,7 +48,7 @@
                     <div class="card border-0" v-if="allData">
 
                         <div class="card-header text-center">
-                            <img :src="'images/president/small/'+allData.image" data-aos="zoom-in" class="picture"
+                            <img :src="'/images/president/small/'+allData.image" data-aos="zoom-in" class="picture"
                                 alt="CPB">
                         </div>
                         <div class="card-body text-center">

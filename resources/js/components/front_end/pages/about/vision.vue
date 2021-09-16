@@ -30,9 +30,9 @@
                     <div class="row" v-if="allData">
                         <div class="col-md-5" data-aos="fade-left">
 
-                            <img v-if="allData.image" :src="'images/vision/'+allData.image" class="img-fluid"
+                            <img v-if="allData.image" :src="'/images/vision/'+allData.image" class="img-fluid"
                                 alt="CPB-Image">
-                            <img v-else :src="'all-assets/front-end/img/features-1.svg'" class="img-fluid"
+                            <img v-else :src="'/all-assets/front-end/img/features-1.svg'" class="img-fluid"
                                 alt="CPB-Image">
 
                         </div>
