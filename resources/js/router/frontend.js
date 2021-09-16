@@ -51,7 +51,7 @@ export default [
     },
 
     {
-        path: '/news-gallery',
+        path: '/news/gallery',
         component: news_gallery,
         name: 'news_gallery',
         meta:{
@@ -59,7 +59,7 @@ export default [
         }
     },
     {
-        path: '/news-press',
+        path: '/news/press',
         component: news_press,
         name: 'news_press',
         meta:{
@@ -67,7 +67,7 @@ export default [
         }
     },
     {
-        path: '/news-event',
+        path: '/news/event',
         component: news_event,
         name: 'news_event',
         meta:{
@@ -76,7 +76,7 @@ export default [
     },
 
     {
-        path: '/about-chairman_message',
+        path: '/about/chairman-message',
         component: about_chairman_message,
         name: 'about_chairman_message',
         meta:{
@@ -84,7 +84,7 @@ export default [
         }
     },
     {
-        path: '/about-president_message',
+        path: '/about/president-message',
         component: about_president_message,
         name: 'about_president_message',
         meta:{
@@ -92,7 +92,7 @@ export default [
         }
     },
     {
-        path: '/about-vision',
+        path: '/about/vision',
         component: about_vision,
         name: 'about_vision',
         meta:{
@@ -100,7 +100,7 @@ export default [
         }
     },
     {
-        path: '/about-mission',
+        path: '/about/mission',
         component: about_mission,
         name: 'about_mission',
         meta:{
@@ -108,7 +108,7 @@ export default [
         }
     },
     {
-        path: '/about-headquarter',
+        path: '/about/headquarter',
         component: about_headquarter,
         name: 'about_headquarter',
         meta:{
@@ -116,25 +116,17 @@ export default [
         }
     },
     {
-        path: '/about-history',
+        path: '/about/history',
         component: about_history,
         name: 'about_history',
         meta:{
             title: 'Histories'
         }
     },
-    {
-        path: '/business-index',
-        component: business_index,
-        name: 'business_index',
-        props: true,
-        meta:{
-            title: 'Business Index'
-        }
-    },
+    
 
     {
-        path: '/business-feed',
+        path: '/business/feed',
         component: business_feed,
         name: 'business_feed',
         meta:{
@@ -142,7 +134,7 @@ export default [
         }
     },
     {
-        path: '/business-farm',
+        path: '/business/farm',
         component: business_farm,
         name: 'business_farm',
         meta:{
@@ -150,7 +142,7 @@ export default [
         }
     },
     {
-        path: '/business-food',
+        path: '/business/food',
         component: business_food,
         name: 'business_food',
         meta:{
@@ -159,20 +151,22 @@ export default [
     },
 
 
-
-
-
     {
-        path: '/carrier-index',
+        path: '/carrier',
         component: carrier_index,
         name: 'carrier_index',
         meta:{
             title: 'Carrier Index'
         }
     },
+    {
+        path: '/recruit/dashboard',
+        redirect: { name: 'carrier_index' }
+    },
+
 
     {
-        path: '/carrier-login',
+        path: '/carrier/login',
         component: carrier_login,
         name: 'carrier_login',
         meta:{
@@ -181,7 +175,7 @@ export default [
     },
 
     {
-        path: '/carrier-logout',
+        path: '/carrier/logout',
         component: carrier_logout,
         name: 'carrier_logout',
         meta:{
@@ -189,7 +183,7 @@ export default [
         }
     },
     {
-        path: '/carrier-register',
+        path: '/carrier/register',
         component: carrier_register,
         name: 'carrier_register',
         meta:{
@@ -199,7 +193,7 @@ export default [
 
 
     {
-        path: '/carrier-applied',
+        path: '/carrier/applied',
         component: carrier_applied,
         name: 'carrier_applied',
         meta:{
@@ -209,7 +203,7 @@ export default [
     },
 
     {
-        path: '/carrier-user-profile',
+        path: '/carrier/user-profile',
         component: carrier_user_profile,
         name: 'carrier_user_profile',
         meta:{
@@ -219,7 +213,7 @@ export default [
     },
 
     {
-        path: '/carrier-reset-password',
+        path: '/carrier/reset-password',
         component: carrier_reset_pass,
         name: 'carrier_reset_pass',
         meta:{
