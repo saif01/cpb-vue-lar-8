@@ -21,11 +21,11 @@ class NewsGallery extends Model
     
     public function getSrcAttribute()
     {
-        return 'images/gallery/'. $this->attributes['image'];
+        return '/images/gallery/'. $this->attributes['image'];
     }
 
     public function getThumbAttribute()
     {
-        return 'images/gallery/small/'. $this->attributes['image'];
+        return '/images/gallery/small/'. $this->attributes['image'];
     }
 }
