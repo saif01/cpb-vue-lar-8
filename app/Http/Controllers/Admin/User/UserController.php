@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use DB;
 use App\Models\User;
 use App\Models\Auth\Role;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -51,8 +52,8 @@ class UserController extends Controller
         if($request->image){
 
             $imagePath = 'images/admin/';
-
-            $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+            $random_name      = Str::random(8);
+            $name = $random_name.time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
             // Original Image Save
             \Image::make($request->image)
             ->save($imagePath.$name);
@@ -116,8 +117,8 @@ class UserController extends Controller
                 }
             }
             
-
-            $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+            $random_name      = Str::random(8);
+            $name = $random_name. time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
             // Original Image Save
             \Image::make($request->image)
             ->save($imagePath.$name);
@@ -150,6 +151,7 @@ class UserController extends Controller
         }
 
     }
+
 
     // destroy
     public function destroy($id)
@@ -225,6 +227,75 @@ class UserController extends Controller
        return response()->json($data, 200);
 
        
+    }
+
+
+    // profile_update
+    public function profile_update(Request $request, $id){
+
+        //Validate
+        $this->validate($request,[
+            'name'      => 'required|string|max:100',
+            'contact'   => 'nullable|string|max:20',
+            'email'     => 'nullable|string|email|max:255',
+            'password'  => 'nullable|string|same:conformPassword',
+            'image'     => 'nullable',
+        ]);
+
+        $data = User::find($id);
+
+      
+        if( $request->image != $data->image ){
+
+            $imagePath = 'images/admin/';
+
+            // Delete Image
+            $imgDB = $data->image;
+            //return $imgDB;
+            if(!empty($imgDB)){
+                //Delete Old File
+                if (file_exists($imagePath . $imgDB)){
+                    unlink( $imagePath . $imgDB );
+                }
+                if (file_exists($imagePath . 'small/' . $imgDB)){
+                    unlink( $imagePath . 'small/' . $imgDB );
+                }
+            }
+            
+            $random_name      = Str::random(8);
+            $name = $random_name. time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+            // Original Image Save
+            \Image::make($request->image)
+            ->save($imagePath.$name);
+            //->save(public_path($imagePath).$name);
+            // Resized image save
+            \Image::make($request->image)
+            ->resize(300, 200)
+            ->save($imagePath.'small/'.$name);
+
+            $data->image     = $name;
+            
+        }
+
+
+       
+        $data->name     = $request->name;
+        $data->contact  = $request->contact;
+        $data->email    = $request->email;
+        $data->is_admin = 1;
+        if($request->password){
+            $data->password = $request->password;
+        }
+        $success        = $data->save();
+
+        if($success){
+            return response()->json([ 'user' =>$data, 'msg'=>'Updated Successfully &#128515;', 'icon'=>'success'], 200);
+        }else{
+            return response()->json([
+                'msg' => 'Data not save in DB !!'
+            ], 422);
+        }
+
     }
 
 

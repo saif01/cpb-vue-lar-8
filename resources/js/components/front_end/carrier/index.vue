@@ -25,7 +25,7 @@
 
                     <div class="row">
 
-                            <div class="col-8 mb-4">
+                            <div class="col-md-8 mb-4">
 
                                 <p class="text-center h4"><b>All Vacancies</b></p>
 
@@ -93,7 +93,7 @@
 
                             </div>
 
-                            <div class="col-4" data-aos="fade-right">
+                            <div class="col-md-4" data-aos="fade-right">
                                 <p class="text-center h4"><b>Send CV Without Register</b></p>
                                 <form @submit.prevent="sendMsg()">
                                     <div class="php-email-form-vue">

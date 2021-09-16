@@ -181,6 +181,11 @@
                     </li> -->
 
                     <li class="nav-item">
+                        <router-link :to="{ name:'admin_profile' }" class="nav-link"><i class="fas fa-sign-out-alt"></i>
+                            My Profile</router-link>
+                    </li>
+
+                    <li class="nav-item">
                         <router-link :to="{ name:'admin_logout' }" class="nav-link"><i class="fas fa-sign-out-alt"></i>
                             Logout</router-link>
                     </li>

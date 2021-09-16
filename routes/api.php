@@ -117,6 +117,8 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
                 Route::get('/roles', 'UserController@roles');
                 Route::post('/roles_update', 'UserController@roles_update');
                 Route::post('/roles_check', 'UserController@roles_check');
+
+                Route::post('/profile_update/{id}', 'UserController@profile_update');
             });
 
             Route::prefix('admin/role')->group( function(){

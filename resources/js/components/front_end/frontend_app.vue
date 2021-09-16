@@ -220,6 +220,12 @@
             })
         },
 
+       
+        watch: {
+            '$route' () {
+                $('#navbar-collapse').collapse('hide');
+            }
+        }
 
 
 

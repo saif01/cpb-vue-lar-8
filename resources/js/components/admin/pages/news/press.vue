@@ -157,7 +157,7 @@
                     </b-col>
                     <b-col>
                         <b-form-group label="File: (.pdf, .doc, .docx, .odt, .ppt, .pptx)">
-                            <b-form-file @change="onFileChange" placeholder="Choose CV or drop it here..." size="sm"
+                            <b-form-file @change="onFileChange" placeholder="Choose or drop it here..." size="sm"
                                 accept=".pdf, .doc, .docx, .odt, .ppt, .pptx"></b-form-file>
                             <div class="small text-danger" v-if="form.errors.has('document')"
                                 v-html="form.errors.get('document')" />

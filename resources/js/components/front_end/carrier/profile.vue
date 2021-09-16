@@ -27,7 +27,7 @@
                             <div class="card col-md-4">
                                 <div class="card-body">
                                     <div class="d-flex flex-column align-items-center text-center">
-                                        <img :src="'images/admin/' + user.image" alt="User"
+                                        <img :src="'/images/admin/' + user.image" alt="User"
                                             class="rounded-circle" width="150">
                                         <div class="mt-3">
                                             <h4>{{ user.name }}</h4>

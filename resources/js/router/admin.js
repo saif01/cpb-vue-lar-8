@@ -38,6 +38,8 @@ import admin_recruit_applicant from '../components/admin/pages/recruit/applicant
 import admin_visitors_log from '../components/admin/pages/logs/visitors.vue';
 import admin_login_log from '../components/admin/pages/logs/admins.vue';
 
+import admin_profile from '../components/admin/pages/profile.vue';
+
 
 
 export default [
@@ -277,6 +279,16 @@ export default [
         name: 'admin_login_log',
         meta:{
             title: 'Admin Login Log',
+            adminAuth: true,
+        },   
+    },
+
+    {
+        path: '/admin/profile',
+        component: admin_profile,
+        name: 'admin_profile',
+        meta:{
+            title: 'Admin Profile',
             adminAuth: true,
         },   
     },

@@ -96,7 +96,7 @@
                                      <span v-else class="text-danger">Failed</span>
                                  </td>
                                 <td class="text-center"> 
-                                    <span v-if="singleData.user">{{ singleData.user.login }}
+                                    <span v-if="singleData.user">{{ singleData.user.login }} <br>
                                         <span v-if="singleData.user.image">
                                             <img :src="'/images/admin/small/' + singleData.user.image" alt="Image" height="80" width="80">
                                         </span>
