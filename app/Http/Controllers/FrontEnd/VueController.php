@@ -147,7 +147,7 @@ class VueController extends Controller
         $sort_direction = Request('sort_direction', 'desc');
         $sort_field     = Request('sort_field', 'id');
 
-        $allData = NewsPress::orderBy($sort_field, $sort_direction)
+        $allData = NewsPress::where('status', 1)->orderBy($sort_field, $sort_direction)
                 ->search( trim(preg_replace('/\s+/' ,' ', $search)) )
                 ->paginate($paginate);
 
@@ -163,7 +163,7 @@ class VueController extends Controller
         $sort_direction = Request('sort_direction', 'desc');
         $sort_field     = Request('sort_field', 'id');
 
-        $allData = NewsEvent::orderBy($sort_field, $sort_direction)
+        $allData = NewsEvent::where('status', 1)->orderBy($sort_field, $sort_direction)
                 ->search( trim(preg_replace('/\s+/' ,' ', $search)) )
                 ->paginate($paginate);
 
