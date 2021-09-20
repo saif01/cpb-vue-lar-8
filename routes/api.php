@@ -94,6 +94,8 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
     Route::post('/admin_login', 'AdminAuthController@login')->name('login');
     Route::post('/admin_logout', 'AdminAuthController@logout');
 
+    Route::get('/admin/inactive_list', 'AdminController@inactive_list');
+
     Route::middleware('auth:sanctum')->group( function(){
 
         // Dashboard
@@ -139,6 +141,7 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
                 Route::put('/update/{id}', 'EventController@update');
                 Route::delete('/destroy/{id}', 'EventController@destroy');
                 Route::post('/status/{id}', 'EventController@status');
+                Route::get('/inactive', 'EventController@inactive');
             });
         
             Route::prefix('admin/press')->group( function(){
@@ -147,6 +150,7 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
                 Route::put('/update/{id}', 'PressController@update');
                 Route::delete('/destroy/{id}', 'PressController@destroy');
                 Route::post('/status/{id}', 'PressController@status');
+                Route::get('/inactive', 'PressController@inactive');
             });
     
             Route::prefix('admin/gallery')->group( function(){
@@ -266,6 +270,8 @@ Route::namespace('App\Http\Controllers\Admin')->group( function(){
 
         // Recruit Section
         Route::namespace('Recruit')->group( function(){ 
+
+            Route::get('/admin/circular/inactive', 'CircularController@inactive');
 
             Route::prefix('admin/circular')->group( function(){
                 Route::get('/index', 'CircularController@index');

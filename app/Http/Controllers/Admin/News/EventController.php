@@ -28,6 +28,12 @@ class EventController extends Controller
 
     }
 
+    // inactive
+    public function inactive(){
+        $allData = NewsEvent::where('status', null)->count();
+        return response()->json($allData, 200);
+    }
+
 
     // store
     public function store(Request $request){

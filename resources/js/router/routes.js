@@ -7,6 +7,9 @@ import store from '../vuex/store';
 
 //import common from '../common/common';
 
+import admin_404 from '../components/admin/pages/404_admin.vue';
+import not_found from '../components/front_end/pages/404.vue';
+
 
 
 import frontend_routes from './frontend';
@@ -22,6 +25,26 @@ const routes = new VueRouter({
 
         // All Admin routes
         ...admin_routes,
+
+
+
+        
+        {
+            path: '/admin/*',
+            component: admin_404,
+            name: 'admin_404',
+            meta:{
+                title: 'Page Not Found'
+            }
+        },
+        {
+            path: '*',
+            component: not_found,
+            name: 'not_found',
+            meta:{
+                title: 'Not Found'
+            }
+        },
 
     ]
 

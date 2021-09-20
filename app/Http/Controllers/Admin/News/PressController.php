@@ -28,6 +28,11 @@ class PressController extends Controller
 
     }
 
+    // inactive
+    public function inactive(){
+        $allData = NewsPress::where('status', null)->count();
+        return response()->json($allData, 200);
+    }
 
     // store
     public function store(Request $request){

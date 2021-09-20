@@ -25,6 +25,12 @@ class CircularController extends Controller
 
     }
 
+    // inactive
+    public function inactive(){
+        $allData = RecuitCircular::where('status', null)->count();
+        return response()->json($allData, 200);
+    }
+
 
     // store
     public function store(Request $request){

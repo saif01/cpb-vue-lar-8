@@ -66,6 +66,8 @@
                 admins: 0,
                 circulars: 0,
 
+                inactiverecruit:0,
+
 
             }
         },
@@ -85,12 +87,29 @@
                     })
             },
 
+            getRecruitInactive(){
+
+                axios.get('/api/admin/circular/inactive')
+                    .then(response => {
+                        console.log(response.data);
+                        this.inactiverecruit = response.data;
+                      
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+
+            }
+
         },
         created() {
 
             this.getDashboardData();
 
         },
+        mounted(){
+           this.getRecruitInactive();
+        }
 
 
     }

@@ -25,6 +25,8 @@ import carrier_register from '../components/front_end/carrier/register.vue';
 import carrier_user_profile from '../components/front_end/carrier/profile.vue';
 import carrier_reset_pass from '../components/front_end/carrier/reset_pass.vue';
 
+import carrier_forms_primary from '../components/front_end/carrier/forms/primary.vue';
+
 
 // Business
 import business_feed from '../components/front_end/pages/business/feed.vue';
@@ -163,8 +165,6 @@ export default [
         path: '/recruit/dashboard',
         redirect: { name: 'carrier_index' }
     },
-
-
     {
         path: '/carrier/login',
         component: carrier_login,
@@ -173,7 +173,6 @@ export default [
             title: 'Carrier Login'
         }
     },
-
     {
         path: '/carrier/logout',
         component: carrier_logout,
@@ -190,8 +189,6 @@ export default [
             title: 'Carrier Register'
         }
     },
-
-
     {
         path: '/carrier/applied',
         component: carrier_applied,
@@ -201,7 +198,6 @@ export default [
             auth: true
         }
     },
-
     {
         path: '/carrier/user-profile',
         component: carrier_user_profile,
@@ -211,7 +207,6 @@ export default [
             auth: true
         }
     },
-
     {
         path: '/carrier/reset-password',
         component: carrier_reset_pass,
@@ -220,19 +215,33 @@ export default [
             title: 'Carrier reset password',
         }
     },
+    {
+        path: '/carrier/forms/primary',
+        component: carrier_forms_primary,
+        name: 'carrier_forms_primary',
+        meta:{
+            title: 'Carrier Primary Forms',
+        }
+    },
 
 
 
 
+
+
+
+
+
+
+
+
+
+    // {
+    //     path: '/admin',
+    //     redirect: { name: 'admin_login' }
+    // },
 
     
 
-    {
-        path: '*',
-        component: not_found,
-        name: 'not_found',
-        meta:{
-            title: 'Not Found'
-        }
-    },
+    
 ]

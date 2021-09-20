@@ -142,7 +142,7 @@
                     <b-col>
                         <b-form-group label="Publish Date:">
                             <b-form-datepicker v-model="form.publishDate" today-button reset-button close-button
-                                locale="en" placeholder="YYYY-MM-DD" autocomplete="off" size="sm"
+                                locale="en" placeholder="YYYY-MM-DD" autocomplete="off" size="sm" :hide-header="datePickerHeader"
                                 :date-format-options="{ year: 'numeric', month: 'long', day: 'numeric' }"
                                 :class="{ 'is-invalid': form.errors.has('publishDate') }">
                             </b-form-datepicker>
@@ -153,7 +153,7 @@
                     <b-col>
                         <b-form-group label="Deadline Date:">
                             <b-form-datepicker v-model="form.deadline" today-button reset-button close-button
-                                locale="en" placeholder="YYYY-MM-DD" autocomplete="off" size="sm"
+                                locale="en" placeholder="YYYY-MM-DD" autocomplete="off" size="sm" :hide-header="datePickerHeader"
                                 :date-format-options="{ year: 'numeric', month: 'long', day: 'numeric' }"
                                 :class="{ 'is-invalid': form.errors.has('deadline') }">
                             </b-form-datepicker>
@@ -267,6 +267,7 @@
                 //current page url
                 currentUrl: '/api/admin/circular',
 
+                datePickerHeader:true,
 
                 // Custom Toolbar for vue2 text editor
                 ...vue2EditorToolbar,
